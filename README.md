@@ -9,6 +9,8 @@ This book was written by a group of CoderDojo mentors that wanted to keep studen
 Our hardware is based an Arduino Nano that can be purchased on-line for under $5.
 
 ## Software
+We use the standard Arduino Integrated Development Environment (IDE) and a variation of the C programming language.
 
 ## Building Your Own Robot
+This book also has a guide to help you build your own robot based on open standards and parts.
 
