@@ -17,7 +17,7 @@ four wires connected from the motor controller to the correct pins on the Arduin
 
 Here is the wiring diagram for our robot:
 
-![Arduino compatible Nano](deek-robot-motor-controller-wiring.jpg)
+![Arduino compatible Nano](images/deek-robot-motor-controller-wiring.jpg)
 
 Note that the motors are hooked up to the green "screw header" shown at the top of the diagram.
 * The power from your battery is connected to GND (black wire) and VIN (red wire)
@@ -95,4 +95,6 @@ void loop() {
   
 }
 ```
-Note that there are now two map statements.  One is for the postive direction and one is for the negative direction.
+
+If the the motors are each turning both forward and backward in the order of the
+test then you know your connections are correct!
