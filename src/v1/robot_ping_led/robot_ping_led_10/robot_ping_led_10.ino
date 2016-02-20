@@ -1,11 +1,9 @@
 #include <Servo.h>
 #include <Adafruit_NeoPixel.h>
-// the pin that the servo is on
-const int servoPin = 11;
-// ping sensor
-const int pingPin = 10;
+
+const int pingPin = 11; // connect the data of the ping sensor to this pin
 const int ledPin = 12; // the pin that the LED strip is on
-const int numberPixels = 12;
+const int numberPixels = 10; // number of LED pixels
 
 int dist_in_cm = 120;
 Servo myservo;  // create servo object to control a servo 

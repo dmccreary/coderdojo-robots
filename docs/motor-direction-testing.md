@@ -1,3 +1,37 @@
+# L293D Controller Wiring and Motor Direction Testing
+
+In this lab we will hook up our Deek Robot L239D motor controller up to 
+the Arduino Nano.  
+
+You can get the specification on this board here:
+[http://www.deek-robot.com/productShow.asp?id=17]
+
+Here are some key points:
+* The input voltage to vary from DC4.5-25V
+* The maximum current is 600mA per motor (1.2A peak)
+* You can enable and disable motors
+* The chips have overterperatures sensors so the will shut off if they get too hot
+
+We will then write a program that will test to see if we got each of the 
+four wires connected from the motor controller to the correct pins on the Arduino.
+
+Here is the wiring diagram for our robot:
+
+![Arduino compatible Nano](deek-robot-motor-controller-wiring.jpg)
+
+Note that the motors are hooked up to the green "screw header" shown at the top of the diagram.
+* The power from your battery is connected to GND (black wire) and VIN (red wire)
+* One motor is hooked to the A- and A+
+* The other motor is hooked to the B- and B+
+
+
+The male pins that are at the bottom of the board labeled labeled MCU I/O are on the lower side.
+
+Note that the red and black connections here will go to the red and black (or blue) rails of your breadboard.
+
+From the rails you will connect power to your Arduino Nano.
+
+```
 /*
 Robot Motors Direction Tests
  This test makes sure we get all four of the motor dirction pins correct
@@ -60,3 +94,5 @@ void loop() {
   
   
 }
+```
+Note that there are now two map statements.  One is for the postive direction and one is for the negative direction.
