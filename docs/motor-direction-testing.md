@@ -3,13 +3,21 @@
 In this lab we will hook up our Deek Robot L239D motor controller up to 
 the Arduino Nano.  
 
-You can get the specification on this board here:
-[http://www.deek-robot.com/productShow.asp?id=17]
+You can get the specification on this board here from the Deek Robot site:
+http://www.deek-robot.com/productShow.asp?id=17
 
 Here are some key points:
-* The input voltage to vary from DC4.5-25V
-* The maximum current is 600mA per motor (1.2A peak)
-* You can enable and disable motors
+* The input voltage can vary from DC4.5-25V
+* The maximum current is 600mA per motor (1.2A peak).  This is well above
+what 4 AA batteries will use with our DC motors.  In practice a full speed motor
+will draw about 150mA.
+* There are small red LEDs on the board that indicate if there is a PWM signal being
+received to the board.  You can used this in your debugging.
+** If the motor is not turning, but the red LED is on, it indicates the wires
+  from the board to the motor may not be connected or their is a problem with the motor.
+** If the red LEDs are not lighting up then the may not be a PWM signal getting
+to the board.
+* You can enable and disable motors 
 * The chips have overterperatures sensors so the will shut off if they get too hot
 
 We will then write a program that will test to see if we got each of the 
@@ -25,7 +33,12 @@ Note that the motors are hooked up to the green "screw header" shown at the top 
 * The other motor is hooked to the B- and B+
 
 
-The male pins that are at the bottom of the board labeled labeled MCU I/O are on the lower side.
+The male pins that are at the bottom of the board labeled labeled MCU I/O are on 
+the lower side.  These will be labeled IN1, IN2, IN3 and IN4.  IN1 and IN2 should get
+the PWM signals from the Arduino.  Only one of the two should get a signal at any time.
+One will be for forward and one for reverse.  
+Some systems turn both of PWMs on for "break", however
+this uses extra power.
 
 Note that the red and black connections here will go to the red and black (or blue) rails of your breadboard.
 

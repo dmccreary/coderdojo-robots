@@ -1,13 +1,7 @@
 /*
-Robot Motors Direction Tests
- This test makes sure we get all four of the motor dirction pins correct
- Keep changing these numbers until you get it right directions for each wheel
- Use the serial monitor to verify which one should be working
- Note, On the Arduino Nano, only pins 3,5,6,9,10 and 11 have PWM output.  You must use these to drive the motors.
- See https://www.arduino.cc/en/Main/ArduinoBoardNano
- 
- The convention is to use the first four pins (3,5,6,9) for the motor controls
- If you use a ribbon connector the order will be 5,3,6 and 9
+Test that two motors can be driven both forward and reverse using PWM pins.
+This runs the right motor forward for two seconds, then reverse.
+Then the left motor moves forward, then reverse.
 */
 
 int right_forward = 9;
@@ -16,6 +10,7 @@ int left_forward = 3;
 int left_reverse = 5;
 int delay_time_on = 2000; // how long should each wheel turn?
 int delay_time_off = 2000; // delay between tests
+int power_level = 50;
 
 void setup() {
   // Turn these pins on for PWM OUTPUT
@@ -35,28 +30,26 @@ void setup() {
 
 void loop() {
   Serial.println("Right Forward Test");
-  digitalWrite(right_forward, HIGH);
+  analogWrite(right_forward, power_level);
   delay(delay_time_on);
-  digitalWrite(right_forward, LOW);
+  analogWrite(right_forward, LOW);
   delay(delay_time_off);
   
   Serial.println("Right Reverse test");
-  digitalWrite(right_reverse, HIGH);
+  analogWrite(right_reverse, power_level);
   delay(delay_time_on);
-  digitalWrite(right_reverse, LOW);
+  analogWrite(right_reverse, LOW);
   delay(delay_time_off);
   
   Serial.println("Left Forward Test");
-  digitalWrite(left_forward, HIGH);
+  analogWrite(left_forward, power_level);
   delay(delay_time_on);
-  digitalWrite(left_forward, LOW);
+  analogWrite(left_forward, LOW);
   delay(delay_time_off);
   
   Serial.println("Left Reverse Test");
-  digitalWrite(left_reverse, HIGH);
+  analogWrite(left_reverse, power_level);
   delay(delay_time_on);
-  digitalWrite(left_reverse, LOW);
+  analogWrite(left_reverse, LOW);
   delay(delay_time_off);
-  
-  
 }
