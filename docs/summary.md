@@ -3,6 +3,7 @@
 * [Introduction](introduction.md)
 * [Getting Started](getting-started.md)
 * [Robot Components](components.md)
+* [Assembly](assembly.md)
 * [Changing Motor Speed](speed.md)
 * [Changing Motor Direction](direction.md)
 * [Controlling Two Motors](two-motors.md)
