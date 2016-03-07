@@ -1,0 +1,37 @@
+Adafruit Bluefruit Neopixel Color Picker Example
+------------------------------------------------
+Initialising the Bluefruit LE module: ATZ
+
+<- OK
+OK!
+Performing a factory reset: 
+AT+FACTORYRESET
+
+<- OK
+ATE=0
+
+<- ATE=0
+OK
+Requesting Bluefruit info:
+----------------
+BLEFRIEND32
+nRF51822 QFACA10
+CB718E019E51A418
+0.6.7
+0.6.7
+Sep 17 2015
+S110 8.0.0, 0.2
+----------------
+Please use Adafruit Bluefruit LE app to connect in Controller mode
+Then activate/use the sensors, color picker, game controller, etc!
+
+***********************
+Switching to DATA mode!
+***********************
+RGB #9541FF
+RGB #3F57FF
+Checksum mismatch in packet : 0x21 0x1E 0x5D 0x00
+Checksum mismatch in packet : 0x21 0x1E 0x5D 0x00
+RGB #FF5E50
+RGB #FF9D32
+RGB #8B23FF

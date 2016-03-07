@@ -10,10 +10,10 @@ Robot Motors Direction Tests
  If you use a ribbon connector the order will be 5,3,6 and 9
 */
 
-int right_forward = 9;
-int right_reverse = 6;
-int left_forward = 3;
-int left_reverse = 5;
+int right_forward = 5;
+int right_reverse = 3;
+int left_forward = 6;
+int left_reverse = 9;
 int delay_time_on = 2000; // how long should each wheel turn?
 int delay_time_off = 2000; // delay between tests
 
@@ -40,7 +40,7 @@ void loop() {
   digitalWrite(right_forward, LOW);
   delay(delay_time_off);
   
-  Serial.println("Right Reverse test");
+  Serial.println("Right reverse test");
   digitalWrite(right_reverse, HIGH);
   delay(delay_time_on);
   digitalWrite(right_reverse, LOW);

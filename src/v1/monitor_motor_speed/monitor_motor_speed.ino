@@ -12,7 +12,7 @@ void setup() {
 
 void loop() {
   // read the value from the Potentiometer
-  potValue = analogRead(sensorPin);
+  potValue = analogRead(potPin);
   // turn the ledPin on
   digitalWrite(ledPin, HIGH);
   // stop the program for <sensorValue> milliseconds:
