@@ -1,28 +1,28 @@
 // Bluetooth-robot v1
 // Use Bluetooth HC-06 receive commands from another bluetooth device or terminal
 // vi direction keys
-// Uses keys "h" = left, "j" = reverse, "k" = forward, and "l" = right
+// Uses keys "h" = left, "j" = reverse, "k" or "i" = forward, and "l" = right
 // speed control is also implemented using "," = speed down, "." = speed up, and "/" = max speed.
 #include <SoftwareSerial.h>
-// L293 motor control pins
-// we can only use 3, 5, 6, 9, 10, and 11 for PWM Pins
-const int right_forward_pin = 2;
+// L293D motor control pins
+// we can only use pins 3, 5, 6, 9, 10, and 11 for PWM Pins
+const int right_forward_pin = 3;
 const int right_reverse_pin = 5;
 const int left_forward_pin = 6;
 const int left_reverse_pin = 9;
 // leave 10 and 11 for Bluetooth serial communication
-const int bluetooth_rdx_pin = 10;  // transmit to RDX of bluetooth
-const int bluetooth_tdx_pin = 11;  // revieve to TDX of bluetooth
+const int bluetooth_rdx_pin = 10;  // connect this pin to the transmit TDX of bluetooth
+const int bluetooth_tdx_pin = 11;  // connect this pin to the receive RDX of bluetooth
 SoftwareSerial bt(bluetooth_rdx_pin, bluetooth_tdx_pin); // RX, TX
 
-// LED pin attached to Arduino D13
+// LED pin attached to Arduino D13 - it is on if we get a command
 int LED = 13;
 
 // variable to store serial data
 int incomingByte = 0;
 
-// variable to store speed value
-int speed_val = 255;
+// variable to store initial speed value
+int speed_val = 100;
 
 //////////////////////////////
 
