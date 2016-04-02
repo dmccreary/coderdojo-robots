@@ -23,6 +23,7 @@ int incomingByte = 0;
 
 // variable to store initial speed value
 int speed_val = 100;
+int increment_speed = 25; // how much to add or subtract from speed
 
 //////////////////////////////
 
@@ -58,13 +59,13 @@ if (bt.available() > 0) {
       
       switch (incomingByte) {
         case 46:  // "," - raise speed
-          speed_val = speed_val + 5;
+          speed_val = constrain(speed_val + increment_speed, 0, 255);
           Serial.print("Faster speed=");
           Serial.println(speed_val);
           break;
         
         case 44:  // "." - lower speed
-          speed_val = speed_val - 5;
+          speed_val = constrain(speed_val - increment_speed, 0, 255);
           Serial.print("Slower speed=");
           Serial.println(speed_val);
           break;
@@ -104,15 +105,12 @@ if (bt.available() > 0) {
           stop();
        }
   }
-  else {
-    stop();
-    digitalWrite(LED, LOW);
-  }
+  // this will continue current speed an direction forever
+  // you can put in a stop after 5 seconds
 }
 
 
 // robot movement
-
 void forward(int speed) {
   analogWrite(right_forward_pin, speed);
   analogWrite(right_reverse_pin, 0);
