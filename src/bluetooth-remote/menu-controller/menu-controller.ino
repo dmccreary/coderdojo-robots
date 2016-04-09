@@ -33,19 +33,28 @@ boolean doCapture=false;
 byte setCMD=0;
 //
 void setup() {
-  // put your setup code here, to run once:
+  // put the HC-06 into command mode, don't use 3,5,9 or 11.  Save them for PWM!
   pinMode(4, OUTPUT);
-  pinMode(5, OUTPUT);
-  pinMode(6, OUTPUT);
+  pinMode(7, OUTPUT);
+  pinMode(8, OUTPUT);
   digitalWrite(4, HIGH); // EN Pin
-  digitalWrite(5, HIGH); // Both tied to VCC
-  digitalWrite(6, HIGH); // Both tied to VCC
+  digitalWrite(7, HIGH); // Both tied to VCC
+  digitalWrite(8, HIGH); // Both tied to VCC
+  
   Serial.begin(9600);
   bt.begin(38400);
-  bt.print("AT\r\n");
-  delay(2000);
+  // bt.print("AT\r\n");
+  // delay(2000);
   showMenu();
 }
+
+void reboot_HC_05_device() {
+  digitalWrite(7, LOW); // Turn it off
+  digitalWrite(8, LOW); // Both tied to VCC
+  delay(2000);
+  digitalWrite(7, HIGH); // Turn it back on
+  digitalWrite(8, HIGH); // 
+};
 
 void loop() {
   if (Serial.available() > 0) {
@@ -99,27 +108,58 @@ void loop() {
     case '9':
       bt.print(atStart + Reset + atSetEnd);
       break;
+    case 'i':
+      bt.print(atStart + "INQM=0,5,5" + atSetEnd);
+      break;
+    case 'j':
+      bt.print(atStart + "INIT" + atSetEnd);
+      break;
+    case 'k':
+      bt.print(atStart + "INQ" + atSetEnd);
+      break;
+    case 'l':
+      bt.print(atStart + "PAIR=98D3,31,FC2D54,5" + atSetEnd);
+      break;
+    case 'n':
+      bt.print(atStart + "BIND=98D3,31,FC2D54" + atSetEnd);
+      break;
+    case 'o':
+      bt.print(atStart + "LINK=98D3,31,FC2D54" + atSetEnd);
+      break;
+    case 'x':
+      bt.print(atStart + "DISC" + atSetEnd);
+      break;
     case 'p':
       bt.print(atStart);
       bt.write("INQM=0,10,5");
       bt.print(atSetEnd);
+      delay(100);
       bt.print(atStart);
       bt.write("INIT");
       bt.print(atStart);
+      delay(100);
       bt.print(atStart);
       bt.write("INQ");
       bt.print(atStart);
       break;
     case 'q':
       bt.print(atStart);
-      bt.write("AT+PAIR=98D3,31,FC2D54,5");
+      bt.write("INIT");
       bt.print(atSetEnd);
+      delay(200);
       bt.print(atStart);
-      bt.write("AT+BIND=98D3,31,FC2D54");
+      bt.write("PAIR=98D3,31,FC2D54,5");
+      bt.print(atSetEnd);
+      // this takes a long time
+      delay(10000);
       bt.print(atStart);
+      bt.write("BIND=98D3,31,FC2D54");
       bt.print(atStart);
-      bt.write("AT+LINK=98D3,31,FC2D54");
+      delay(500);
       bt.print(atStart);
+      bt.write("LINK=98D3,31,FC2D54");
+      bt.print(atStart);
+      delay(5000);
       break;
     case 'a':// set device name
       doCapture=true;
@@ -170,11 +210,7 @@ void handleSetCMD(byte whichCMD) {
   crud=0;
   setCMD=0;
 }
-//      bt.write("AT+NAME=Toothy_1\r\n");
-//		bt.write("AT+ROLE=1\r\n");
-//      bt.write("AT+PSWD=1234\r\n");
-//      bt.write("AT+UART=9600,0,0\r\n");
-//
+
 void showMenu(){
   Serial.println(" ");
   Serial.println(F("HC-05 BlueTooth Programmer"));
@@ -182,10 +218,11 @@ void showMenu(){
   Serial.println(F("2. Version           b. Set Role (b,0)"));
   Serial.println(F("3. Address           c. Set Password (c,1234)"));
   Serial.println(F("4. Name              d. Set UART (d,Baud,Stop,Parity)"));
-  Serial.println(F("5. Role              m. Display this menu"));
-  Serial.println(F("6. UART              p. Probe for addresses"));
-  Serial.println(F("7. State             q. Bind to 1"));
-  Serial.println(F("8. Password"));
-  Serial.println(F("9. Device Reset"));
-  Serial.println(" ");
+  Serial.println(F("5. Role              i. Init query parameters. INQM=0,5,5"));
+  Serial.println(F("6. UART              j. Init library"));
+  Serial.println(F("7. State             k. Probe for BT addresses"));
+  Serial.println(F("8. Password          q. Bind to Robot 22."));
+  Serial.println(F("9. Device Reset      x. Disconnect from Robot 22"));
+  Serial.println(F("i=query INQM=0,5,5, j=init lib INIT, k=get addrs INQ"));
+  Serial.println(F("l=PAIR ,n=BIND, o=LINK"));
 }

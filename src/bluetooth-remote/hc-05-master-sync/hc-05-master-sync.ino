@@ -21,6 +21,9 @@ void setup() {
   // Serial.println("AT+INQM=0,10,5");
   Serial.println("AT+INIT");
   Serial.println("AT+INQ");
+  Serial.println("AT+PAIR=98D3,31,FC2D54,5");
+  Serial.println("AT+BIND=98D3,31,FC2D54");
+  Serial.println("AT+LINK=98D3,31,FC2D54");
   // get_devices();
 }
 
