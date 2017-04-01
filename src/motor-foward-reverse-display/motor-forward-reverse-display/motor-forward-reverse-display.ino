@@ -71,11 +71,7 @@ void loop()
   print_right_aligned(forward_PWMValue, 3);
   lcd.setCursor(13,1);
   print_right_aligned(reverse_PWMValue, 3);
-  
-  Serial.print(" forward PWM value=");
-  Serial.print(forward_PWMValue);
-  Serial.print(" reverse PWM value=");
-  Serial.println(reverse_PWMValue);
+
   analogWrite(forwardMotorPin, forward_PWMValue);
   analogWrite(reverseMotorPin, reverse_PWMValue);
   delay(200);
