@@ -4,13 +4,13 @@ This runs the right motor forward for two seconds, then reverse.
 Then the left motor moves forward, then reverse.
 */
 
-int right_forward = 9;
-int right_reverse = 6;
-int left_forward = 3;
-int left_reverse = 5;
+int right_forward = 5;
+int right_reverse = 3;
+int left_forward = 6;
+int left_reverse = 9;
 int delay_time_on = 2000; // how long should each wheel turn?
 int delay_time_off = 2000; // delay between tests
-int power_level = 50;
+int power_level = 250;
 
 void setup() {
   // Turn these pins on for PWM OUTPUT

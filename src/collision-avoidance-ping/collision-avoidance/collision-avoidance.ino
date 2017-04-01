@@ -1,32 +1,32 @@
 
 // ping sensor
-const int pingPin = 11;
+const int pingPin = 2;
 int dist_in_cm = 120;
 
 // This LED strip is used for distance feedback
 // The closer we get to an object in front of us, the further up the blue pixel is on
 #include <Adafruit_NeoPixel.h>
 #define LEDPIN 12 // connect the Data from the strip to this pin on the Arduino
-#define NUMBER_PIEXELS 12 // the number of pixels in your LED strip
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMBER_PIEXELS, LEDPIN, NEO_GRB + NEO_KHZ800);
+#define NUMBER_PIXELS 10 // the number of pixels in your LED strip
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMBER_PIXELS, LEDPIN, NEO_GRB + NEO_KHZ800);
 
 int old_strip_index = 0;
 int new_strip_index = 0;
-int power_turn_level = 50; /* power on turns */
+int power_turn_level = 150; /* power on turns */
 
 // adjust these till the robot goes streight to compensate for motor differences
-int power_forward_right = 50; /* half power on turns */
-int power_forward_left = 50; /* half power on turns */
+int power_forward_right = 255; /* half power on turns */
+int power_forward_left = 255; /* half power on turns */
 int test_delay = 500;
 
 // motor pins.  Note that only pins 2,5,6,9 and 10 can be used for pwm
-int right_forward = 9;
-int right_reverse = 6;
-int left_forward = 3;
-int left_reverse = 5;
+int right_forward = 5;
+int right_reverse = 3;
+int left_forward = 6;
+int left_reverse = 9;
 
 // try this time to make a right turn just above 90 degrees
-int delay_time_ninty_turn = 250;
+int delay_time_ninty_turn = 100;
 // if we are under this distance, make a turn.  For higher power, make this larger
 int cm_for_turn = 25;
 int delay_time_forward = 100;
@@ -53,11 +53,11 @@ void setup() {
   delay(test_delay);
   analogWrite(right_reverse, 0);
   
-  analogWrite(left_forward, power_forward_right);
+  analogWrite(left_forward, power_forward_left);
   delay(test_delay);
   analogWrite(left_forward, 0);
   
-  analogWrite(left_reverse, power_forward_right);
+  analogWrite(left_reverse, power_forward_left);
   delay(test_delay);
   analogWrite(left_reverse, 0);
   
@@ -75,14 +75,14 @@ void loop() {
   new_strip_index = dist_in_cm / 5;
   
   // don't go over the max
-  if (new_strip_index > (NUMBER_PIEXELS - 1)) {
+  if (new_strip_index > (NUMBER_PIXELS - 1)) {
     new_strip_index = 11;
   }
   
   // only draw if there is a change
   if ( old_strip_index != new_strip_index) {
     // erase the old strip
-     for (int i=0; i < NUMBER_PIEXELS; i++)
+     for (int i=0; i < NUMBER_PIXELS; i++)
         strip.setPixelColor(i, 0, 0, 0);
     // turn on new value to a light blue
      strip.setPixelColor(new_strip_index, 0, 0, 30);

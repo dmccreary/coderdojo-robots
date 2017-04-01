@@ -69,7 +69,7 @@ void loop()
   
   lcd.setCursor(4,1);
   print_right_aligned(forward_PWMValue, 3);
-  lcd.setCursor(12,1);
+  lcd.setCursor(13,1);
   print_right_aligned(reverse_PWMValue, 3);
   
   Serial.print(" forward PWM value=");
@@ -81,22 +81,19 @@ void loop()
   delay(200);
 }
 
-// print right aligned into space
+// print a positive number from 1 to 1023 right aligned into space
 void print_right_aligned(int in, int spaces) {
-    if ( (spaces == 4 && in > 999 )
-          || (spaces == 3 && in > 99 )
-        )
-      {
+
+    // the first of three leading spaces
+    if (spaces == 4 && in < 9)
         lcd.print(" ");
-      }
-    else if ( (spaces == 4 && in > 99 )
-          || (spaces == 3 && in > 9 )
-        )
-        {
-          lcd.print("  ");
-        }
-     else if ( spaces == 4 && in > 9 ) {
-        lcd.print("   ");
-     }
+
+   // the second space
+   if ( (spaces == 4 && in < 99 ) || (spaces == 3 && in < 9 ) )
+        lcd.print(" ");
+   // 
+   if ( ( spaces == 4 && in < 999 ) || (spaces == 3 && in < 99 ) ) 
+        lcd.print(" ");
+        
      lcd.print(in);
 }
