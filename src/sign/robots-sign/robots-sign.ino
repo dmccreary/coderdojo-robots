@@ -86,7 +86,7 @@ void loop() {
         case 1: rainbowSlide();break; // 7 pixel rainbow
         case 2: recolor();break; // recolor with red, green and blue
         case 3: dot(0, 0, 255);break; // blue
-        case 4: colorWipe();break;
+        case 4: rainbowSlide2();break;
         case 5: colorWipe();break;
         case 6: colorWipe();break;
         case 7: swoosh(255 ,0, 0);break;
@@ -132,7 +132,23 @@ void changeModeDec(){
 
 void cycleAllModes() {
   rainbowSlide();
-  //recolor();
+  recolor();
+  mainLoopCount++;
+  recolor();
+  mainLoopCount++;
+  recolor();
+  mainLoopCount++;
+  colorWipe();
+  swoosh(255, 0, 0);
+  swoosh(0, 0, 255);
+  swoosh(0, 0, 255);
+  theaterChase(255, 0, 0);
+  theaterChase(0, 255, 0);
+  theaterChase(0, 0, 255);
+  rainbow7();
+  candle();
+  candle();
+  candle();
 }
 
 void rainbowSlide() {
@@ -141,10 +157,15 @@ void rainbowSlide() {
     strip.show();
 }
 
+void rainbowSlide2() {
+   strip.setPixelColor(pixelIndex, Wheel(mainLoopCount & 255));
+   strip.show();
+}
+
 // continiously rewipe the colors
 void recolor() {
     int color, red, green, blue;
-    color = pixelIndex % 3;
+    color = mainLoopCount % 3;
     if (color == 0) {red = 255; green = 0; blue = 0;}
     if (color == 1) {red = 0; green = 255; blue = 0;}
     if (color == 2) {red = 0; green = 0; blue = 255;}
