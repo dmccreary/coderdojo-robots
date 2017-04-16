@@ -1,13 +1,18 @@
+#include <AFMotor.h>
+AF_DCMotor motor_left_rear(1, MOTOR12_64KHZ);
+AF_DCMotor motor_right_rear(2, MOTOR12_64KHZ);
+AF_DCMotor motor_right_front(3, MOTOR12_64KHZ);
+AF_DCMotor motor_left_front(4, MOTOR12_64KHZ);
 
 // ping sensor
-const int pingPin = 11;
-int dist_in_cm = 100; // pick a high number to start
+const int pingPin = 10;
+int dist_in_cm = 120;
 
 // This LED strip is used for distance feedback
 // The closer we get to an object in front of us, the further up the blue pixel is on
 #include <Adafruit_NeoPixel.h>
-#define LEDPIN 12 // connect the Data from the strip to this pin on the Arduino
-#define NUMBER_PIXELS 10 // the number of pixels in your LED strip
+#define LEDPIN 9 // connect the Data from the strip to this pin on the Arduino
+#define NUMBER_PIXELS 12 // the number of pixels in your LED strip
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMBER_PIXELS, LEDPIN, NEO_GRB + NEO_KHZ800);
 
 int old_strip_index = 0;
@@ -15,71 +20,44 @@ int new_strip_index = 0;
 int power_turn_level = 150; /* power on turns */
 
 // adjust these till the robot goes streight to compensate for motor differences
-int power_forward_right = 255; /* half power on turns */
-int power_forward_left = 255; /* half power on turns */
-int test_delay = 500;
+int power_forward_right = 75; /* power on forward to right wheels */
+int power_forward_left = 75; /* power on forward to left wheels */
 
-// motor pins.  Note that only pins 2,5,6,9 and 10 can be used for pwm
-int right_forward = 5;
-int right_reverse = 3;
-int left_forward = 6;
-int left_reverse = 9;
 
 // try this time to make a right turn just above 90 degrees
-int delay_time_ninty_turn = 100;
+int delay_time_ninty_turn = 500;
 // if we are under this distance, make a turn.  For higher power, make this larger
-int cm_for_turn = 25;
+int cm_for_turn = 20;
 int delay_time_forward = 100;
 
 void setup() {
   Serial.begin(9600);
 
-  // flash
+  motor_left_front.setSpeed(power_forward_left);
+  motor_right_front.setSpeed(power_forward_right); 
+  motor_left_rear.setSpeed(power_forward_left);
+  motor_right_rear.setSpeed(power_forward_right);
+  
   strip.begin();
-  strip.setPixelColor(0, 255, 0, 0);
+  strip.setPixelColor(0, 10, 0, 0);
   strip.show();
-  delay(300);
-  
-  pinMode(pingPin, INPUT);
-  
-  pinMode(right_forward, OUTPUT);
-  pinMode(right_reverse, OUTPUT); 
-  pinMode(left_forward, OUTPUT); 
-  pinMode(left_reverse, OUTPUT);
-  // Test connections
-  analogWrite(right_forward, power_forward_right);
-  delay(test_delay);
-  analogWrite(right_forward, 0);
-  
-  analogWrite(right_reverse, power_forward_right);
-  delay(test_delay);
-  analogWrite(right_reverse, 0);
-  
-  analogWrite(left_forward, power_forward_left);
-  delay(test_delay);
-  analogWrite(left_forward, 0);
-  
-  analogWrite(left_reverse, power_forward_left);
-  delay(test_delay);
-  analogWrite(left_reverse, 0);
-  
+  delay(200);
 
-  // for debugging
-  // Serial.println('Start');
+  pinMode(pingPin, INPUT);
+  pinMode(LEDPIN, OUTPUT);
+
 }
 
 void loop() {
   
-  delay(100);
+  
   
   // get the distance from the ping sensor in CM
   dist_in_cm = get_distance_cm();
-  new_strip_index = dist_in_cm / 5;
+  new_strip_index = (dist_in_cm / 5) - 1;
   
   // don't go over the max
-  if (new_strip_index > (NUMBER_PIXELS - 1)) {
-    new_strip_index = 11;
-  }
+ new_strip_index = constrain(new_strip_index, 0, NUMBER_PIXELS - 1);
   
   // only draw if there is a change
   if ( old_strip_index != new_strip_index) {
@@ -87,7 +65,7 @@ void loop() {
      for (int i=0; i < NUMBER_PIXELS; i++)
         strip.setPixelColor(i, 0, 0, 0);
     // turn on new value to a light blue
-     strip.setPixelColor(new_strip_index, 0, 0, 30);
+     strip.setPixelColor(new_strip_index, 0, 0, 255);
      strip.show();
   };
   
@@ -98,26 +76,29 @@ void loop() {
       move_forward();
     }
   
-  // Serial.print(" new=");
-  // Serial.print(new_strip_index);
-
+  Serial.print("dist cm=");
+  Serial.print(dist_in_cm);
+  Serial.print(" ");
+  delay(100);
 }
 
 void turn_right() {
   Serial.println("turning right");
-  analogWrite(right_forward, LOW);
-  analogWrite(right_reverse, power_turn_level);
-  analogWrite(left_forward, power_turn_level);
-  analogWrite(left_reverse, LOW);
+  // left go forward
+  motor_left_front.run(FORWARD);
+  motor_left_rear.run(FORWARD);
+  // right go backward
+  motor_right_front.run(BACKWARD);
+  motor_right_rear.run(BACKWARD);
   delay(delay_time_ninty_turn);
 }
 
 void move_forward() {
   Serial.println("moving forward");
-  analogWrite(right_forward, power_forward_right);
-  analogWrite(right_reverse, LOW);
-  analogWrite(left_forward, power_forward_left);
-  analogWrite(left_reverse, LOW);
+  motor_left_front.run(FORWARD);
+  motor_right_front.run(FORWARD);
+  motor_left_rear.run(FORWARD);
+  motor_right_rear.run(FORWARD);
   delay(delay_time_forward);
 }
 
@@ -138,8 +119,8 @@ int get_distance_cm()
   duration = pulseIn(pingPin, HIGH);
   // convert the time into a distance
   cm = microsecondsToCentimeters(duration);
-  Serial.print(" cm=");
-  Serial.println(cm);
+  // Serial.print(" cm=");
+  // Serial.println(cm);
   return cm;
 }
 

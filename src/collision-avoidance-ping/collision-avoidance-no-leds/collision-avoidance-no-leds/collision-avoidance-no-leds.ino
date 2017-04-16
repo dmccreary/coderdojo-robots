@@ -1,18 +1,8 @@
 
 // ping sensor
-const int pingPin = 11;
+const int pingPin = 2;
 int dist_in_cm = 100; // pick a high number to start
-
-// This LED strip is used for distance feedback
-// The closer we get to an object in front of us, the further up the blue pixel is on
-#include <Adafruit_NeoPixel.h>
-#define LEDPIN 12 // connect the Data from the strip to this pin on the Arduino
-#define NUMBER_PIXELS 10 // the number of pixels in your LED strip
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMBER_PIXELS, LEDPIN, NEO_GRB + NEO_KHZ800);
-
-int old_strip_index = 0;
-int new_strip_index = 0;
-int power_turn_level = 150; /* power on turns */
+int power_turn_level = 255; /* power on turns */
 
 // adjust these till the robot goes streight to compensate for motor differences
 int power_forward_right = 255; /* half power on turns */
@@ -28,17 +18,11 @@ int left_reverse = 9;
 // try this time to make a right turn just above 90 degrees
 int delay_time_ninty_turn = 100;
 // if we are under this distance, make a turn.  For higher power, make this larger
-int cm_for_turn = 25;
+int cm_for_turn = 20;
 int delay_time_forward = 100;
 
 void setup() {
   Serial.begin(9600);
-
-  // flash
-  strip.begin();
-  strip.setPixelColor(0, 255, 0, 0);
-  strip.show();
-  delay(300);
   
   pinMode(pingPin, INPUT);
   
@@ -46,6 +30,7 @@ void setup() {
   pinMode(right_reverse, OUTPUT); 
   pinMode(left_forward, OUTPUT); 
   pinMode(left_reverse, OUTPUT);
+  
   // Test connections
   analogWrite(right_forward, power_forward_right);
   delay(test_delay);
@@ -63,9 +48,7 @@ void setup() {
   delay(test_delay);
   analogWrite(left_reverse, 0);
   
-
-  // for debugging
-  // Serial.println('Start');
+  Serial.println('Setup done');
 }
 
 void loop() {
@@ -74,22 +57,8 @@ void loop() {
   
   // get the distance from the ping sensor in CM
   dist_in_cm = get_distance_cm();
-  new_strip_index = dist_in_cm / 5;
   
-  // don't go over the max
-  if (new_strip_index > (NUMBER_PIXELS - 1)) {
-    new_strip_index = 11;
-  }
-  
-  // only draw if there is a change
-  if ( old_strip_index != new_strip_index) {
-    // erase the old strip
-     for (int i=0; i < NUMBER_PIXELS; i++)
-        strip.setPixelColor(i, 0, 0, 0);
-    // turn on new value to a light blue
-     strip.setPixelColor(new_strip_index, 0, 0, 30);
-     strip.show();
-  };
+  // new_strip_index = constrain(new_strip_index, 0, NUMBER_PIXELS - 1)
   
   // if there is something in front, turn right
   if (dist_in_cm < cm_for_turn) {
@@ -98,8 +67,8 @@ void loop() {
       move_forward();
     }
   
-  // Serial.print(" new=");
-  // Serial.print(new_strip_index);
+  Serial.print("distance cm=");
+  Serial.print(dist_in_cm);
 
 }
 
