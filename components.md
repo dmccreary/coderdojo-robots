@@ -2,6 +2,12 @@
 
 We have designed this robot using common components that are low cost and easy to find on-line.  You can build your own robot by purchasing parts on sites like eBay or work with a pre-built robot in the CoderDojo sessions.
 
+Here is a summary of the parts we use.
+
+| Part Name | Approximate Cost |
+| :--- | :--- |
+|  |  |
+
 A blog post with sample parts is listed [here](http://datadictionary.blogspot.com/2015/01/30-coderdojo-robot-version-3.html).  Note that the links that this article provides might change, however you should be able to find similar parts using the keywords provided.
 
 Now lets step through each of our individual components.
