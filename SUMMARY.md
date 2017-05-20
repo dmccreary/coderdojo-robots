@@ -6,7 +6,7 @@
 * [Instructor's Guide](instructors-guide.md)
 * [Components](components.md)
 * [Assembly](assembly.md)
-* Programming
+* [Programming](programming.md)
 * Testing Motor Connections
 * Moving Forward and Backward
 * Turning
