@@ -11,5 +11,5 @@
 * [Moving Forward and Backward](moving-forward-and-backward.md)
 * [Turning](turning.md)
 * [Sensors](sensors.md)
-* Collision Avoidance
+* [Collision Avoidance](collision-avoidance.md)
 
