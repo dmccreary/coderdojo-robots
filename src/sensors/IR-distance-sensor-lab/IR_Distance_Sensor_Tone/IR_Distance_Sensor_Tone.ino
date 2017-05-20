@@ -1,7 +1,8 @@
+// IR Distance Sensor Lab
 
 
 // this constant won't change:
-const int  buttonPin = 2;    // the pin that the pushbutton is attached to
+const int  IR_Pin = 2;    // the pin that the pushbutton is attached to
 const int  speakerPin = 3;    // the pin that the pushbutton is attached to
 const int ledPin = 13;       // the pin that the LED is attached to
 
@@ -11,10 +12,9 @@ int buttonState = 0;         // current state of the button
 int lastButtonState = 0;     // previous state of the button
 
 void setup() {
-  // initialize the button pin as a input:
-  pinMode(buttonPin, INPUT);
+  // initialize the IR pin as a input:
+  pinMode(IR_Pin, INPUT);
   // initialize the LED as an output:
-  pinMode(ledPin, OUTPUT);
   pinMode(ledPin, OUTPUT);
   // initialize serial communication:
   Serial.begin(9600);
@@ -23,7 +23,7 @@ void setup() {
 
 void loop() {
   // read the pushbutton input pin:
-  buttonState = digitalRead(buttonPin);
+  buttonState = digitalRead(IR_Pin);
 
   // compare the buttonState to its previous state
   if (buttonState != lastButtonState) {
