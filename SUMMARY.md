@@ -7,7 +7,7 @@
 * [Components](components.md)
 * [Assembly](assembly.md)
 * [Programming](programming.md)
-* Testing Motor Connections
+* [Testing Motor Connections](testing-motor-connections.md)
 * Moving Forward and Backward
 * Turning
 * [Sensors](sensors.md)
