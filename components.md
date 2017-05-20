@@ -4,15 +4,15 @@ We have designed this robot using common components that are low cost and easy t
 
 Here is a summary of the parts we use.
 
-| Part Name | Approximate Cost | Sample Link |
+| Part Name | Approximate Cost | Sample Links |
 | :--- | ---: | :--- |
-| Arduino Nano | $2.70 | [e-bay](http://www.ebay.com/itm/Mini-USB-Nano-V3-0-5V-16M-ATmega328P-CH340G-Micro-controll-wbr-er-board-For-Arduino-/122278859631) |
-| Robot Chassis with 4AA battery holder | $11 | [e-bay](http://www.ebay.com/itm/2WD-4WD-Robot-Smart-Car-Chassis-Kits-Speed-Encoder-65x26mm-Tire-for-Arduino-/172355012592?var=471179903104) |
-| 1/2 Size 400 point Solderless Breadboard | $1.09 | [e-bay](http://www.ebay.com/itm/400-Points-Solderless-Breadboard-Prototyping-Board-Test-Board-400-Holes-83x55m-/162145177768) |
+| Arduino Nano | $2.70 | [e-bay](http://www.ebay.com/itm/Mini-USB-Nano-V3-0-5V-16M-ATmega328P-CH340G-Micro-controll-wbr-er-board-For-Arduino-/122278859631) [pick-click](https://picclick.com/?q=arduino+nano) |
+| Robot Chassis with 4AA battery holder | $11 | [e-bay](http://www.ebay.com/itm/2WD-4WD-Robot-Smart-Car-Chassis-Kits-Speed-Encoder-65x26mm-Tire-for-Arduino-/172355012592?var=471179903104) [pick-click](https://picclick.com/?q=robot+chassis+kit+smart+car+2wd) |
+| 1/2 Size 400 point Solderless Breadboard | $1.09 | [e-bay](http://www.ebay.com/itm/400-Points-Solderless-Breadboard-Prototyping-Board-Test-Board-400-Holes-83x55m-/162145177768) [pick-click](https://picclick.com/Business-Industrial/?q=solderless+breadboard+400+-transparent) |
 | 170 tie point mini solderless breadboard | $1 | [e-bay](http://www.ebay.com/itm/Mini-Black-Solderless-Prototype-Breadboard-170-Tie-points-F-Arduino-NEW-C-/141977602033) |
 | L293D Motor Controller | $1.54 | [e-bay](http://www.ebay.com/itm/Mini-Motor-Drive-Shield-Expansion-Board-L293D-Module-For-Arduino-UNO-MEGA2560-R3-/262136733314) [e-bay-qty-10](http://www.ebay.com/itm/112394765594) |
 | Ultrasonic Ping Sensor HC-SR04 | $1 | [e-bay](http://www.ebay.com/itm/1pcs-Ultrasonic-Module-HC-SR04-Distance-Measuring-Transducer-Sensor-for-Arduino-/141975951132) |
-| M-F Dupont Connectors \(need 9\) | $1 | e-bay |
+| M-F Dupont Connectors \(need 6\) | $1 | [e-bay](http://www.ebay.com/itm/40-Pin-20cm-Dupont-Wire-Connector-Cable-2-54mm-Male-to-Female-1P-1P-For-Arduino-/391239934484?hash=item5b17b7a214:g:nVMAAOxyn~pRz4rQ) |
 | Power Switch | $1 | e-bay |
 | USB 2.0 Cable \(A Male to Mini\) 50cm | $1.70 | [e-bay](http://www.ebay.com/itm/Best-Black-USB-2-0-A-Male-to-Mini-5-Pin-B-Data-Charging-Cable-Cord-Adapter-DS-/261795259152) |
 | 4 AA Batteries | $2.00 | [Costco](https://www.costco.com/Kirkland-Signature-AA-Alkaline-Batteries-Two-72-pack.product.100344142.html) |
@@ -36,7 +36,7 @@ See [Arduino Nano Specication](http://arduino.cc/en/Main/arduinoBoardNano) for t
 
 ## 2 DC Motors and Wheels
 
-We have decided to use simple Direct Current \(DC\) motors for our robots.  These motors are low cost and work under a variety of voltages from 6 to 12 volts.  They come included with our Robot Chassis.    
+We have decided to use simple Direct Current \(DC\) motors for our robots.  These motors are low cost and work under a variety of voltages from 6 to 12 volts.  They come included with our Robot Chassis.  
 ![DC Motor](docs/images/dc-motor.png)
 
 ## L293D Two Motor Controller
@@ -63,6 +63,4 @@ We will also use a powerful library to convert the signals into distance measure
 ## Solderless Breadboards
 
 The robot kit comes with two solderless breadboards,  One has 400 connection points and the other smaller board for the sensors has 170 connection points.
-
-
 
