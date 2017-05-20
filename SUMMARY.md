@@ -10,8 +10,7 @@
 * [Testing Motor Connections](testing-motor-connections.md)
 * [Motor Speed Lab](motor-speed-lab.md)
 * [Moving Forward and Backward](moving-forward-and-backward.md)
-* Motor direction lab
+* Motor Direction Lab
 * [Turning](turning.md)
 * [Sensors](sensors.md)
-* Motor speed lab
 
