@@ -12,4 +12,5 @@
 * [Turning](turning.md)
 * [Sensors](sensors.md)
 * [Collision Avoidance](collision-avoidance.md)
+* Motor speed lab
 
