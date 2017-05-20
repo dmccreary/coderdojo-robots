@@ -1,7 +1,6 @@
 # Summary
 
 * [Introduction](README.md)
-* [Glossary](glossary.md)
 * Getting Started
 * [Instructor's Guide](instructors-guide.md)
 * [Components](components.md)
@@ -13,4 +12,5 @@
 * Motor Direction Lab
 * [Turning](turning.md)
 * [Sensors](sensors.md)
+* [Glossary](glossary.md)
 
