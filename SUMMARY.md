@@ -12,5 +12,7 @@
 * Motor Direction Lab
 * [Turning](turning.md)
 * [Sensors](sensors.md)
+* [Programming with Scratch](programming-with-scratch.md)
+* [Extending The Base Robot](extending-the-base-robot.md)
 * [Glossary](glossary.md)
 
