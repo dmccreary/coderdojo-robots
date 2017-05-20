@@ -4,7 +4,7 @@
 * [Glossary](glossary.md)
 * Getting Started
 * [Instructor's Guide](instructors-guide.md)
-* Components
+* [Components](components.md)
 * [Assembly](assembly.md)
 * Programming
 * Testing Motor Connections
