@@ -8,7 +8,7 @@
 * [Assembly](assembly.md)
 * [Programming](programming.md)
 * [Testing Motor Connections](testing-motor-connections.md)
-* Moving Forward and Backward
+* [Moving Forward and Backward](moving-forward-and-backward.md)
 * Turning
 * [Sensors](sensors.md)
 * Collision Avoidance
