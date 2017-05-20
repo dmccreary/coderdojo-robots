@@ -15,11 +15,13 @@ Our goal is to teach some of the following computer science concepts:
 11. **Transforming data** - using the map\(\) and constrain\(\) functions to get your variables ready for output
 12. **The H-Bridge** - changing motor direction
 13. **Transistors and motor controllers** - which is right for your project
-14. **Changing motor speed** - how to change motor speed using pulse wave modulation \(PWM\)
-15. The motor speed lab
-16. The H-Bridge
-17. Motor Direction Lab
-18. Collision avoidance
-19. 
+14. **The L293D motor controller** - a guide to a simple low cost chip that can control two DC motors
+15. **Changing motor speed** - how to change motor speed using pulse wave modulation \(PWM\)
+16. **The motor speed lab** - a lab that allows you to change the speed of a motor using a potentiometer and motor controller
+17. **Motor Direction Lab** - a lab that allows you to change the direction of your motor based on the value of a 
+18. **The Ping Sensor** - using an ultrasonic sensor to measuring the distance of an obstacle in front of your robot
+19. **Collision avoidance** - driving and turning when you get close to an obstacle
+20. **Extending your robot **- ways to extend your robot including adding a remote control
+
 
 
