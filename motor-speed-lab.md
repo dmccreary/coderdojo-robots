@@ -1,4 +1,4 @@
-# Motor Direction Lab
+# Motor Speed Lab
 
 
 

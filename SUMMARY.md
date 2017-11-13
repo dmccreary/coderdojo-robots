@@ -1,8 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
-* [Glossary](glossary.md)
-* Getting Started
+* [Getting Started](getting-started.md)
 * [Instructor's Guide](instructors-guide.md)
 * [Components](components.md)
 * [Assembly](assembly.md)
@@ -13,4 +12,7 @@
 * Motor Direction Lab
 * [Turning](turning.md)
 * [Sensors](sensors.md)
+* [Programming with Scratch](programming-with-scratch.md)
+* [Extending The Base Robot](extending-the-base-robot.md)
+* [Glossary](glossary.md)
 
