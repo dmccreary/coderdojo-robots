@@ -26,7 +26,7 @@ int left_forward = 6;
 int left_reverse = 9;
 
 // try this time to make a right turn just above 90 degrees
-int delay_time_ninty_turn = 100;
+int delay_time_ninty_turn = 300;
 // if we are under this distance, make a turn.  For higher power, make this larger
 int cm_for_turn = 25;
 int delay_time_forward = 100;

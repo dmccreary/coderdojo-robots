@@ -1,3 +1,6 @@
+#include <Adafruit_NeoPixel.h>
+#include <Servo.h>
+#include <AFMotor.h>
 
 // ping sensor
 const int pingPin = 11;
@@ -5,10 +8,11 @@ int dist_in_cm = 100; // pick a high number to start
 
 // This LED strip is used for distance feedback
 // The closer we get to an object in front of us, the further up the blue pixel is on
-#include <Adafruit_NeoPixel.h>
+
 #define LEDPIN 12 // connect the Data from the strip to this pin on the Arduino
 #define NUMBER_PIXELS 12 // the number of pixels in your LED strip
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMBER_PIXELS, LEDPIN, NEO_GRB + NEO_KHZ800);
+Servo servo;
 
 int old_strip_index = 0;
 int new_strip_index = 0;
@@ -26,7 +30,7 @@ int left_forward = 6;
 int left_reverse = 9;
 
 // try this time to make a right turn just above 90 degrees
-int delay_time_ninty_turn = 100;
+int delay_time_ninty_turn = 300;
 // if we are under this distance, make a turn.  For higher power, make this larger
 int cm_for_turn = 25;
 int delay_time_forward = 100;
@@ -41,12 +45,20 @@ void setup() {
   delay(300);
   
   pinMode(pingPin, INPUT);
-
-  
   pinMode(right_forward, OUTPUT);
   pinMode(right_reverse, OUTPUT); 
   pinMode(left_forward, OUTPUT); 
   pinMode(left_reverse, OUTPUT);
+
+  // attache and test servo
+  servo.attach(10);
+  servo.write(0);
+  delay(500);
+  servo.write(-45);
+  delay(500);
+  servo.write(-45);
+  delay(500);
+  
   // Test connections
   analogWrite(right_forward, power_forward_right);
   delay(test_delay);

@@ -1,12 +1,12 @@
 
 // ping sensor
-const int pingPin = 2;
+const int pingPin = 11;
 int dist_in_cm = 100; // pick a high number to start
 int power_turn_level = 255; /* power on turns */
 
 // adjust these till the robot goes streight to compensate for motor differences
-int power_forward_right = 255; /* half power on turns */
-int power_forward_left = 255; /* half power on turns */
+int power_forward_right = 150; /* half power on turns */
+int power_forward_left = 150; /* half power on turns */
 int test_delay = 500;
 
 // motor pins.  Note that only pins 2,5,6,9 and 10 can be used for pwm
