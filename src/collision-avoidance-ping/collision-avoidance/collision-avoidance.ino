@@ -7,7 +7,8 @@ int dist_in_cm = 100; // pick a high number to start
 // The closer we get to an object in front of us, the further up the blue pixel is on
 #include <Adafruit_NeoPixel.h>
 #define LEDPIN 12 // connect the Data from the strip to this pin on the Arduino
-#define NUMBER_PIXELS 12 // the number of pixels in your LED strip
+#define NUMBER_PIXELS 12
+// the number of pixels in your LED strip
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMBER_PIXELS, LEDPIN, NEO_GRB + NEO_KHZ800);
 
 int old_strip_index = 0;

@@ -8,10 +8,12 @@ int dist_in_cm = 100; // pick a high number to start
 
 // This LED strip is used for distance feedback
 // The closer we get to an object in front of us, the further up the blue pixel is on
-
-#define LEDPIN 12 // connect the Data from the strip to this pin on the Arduino
+#define SERVO_PIN 10
+#define PING_PIN 11
+#define LED_PIN 12 // connect the Data from the strip to this pin on the Arduino
 #define NUMBER_PIXELS 12 // the number of pixels in your LED strip
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMBER_PIXELS, LEDPIN, NEO_GRB + NEO_KHZ800);
+
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMBER_PIXELS, LED_PIN, NEO_GRB + NEO_KHZ800);
 Servo servo;
 
 int old_strip_index = 0;
@@ -50,8 +52,8 @@ void setup() {
   pinMode(left_forward, OUTPUT); 
   pinMode(left_reverse, OUTPUT);
 
-  // attache and test servo
-  servo.attach(10);
+  // attace and test servo
+  servo.attach(SERVO_PIN);
   servo.write(0);
   delay(500);
   servo.write(-45);
