@@ -48,8 +48,8 @@ void setup()   {
   Serial.begin(9600);
 
   display.begin(); // initialize the display
-  display.setRotation(2);  // rotate the display 180
-  // display.setContrast(50);  // use to change the contrast
+  display.setRotation(0);  // rotate the display 180
+  display.setContrast(60);  // use to change the contrast
   display.clearDisplay(); // get rid of the logo
   display.setTextSize(4);  // this fills the display using three digits
   display.setTextColor(BLACK);

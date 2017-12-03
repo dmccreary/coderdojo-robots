@@ -7,18 +7,19 @@
 NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
 
 // motor pins.  Note that only pins 2,5,6,9 and 10 can be used for pwm
-#define RIGHT_FORWARD_PIN = 5;
-#define RIGHT_REVERSE_PIN = 3;
-#define LEFT_FORWARD_PIN = 6;
-#define LEFT_REVERSE_PIN = 9;
+#define RIGHT_FORWARD_PIN 5
+#define RIGHT_REVERSE_PIN 3
+#define LEFT_FORWARD_PIN 6
+#define LEFT_REVERSE_PIN 9
 
 // constants don't change
-const int turn_distance = 10; //threshold for obstacles (in cm)
+const int turn_distance = 20; //threshold for obstacles (in cm). try a range of 5 to 30
+const int forward_power_level = 150; // a number from 0 to 255 for forard motors PWM on signal
+const int turn_power_level = 100; // power while turning
+const int forward_delay = 100; // time between ping checks when moving forward 
+const int turn_delay = 500; // time to turn in milliseconds 
+
 int front_distance = 0; // the distance in front of our robot in cm
-const int forward_power_level 150; // a number from 0 to 255 for forard motors PWM
-const int turn_power_level = 150; // power while turning
-const int forward_delay 100; // time between ping checks when moving forward 
-const int turn_delay 500; // time to turn in milliseconds 
 
 void setup()
 {
@@ -35,6 +36,8 @@ void setup()
 
 void loop()
 {
+  front_distance = sonar.ping_cm();
+  Serial.println(front_distance);
   if (front_distance > turn_distance) // if path is clear
      move_forward(); //move forward
   else // if path is blocked
