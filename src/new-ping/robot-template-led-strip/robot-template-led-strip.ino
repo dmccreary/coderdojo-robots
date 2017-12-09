@@ -1,10 +1,11 @@
 #include <NewPing.h>
 
 //Setup Ultrasonic Sensor Pins
-#define TRIGGER_PIN  A1  // Arduino pin tied to trigger pin on the ultrasonic sensor.
 #define ECHO_PIN     A0  // Arduino pin tied to echo pin on the ultrasonic sensor.
-#define MAX_DISTANCE 100 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
-NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
+#define TRIGGER_PIN  A1  // Arduino pin tied to trigger pin on the ultrasonic sensor.
+
+#define MAX_DISTANCE 150 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
+
 
 // motor pins.  Note that only pins 2,5,6,9 and 10 can be used for pwm
 #define RIGHT_FORWARD_PIN 5
@@ -19,17 +20,20 @@ NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and
 #define NUMBER_PIXELS 12
 // the number of pixels in your LED strip
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMBER_PIXELS, LEDPIN, NEO_GRB + NEO_KHZ800);
+const int temp;
+const int temp1;
+NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
 
 // constants don't change
 const int per_pixel_distance = (MAX_DISTANCE / NUMBER_PIXELS) / 2;
-const int turn_distance = 6; //threshold for obstacles (in cm). try a range of 5 to 30
-const int forward_power_level = 150; // a number from 0 to 255 for forard motors PWM on signal
-const int turn_power_level = 100; // power while turning
+const int turn_distance = 20; //threshold for obstacles (in cm). try a range of 5 to 30
+const int forward_power_level = 70; // a number from 0 to 255 for forard motors PWM on signal
 const int forward_delay = 100; // time between ping checks when moving forward 
+
+const int turn_power_level = 100; // power while turning
 const int turn_delay = 500; // time to turn in milliseconds 
 
 int front_distance = 0; // the distance in front of our robot in cm
-int m1, m2, m3; // three measurements
 int pixel_index = 0; // where on the LED strip to update the front_distance
 
 void setup()
@@ -38,6 +42,9 @@ void setup()
   pinMode(RIGHT_REVERSE_PIN, OUTPUT); 
   pinMode(LEFT_FORWARD_PIN, OUTPUT); 
   pinMode(LEFT_REVERSE_PIN, OUTPUT);
+
+  pinMode(ECHO_PIN, INPUT);
+  pinMode(TRIGGER_PIN, OUTPUT);
   
   Serial.begin(9600); // Start serial for output debugging
 
@@ -47,8 +54,8 @@ void setup()
   flash_led_test();
   delay(1000);
   
-  Serial.print("Each pixel is");
-  Serial.print("per_pixel_distance");
+  Serial.print("Each pixel is ");
+  Serial.print(per_pixel_distance);
   Serial.println(" cm."); 
   
   // Message to serial monitor declaring that robot is ready
@@ -57,21 +64,18 @@ void setup()
 
 void loop()
 {
-  m1 = sonar.ping_cm();
-  delay(20);
-  m1 = sonar.ping_cm();
-  delay(20);
-  m1 = sonar.ping_cm();
-  front_distance = (m1  +m2 + m3) / 3;
+  
+  front_distance = average_ping(5);
+  Serial.print("front_distance=");
   Serial.println(front_distance);
   
-  if (front_distance == 0) {
+  if (front_distance == 0) {  // 0 is no valid signal from the ping sensor
     set_led_green();
     move_forward(); //move forward
     }
-    else if (front_distance < turn_distance) // 0 is no signal
+    else if (front_distance < turn_distance) 
         turn_right();    
-    else { // if path is blocked 
+    else { // a valid value above the turn distance 
       update_led(front_distance);
       move_forward(); //move forward
     }
@@ -83,7 +87,6 @@ void move_forward() {
   analogWrite(RIGHT_REVERSE_PIN, LOW);
   analogWrite(LEFT_FORWARD_PIN, forward_power_level);
   analogWrite(LEFT_REVERSE_PIN, LOW);
-  delay(forward_delay);
 }
 
 void turn_right() {
@@ -94,6 +97,12 @@ void turn_right() {
   analogWrite(LEFT_FORWARD_PIN, turn_power_level);
   analogWrite(LEFT_REVERSE_PIN, LOW);
   delay(turn_delay);
+  // all motors off
+  analogWrite(RIGHT_FORWARD_PIN, LOW);
+  analogWrite(RIGHT_REVERSE_PIN, LOW);
+  analogWrite(LEFT_FORWARD_PIN, LOW);
+  analogWrite(LEFT_REVERSE_PIN, LOW);
+  delay(1000); // delay after turning
 }
 
 void update_led(int front_distance) {
@@ -105,7 +114,7 @@ void update_led(int front_distance) {
   Serial.print("Pixel Index: ");
   Serial.println(pixel_index);
   for (int i=0; i < pixel_index; i++)
-        strip.setPixelColor(pixel_index, 0, 0, 30);
+        strip.setPixelColor(i, 0, 0, 50);
   strip.show();
 }
 
@@ -123,19 +132,70 @@ void set_led_green() {
 
 void flash_led_test() {
   strip.setPixelColor(0, 50, 0, 0); // red
-  strip.setPixelColor(4, 50, 25, 50); // orange
-  strip.setPixelColor(3, 50, 50, 0); // yellow
-  strip.setPixelColor(5, 0, 50, 0); // green
-  strip.setPixelColor(6, 0, 0, 50); // blue
-  strip.setPixelColor(7, 50, 0, 50); // indigo
-  strip.setPixelColor(8, 25, 0, 25); // violet
-  
-  strip.setPixelColor(9, 0, 50, 50); // cyan
-  strip.setPixelColor(10, 25, 50, 0);
-  strip.setPixelColor(11, 25, 25, 50);
+  strip.setPixelColor(1, 50, 25, 0); // orange
+  strip.setPixelColor(2, 50, 50, 0); // yellow
+  strip.setPixelColor(3, 0, 50, 0); // green
+  strip.setPixelColor(4, 0, 0, 50); // blue
+  strip.setPixelColor(5, 50, 0, 50); // indigo
+  strip.setPixelColor(6, 25, 0, 25); // violet
+
+  strip.setPixelColor(7, 25, 25, 25); // whit
+  strip.setPixelColor(8, 25, 25, 25); // whit
+  strip.setPixelColor(9, 25, 25, 25); // white
+  strip.setPixelColor(10, 25, 25, 25);
+
   strip.setPixelColor(NUMBER_PIXELS - 1, 50, 50, 50); // set last pixel to white
   strip.show();
   
 }
 
+// take the average of "count" valid values
+int average_ping(int count) {
+  int sum_valid;
+  int dist;
+  int valid_readings = 0;
+  int average_distance = 0;
+  for (int i=1; i<=count; i++) {
+       dist = sonar.ping_cm();
+       if (dist != 0 && dist < 1000) {
+          sum_valid += dist; // add this one in
+          valid_readings++; // add total valid readings
+//          Serial.print("valid distance=");
+//          Serial.println(dist);
+       }
+       else {
+          Serial.print("invalid distance=");
+          Serial.println(dist);
+          Serial.print("median msec=");
+          Serial.println(sonar.ping_median(5)); 
+       };
+       delay(50);  // Wait 50ms between pings (about 20 pings/sec). 29ms should be the shortest delay between pings.
+    }
+    average_distance =  round(sum_valid / valid_readings) + 1;
+    Serial.print("average distance=");
+    Serial.println(average_distance);
+    return average_distance;
+}
 
+//unsigned long pingLoopTime;
+//unsigned long pingCurrentTime;
+//unsigned long pulseDuration;
+//int ping(){
+//  digitalWrite(TRIGGER_PIN, HIGH);
+//  pingCurrentTime = millis();
+//  if(pingCurrentTime >= (pingLoopTime + 10)){  
+//    digitalWrite(TRIGGER_PIN, LOW);
+//    pulseDuration = pulseIn(ECHO_PIN,HIGH,90000);
+//   int calculatedDistance = (pulseDuration/2) / 29.1;
+//    if (calculatedDistance <= 0){
+//      return 4444;
+//    }
+//    if (calculatedDistance > 200){
+//      return 9999;
+//    }
+//    else {
+//      return calculatedDistance / 10;
+//    }
+//    pingLoopTime = pingCurrentTime; 
+//  }
+//}
