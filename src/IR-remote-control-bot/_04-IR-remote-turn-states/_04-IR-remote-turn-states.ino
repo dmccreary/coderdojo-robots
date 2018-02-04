@@ -80,36 +80,54 @@ void loop()
           // check the ranges of the state
           speed_state = constrain(speed_state, -10, 10);
           // add the speed increment but keep the speed between 0 and 255
-          right_forward_speed = constrain(right_forward_speed + speed_increment, 0, 255);
-          left_forward_speed = constrain(left_forward_speed + speed_increment, 0, 255);
+          if (speed_state > 0) { // increment forward engines
+             right_forward_speed = constrain(right_forward_speed + speed_increment, 0, 255);
+             left_forward_speed = constrain(left_forward_speed + speed_increment, 0, 255);
+             right_reverse_speed = 0;
+             left_reverse_speed = 0;
+          } else { // slow the reverse speed
+             right_reverse_speed = constrain(right_reverse_speed - speed_increment, 0, 255);
+             left_reverse_speed = constrain(left_reverse_speed - speed_increment, 0, 255);
+             right_forward_speed = 0;
+             left_forward_speed = 0;
+          };
           print_state();
-          analogWrite(right_forward, right_forward_speed);
-          analogWrite(right_reverse, 0);
-          analogWrite(left_forward, left_forward_speed);
-          analogWrite(left_reverse, 0);
+          update_motors();
           break;
         
         case 0x14:
           Serial.print("CMD=right  ");
-          right_forward_speed = constrain(right_forward_speed - turn_increment, 0, 255);
-          left_forward_speed = constrain(left_forward_speed + turn_increment, 0, 255);
+          if (speed_state > 0) {
+            right_forward_speed = constrain(right_forward_speed - turn_increment, 0, 255);
+            left_forward_speed = constrain(left_forward_speed + turn_increment, 0, 255);
+            right_reverse_speed = 0;
+            left_reverse_speed = 0;
+          } else {
+             right_reverse_speed = constrain(right_reverse_speed + speed_increment, 0, 255);
+             left_reverse_speed = constrain(left_reverse_speed - speed_increment, 0, 255);
+             right_forward_speed = 0;
+             left_forward_speed = 0;
+          }
           print_state();
-          analogWrite(right_forward, right_forward_speed);
-          analogWrite(left_forward, left_forward_speed);
-          analogWrite(right_reverse, 0);
-          analogWrite(left_reverse, 0);
-
+          update_motors();
           break;
 
         case 0x16:
           Serial.print("CMD=left   ");
-          right_forward_speed = constrain(right_forward_speed + turn_increment, 0, 255);
-          left_forward_speed = constrain(left_forward_speed - turn_increment, 0, 255);
+          if (speed_state > 0) {
+             right_forward_speed = constrain(right_forward_speed + turn_increment, 0, 255);
+             left_forward_speed = constrain(left_forward_speed - turn_increment, 0, 255);
+             right_reverse_speed = 0;
+             left_reverse_speed = 0;
+          }
+          else {
+             right_reverse_speed = constrain(right_reverse_speed - speed_increment, 0, 255);
+             left_reverse_speed = constrain(left_reverse_speed + speed_increment, 0, 255);
+             right_forward_speed = 0;
+             left_forward_speed = 0;
+          };
           print_state();
-          analogWrite(right_forward, right_forward_speed);
-          analogWrite(left_forward, left_forward_speed);
-          analogWrite(right_reverse, 0);
-          analogWrite(left_reverse, 0);
+          update_motors();
           break;
           
         case 0x19:
@@ -117,13 +135,19 @@ void loop()
            speed_state--;
            speed_state = constrain(speed_state, -10, 10);
            // keep the speed between 0 and 255
-           right_forward_speed = constrain(right_forward_speed - speed_increment, 0, 255);
-           left_forward_speed = constrain(left_forward_speed - speed_increment, 0, 255);
+           if (speed_state > 0) {
+              right_forward_speed = constrain(right_forward_speed - speed_increment, 0, 255);
+              left_forward_speed = constrain(left_forward_speed - speed_increment, 0, 255);
+              right_reverse_speed = 0;
+              left_reverse_speed = 0;
+           } else {
+              right_reverse_speed = constrain(right_reverse_speed + speed_increment, 0, 255);
+              left_reverse_speed = constrain(left_reverse_speed + speed_increment, 0, 255);
+              right_forward_speed = 0;
+              left_forward_speed = 0;
+           };
            print_state();
-           analogWrite(right_reverse, right_forward_speed);
-           analogWrite(left_reverse, left_forward_speed);
-           analogWrite(right_forward, 0);
-           analogWrite(left_forward, 0);
+           update_motors();
            break;
            
         case 0x15:
@@ -131,10 +155,11 @@ void loop()
            Serial.print("CMD=stop   ");
            speed_state = 0;
            turn_state = 0;
-           analogWrite(right_reverse, 0);
-           analogWrite(left_reverse, 0);
-           analogWrite(right_forward, 0);
-           analogWrite(left_forward, 0);
+           right_forward_speed = 0;
+           right_reverse_speed = 0;
+           left_forward_speed = 0;
+           left_reverse_speed = 0;
+           update_motors();
            print_state();
            break;
            
@@ -162,5 +187,12 @@ void print_state() {
   Serial.print(left_forward_speed);
   Serial.print(" LR=");
   Serial.println(left_reverse_speed);
-
 }
+
+void update_motors() {
+  analogWrite(right_forward, right_forward_speed);
+  analogWrite(right_reverse, right_reverse_speed);
+  analogWrite(left_forward,  left_forward_speed);
+  analogWrite(left_reverse,  left_reverse_speed);
+}
+
