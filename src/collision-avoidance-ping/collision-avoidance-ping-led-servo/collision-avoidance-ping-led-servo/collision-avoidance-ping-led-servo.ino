@@ -1,5 +1,6 @@
 #include <Adafruit_NeoPixel.h>
 #include <Servo.h>
+#include <NewPing.h>
 #include <AFMotor.h>
 
 // ping sensor
@@ -9,10 +10,14 @@ int dist_in_cm = 100; // pick a high number to start
 // This LED strip is used for distance feedback
 // The closer we get to an object in front of us, the further up the blue pixel is on
 #define SERVO_PIN 10
-#define PING_PIN 11
+#define TRIGGER_PIN  8  // Arduino pin tied to trigger pin on the ultrasonic sensor.
+#define ECHO_PIN     7  // Arduino pin tied to echo pin on the ultrasonic sensor.
+#define MAX_DISTANCE 150 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
+
 #define LED_PIN 12 // connect the Data from the strip to this pin on the Arduino
 #define NUMBER_PIXELS 12 // the number of pixels in your LED strip
 
+NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMBER_PIXELS, LED_PIN, NEO_GRB + NEO_KHZ800);
 Servo servo;
 
@@ -46,7 +51,6 @@ void setup() {
   strip.show();
   delay(300);
   
-  pinMode(pingPin, INPUT);
   pinMode(right_forward, OUTPUT);
   pinMode(right_reverse, OUTPUT); 
   pinMode(left_forward, OUTPUT); 
@@ -88,7 +92,7 @@ void loop() {
   delay(100);
   
   // get the distance from the ping sensor in CM
-  dist_in_cm = get_distance_cm();
+  dist_in_cm = sonar.ping_cm();
   new_strip_index = dist_in_cm / 5;
   
   // don't go over the max

@@ -1,7 +1,7 @@
 #include <Servo.h>
 #include <Adafruit_NeoPixel.h>
 #define SERVO_PIN 10
-#define PING_PIN 11
+#define PING_PIN 8
 #define LED_PIN 12 // connect the Data from the strip to this pin on the Arduino
 #define NUMBER_PIXELS 10 // the number of pixels in your LED strip
 #define MAX_DISTANCE 200 // the max distance we display on the LED strip
