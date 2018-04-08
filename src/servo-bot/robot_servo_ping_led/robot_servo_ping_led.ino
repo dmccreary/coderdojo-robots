@@ -14,9 +14,9 @@ const int ledPin = 12; // the pin that the LED strip is on
 
 NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
 Servo myservo;  // create servo object to control a servo 
-#define LOOK_RIGHT 20
+#define LOOK_RIGHT 30
 #define LOOK_FRONT 85
-#define LOOK_LEFT 160
+#define LOOK_LEFT 150
 int servoInitPos = 90; // The initial position of the server - should be streight forward
 // This LED strip is used for distance feedback
 // The closer we get to an object in front of us, the further up the blue pixel is on
@@ -145,7 +145,9 @@ void loop() {
       delay(look_delay);
       right_dist = ping_avg(5);
       draw_scan(right_dist, 1);
-      delay(1000);
+      Serial.print(" right_dist=");
+      Serial.println(right_dist);
+      delay(500);
       
       // look front
       Serial.println("  looking front");
@@ -153,7 +155,9 @@ void loop() {
       delay(look_delay);
       front_dist = ping_avg(5);
       draw_scan(front_dist, 2);
-      delay(1000);
+      Serial.print(" front_dist=");
+      Serial.println(front_dist);
+      delay(500);
        
       // look left
       Serial.println("  looking left");
@@ -161,36 +165,25 @@ void loop() {
       delay(look_delay);
       left_dist = ping_avg(5);
       draw_scan(left_dist, 3);
-      delay(2000);
+      Serial.print(" left_dist=");
+      Serial.println(left_dist);;
+      delay(500);
        
-      // this is the main logic
-      if (left_dist > right_dist) {
+      // this is the main turning logic
+      if (front_dist < cm_for_turn && left_dist > right_dist) {
          turn_left();
          left_pattern();
-         delay(1000);
       }
-      else {
+      else if (front_dist < cm_for_turn && left_dist < right_dist) {
         turn_right();
         right_pattern();
-        delay(1000);
       }
       
     } else {
        move_forward();
        forward_pattern();
-       delay(1000);
     }
   
-    Serial.print(" front_dist=");
-    Serial.println(front_dist);
-
-    Serial.print(" left_dist=");
-    Serial.println(left_dist);
-    
-    Serial.print(" right_dist=");
-    Serial.println(right_dist);
-
-    erase_strip();
 }
 
 void turn_right() {
@@ -249,6 +242,8 @@ int ping_avg(int measurement_count) {
   return (int) total/valid_count;
 }
 
+// draw the results of the ping scan to the LED strip
+// Right is red, green is front, blue is left
 void draw_scan(int dist, int color_code) {
 int index;
 index = map(dist, 0, MAX_DISTANCE, 0, NUMBER_PIXELS);
@@ -266,18 +261,21 @@ index = map(dist, 0, MAX_DISTANCE, 0, NUMBER_PIXELS);
      strip.show();
 };
 
+// turn all pixels green if we are moving forward
 void forward_pattern() {
   for (int i=0; i < NUMBER_PIXELS; i++)
     strip.setPixelColor(i, 0, 30, 0);
   strip.show();
 };
 
+// turning right is a solid red
 void right_pattern() {
   for (int i=0; i < NUMBER_PIXELS; i++)
     strip.setPixelColor(i, 30, 0, 0);
   strip.show();
 };
 
+// turning left is a solid blue
 void left_pattern() {
   for (int i=0; i < NUMBER_PIXELS; i++)
     strip.setPixelColor(i, 0, 0, 30);
