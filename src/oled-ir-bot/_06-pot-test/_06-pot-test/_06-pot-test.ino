@@ -1,29 +1,32 @@
 // program to test the ranges of the potentiometer
-int sensorPin = A1;    // select the input pin for the potentiometer
-int sensorValue = 0;  // variable to store the value coming from the sensor
-int max = 0;
-int min = 1023;
+// select the input pin for the potentiometer
+#define POT_PIN  A1
+int potValue = 0;  // variable to store the value coming from the sensor
+int pot_max = 0;
+int pot_min = 1023;
 
 void setup() {
-  pinMode(sensorPin, INPUT);
+  pinMode(POT_PIN, INPUT);
   Serial.begin(9600);
+  Serial.print("Reading potentiometer on pin:");
+  Serial.print("POT_PIN");
 }
 
 void loop() {
-  sensorValue = analogRead(sensorPin);
+  potValue = analogRead(POT_PIN);
 
   // get the min and max values to find the range of the pot
-  if (sensorValue > max)
-     max = sensorValue;
+  if (potValue > pot_max)
+     pot_max = potValue;
 
-  if (sensorValue < min)
-     min = sensorValue;
+  if (potValue < pot_min)
+     pot_min = potValue;
 
   Serial.print("min=");
-  Serial.print(min);
+  Serial.print(pot_min);
   Serial.print(" max=");
-  Serial.print(max);
+  Serial.print(pot_max);
   Serial.print(" value=");
-  Serial.println(sensorValue);
+  Serial.println(potValue);
   delay(300);
 }

@@ -57,7 +57,7 @@ void loop() {
   // select the mode
   switch (mode) {
         case 0: avoid_obstacle();break; // run the main obstacle avoidance program
-        case 1: change_forward_speed();break; // change the forward speed
+        case 1: change_forward_power();break; // change the forward speed
         case 2: change_turn_distance();break; // change the turn distance
         case 3: change_turn_time();break; // change the turn time
      }
@@ -78,7 +78,7 @@ void avoid_obstacle() {
   Serial.println("avoiding obstacles");
 }
 
-void change_forward_speed() {
+void change_forward_power() {
   Serial.println("changing forward speed");
 }
 
