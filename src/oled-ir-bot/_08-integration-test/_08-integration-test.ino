@@ -44,15 +44,13 @@ int turn_delay = 700; // time to turn in milliseconds
 
 // global variables
 int sensor_value = 0;
-int distance = 0;
-int counter = 0;
 int pot_value = 0;
 // the default min and max of the pot
 int pot_max = 1000;
 int pot_min = 20;
 
 unsigned long lastDebounceTime = 0;  // the last time the output pin was toggled
-unsigned long debounceDelay = 150;    // the debounce time; increase if the output flickers
+unsigned long debounceDelay = 2000;    // the debounce time; increase if the output flickers
 
 // 0 means no, 1 means yes
 unsigned char change_mode_flag = 0;
@@ -132,8 +130,8 @@ void loop () {
         case 3: change_turn_time();break; // change the turn time
      }
 
-  Serial.print("mode=");
-  Serial.println(mode);
+  //Serial.print("mode=");
+  //Serial.println(mode);
 }
 
 /*
@@ -273,7 +271,6 @@ void avoid_obstacle() {
     }
     
     delay(100);
-    counter++;
 }
 
 // programming modes
@@ -369,7 +366,7 @@ int new_turn_distance;
 // turn times are usually 200 to 1000 msec
 void change_turn_time() {
 int new_turn_time;
-  Serial.println("Changing turn time");
+  //Serial.println("Changing turn time");
   all_motors_off();
   pot_value = analogRead(POT_PIN);  
   display.setTextSize(1);
@@ -378,22 +375,20 @@ int new_turn_time;
   display.setCursor(0, 0);
   display.print("Changing turn time");
   display.setCursor(0, 20);
-  display.print("Current turn time");
+  display.print("Current value:");
   display.setCursor(OLED_COL_2, 20);
   display.print(turn_delay);
 
   // calculate the new turn time
-  new_turn_time = map(pot_value, pot_min, pot_max, 200, 1000);
+  new_turn_time = map(pot_value, pot_min, pot_max, 200, 1200);
   display.setCursor(0, 30);
-  display.print("New turn time:");
+  display.print("New value:");
   display.setCursor(OLED_COL_2, 30);
-  display.print(new_turn_time);
-  
+  display.print(new_turn_time);  
   display.display();
   
   if (select_pressed_flag) {
-    
-    turn_sensor_value = new_turn_time;
+    turn_delay = new_turn_time;
     select_pressed_flag = 0;
     // we could go to the next mode..or the main menu
     mode = 0;
