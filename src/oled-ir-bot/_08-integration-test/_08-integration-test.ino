@@ -36,7 +36,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMBER_PIXELS, LED_STRIP_PIN, NEO_GR
 Adafruit_SSD1306 display(OLED_RESET);
 
 // convert to CM
-int turn_sensor_value = 400; //threshold for IR sensor 
+int turn_sensor_value = 400; //threshold for IR sensor - a non-linear function - above this it is not reliable
 int forward_power_level = 180; // try a number from 100 to 255 for 4 AA batteries forard motors PWM on signal
 
 int turn_power_level = 200; // power while turning
