@@ -25,16 +25,19 @@ int old_strip_index = 0;
 int new_strip_index = 0;
 int power_turn_level = 150; /* power on turns */
 
-// adjust these till the robot goes streight to compensate for motor differences
-int power_forward_right = 150; /* half power on turns */
-int power_forward_left = 150; /* half power on turns */
-int test_delay = 500;
-
 // motor pins.  Note that only pins 2,5,6,9 and 10 can be used for pwm
 int right_forward = 5;
 int right_reverse = 3;
 int left_forward = 6;
 int left_reverse = 9;
+
+// adjust these till the robot goes streight to compensate for motor differences
+// these are for a 9v setting
+int power_forward_right = 100; /* half power on turns */
+int power_forward_left = 100; /* half power on turns */
+int test_delay = 500; // 1/2 second for initial motor tests
+
+
 
 // try this time to make a right turn just above 90 degrees
 int delay_time_ninty_turn = 300;
@@ -44,19 +47,20 @@ int delay_time_forward = 100;
 
 void setup() {
   Serial.begin(9600);
-
-  // flash
+  pinMode(right_forward, OUTPUT);
+  pinMode(right_reverse, OUTPUT); 
+  pinMode(left_forward, OUTPUT); 
+  pinMode(left_reverse, OUTPUT);
+  
+  // flash LED strip to confirm it is working
   strip.begin();
   strip.setPixelColor(0, 255, 0, 0);
   strip.show();
   delay(300);
   
-  pinMode(right_forward, OUTPUT);
-  pinMode(right_reverse, OUTPUT); 
-  pinMode(left_forward, OUTPUT); 
-  pinMode(left_reverse, OUTPUT);
 
-  // attace and test servo
+
+  // attach and test servo
   servo.attach(SERVO_PIN);
   servo.write(0);
   delay(500);
@@ -65,7 +69,7 @@ void setup() {
   servo.write(-45);
   delay(500);
   
-  // Test connections
+  // Test motor connections
   analogWrite(right_forward, power_forward_right);
   delay(test_delay);
   analogWrite(right_forward, 0);

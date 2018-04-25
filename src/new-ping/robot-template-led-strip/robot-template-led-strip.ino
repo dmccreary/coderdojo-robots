@@ -1,8 +1,10 @@
 #include <NewPing.h>
 
 //Setup Ultrasonic Sensor Pins
-#define ECHO_PIN     A0  // Arduino pin tied to echo pin on the ultrasonic sensor.
-#define TRIGGER_PIN  A1  // Arduino pin tied to trigger pin on the ultrasonic sensor.
+#define ECHO_PIN     11  // Arduino pin tied to echo pin on the ultrasonic sensor.
+#define TRIGGER_PIN  10
+
+// Arduino pin tied to trigger pin on the ultrasonic sensor.
 
 #define MAX_DISTANCE 150 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
 
@@ -27,7 +29,7 @@ NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and
 // constants don't change
 const int per_pixel_distance = (MAX_DISTANCE / NUMBER_PIXELS) / 2;
 const int turn_distance = 20; //threshold for obstacles (in cm). try a range of 5 to 30
-const int forward_power_level = 70; // a number from 0 to 255 for forard motors PWM on signal
+const int forward_power_level = 90; // a number from 0 to 255 for forard motors PWM on signal
 const int forward_delay = 100; // time between ping checks when moving forward 
 
 const int turn_power_level = 100; // power while turning
