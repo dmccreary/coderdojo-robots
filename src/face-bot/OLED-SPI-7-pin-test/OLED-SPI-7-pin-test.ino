@@ -27,11 +27,26 @@ float counter = 0;
 void setup()   {                
 //  Serial.begin(9600);
   display.begin(SSD1306_SWITCHCAPVCC);
-  display.display();
-  delay(1000);
   display.clearDisplay();
   display.setTextSize(1);
   display.setTextColor(WHITE);
+  display.setCursor(0,0);
+  display.print("CoderDojo Face Robot");
+  
+  display.setCursor(0,12);
+  display.print("Version 1");
+
+  display.setCursor(0,24);
+  display.print("128x64 OLED $19");
+
+  display.setCursor(0,36);
+  display.print("Adafruit SSD1306 SPI");
+  
+  display.setCursor(0,48);
+  display.print("Dan.McCreary@gmail");
+  
+  display.display();
+  delay(5000); // disply for 5 seconds
 }
 
 void loop()
@@ -39,8 +54,7 @@ void loop()
   static unsigned long thisMicros = 0;
   static unsigned long lastMicros = 0;
   display.clearDisplay();
-  display.setCursor(5,10);
-
+  display.setCursor(20,20);
   display.print(counter/10.0);
   display.print(" seconds");
   display.display();
