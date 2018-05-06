@@ -16,7 +16,7 @@
 #define OLED_CLK   13   // SCL
 #define OLED_MOSI  12   // SDA
 #define OLED_RESET 11   // RST
-#define OLED_DC    10    // DC
+#define OLED_DC    10   // DC
 #define OLED_CS    8    //CS
 
 
