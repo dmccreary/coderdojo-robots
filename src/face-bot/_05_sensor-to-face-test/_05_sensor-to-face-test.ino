@@ -1,5 +1,5 @@
 /* 
- * Demo for SSD1306 based 128x64 OLED module using Adafruit SSD1306 
+ * Demo for SSD1306 based 128x64 monchrome OLED module using Adafruit SSD1306 
  * library (https://github.com/adafruit/Adafruit_SSD1306).
  * 
  * See https://github.com/pacodelgado/arduino/wiki/SSD1306-based-OLED-connected-to-Arduino 
@@ -51,7 +51,7 @@ void setup()   {
   display.print("Dan.McCreary@gmail");
   
   display.display();
-  delay(500); // disply for 5 seconds
+  delay(5000); // disply for 5 seconds
 }
 
 void loop()

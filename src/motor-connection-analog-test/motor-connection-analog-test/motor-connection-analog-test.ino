@@ -12,30 +12,26 @@ Robot Motors Direction Tests
 */
 
 // change these numbers until you get right forward, right backward, left forward, left reverse
-#define RIGHT_FORWARD_PIN 5
-#define RIGHT_REVERSE_PIN 3
-#define LEFT_FORWARD_PIN 6
-#define LEFT_REVERSE_PIN 9
-int right_forward = 5;
-int right_reverse = 3;
-int left_forward = 6;
-int left_reverse = 9;
+#define RIGHT_FORWARD_PIN 6
+#define RIGHT_REVERSE_PIN 9
+#define LEFT_FORWARD_PIN 3
+#define LEFT_REVERSE_PIN 5
 
 int delay_time_on = 2000; // how long should each wheel turn?
 int delay_time_off = 1000; // delay between tests
-int delay_end_of_test= 3000; // delay between tests
+int delay_end_of_test= 4000; // delay between tests
 
 void setup() {
-  // Turn these pins on for PWM OUTPUT
+  // Set the PWM motor pins as OUTPUTs
   pinMode(RIGHT_FORWARD_PIN, OUTPUT);
   pinMode(RIGHT_REVERSE_PIN, OUTPUT); 
   pinMode(LEFT_FORWARD_PIN, OUTPUT); 
   pinMode(LEFT_REVERSE_PIN, OUTPUT);
   // turn all the motors off
-  digitalWrite(right_forward, LOW);
-  digitalWrite(right_reverse, LOW);
-  digitalWrite(left_forward, LOW);
-  digitalWrite(left_reverse, LOW);
+  analogWrite(RIGHT_FORWARD_PIN, 0);
+  analogWrite(RIGHT_REVERSE_PIN, 0);
+  analogWrite(LEFT_FORWARD_PIN, 0);
+  analogWrite(LEFT_REVERSE_PIN, 0);
   // for debugging.  The output will appear on the serial monitor
   // To open the serial monitor, click the magnafing glass icon in the upper right corner
   Serial.begin(9600);      // open the serial port at 9600 bps
@@ -43,27 +39,27 @@ void setup() {
 
 void loop() {
   Serial.println("Right Forward Test");
-  digitalWrite(right_forward, HIGH);
+  analogWrite(RIGHT_FORWARD_PIN, 255);
   delay(delay_time_on);
-  digitalWrite(right_forward, LOW);
+  analogWrite(RIGHT_FORWARD_PIN, 0);
   delay(delay_time_off);
   
   Serial.println("Right reverse test");
-  digitalWrite(right_reverse, HIGH);
+  analogWrite(RIGHT_REVERSE_PIN, 255);
   delay(delay_time_on);
-  digitalWrite(right_reverse, LOW);
+  analogWrite(RIGHT_REVERSE_PIN, 0);
   delay(delay_time_off);
   
   Serial.println("Left Forward Test");
-  digitalWrite(left_forward, HIGH);
+  analogWrite(LEFT_FORWARD_PIN, 255);
   delay(delay_time_on);
-  digitalWrite(left_forward, LOW);
+  analogWrite(LEFT_FORWARD_PIN, 0);
   delay(delay_time_off);
   
   Serial.println("Left Reverse Test");
-  digitalWrite(left_reverse, HIGH);
+  analogWrite(LEFT_REVERSE_PIN, 255);
   delay(delay_time_on);
-  digitalWrite(left_reverse, LOW);
+  analogWrite(LEFT_REVERSE_PIN, 0);
   
   delay(delay_end_of_test);
 }
