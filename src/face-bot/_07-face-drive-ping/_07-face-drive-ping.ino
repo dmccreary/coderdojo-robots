@@ -40,8 +40,6 @@
 #define MAX_DISTANCE 100 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
 #define TURN_DISTANCE_THRESHOLD 12 // turn distance in CM
 
-
-
 // define pins going to the motor controller - must be PWM pins
 #define RIGHT_FORWARD_PIN 3
 #define RIGHT_REVERSE_PIN 5
@@ -59,24 +57,15 @@
 #define TURN_DELAY_TIME 400     // time to rotate during a turn
 
 #define REVERSE_DELAY_TIME 500  // backup for 1/2 second
+#define TURN_DISTANCE_THRESHOLD 12 // closer than this in cm and we turn
+#define SLOW_DELAY 2000 // slow things down to observe
 
 NewPing sonar_left(LEFT_TRIGGER_PIN,     LEFT_ECHO_PIN,   MAX_DISTANCE); // NewPing setup of pins and maximum distance.
 NewPing sonar_center(CENTER_TRIGGER_PIN, CENTER_ECHO_PIN, MAX_DISTANCE);
 NewPing sonar_right(RIGHT_TRIGGER_PIN,   RIGHT_ECHO_PIN,  MAX_DISTANCE);
 
+// this display is a memory hog!
 Adafruit_SSD1306 display(OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
-
-int left_dist = 0;
-int center_dist =  0;
-int right_dist =  0;
-
-// these might be changed
-
-// must be a value from 150 to 255 - higher will be a faster turn speed
-
-
-
-int turn_distance_threshold = 12; // distance to trigger turn in cm
 
 void setup()   {
   // Set the PWM motor pins as OUTPUTs
@@ -120,9 +109,9 @@ void setup()   {
 
 void loop()
 {
-  left_dist = sonar_left.ping_cm();
-  center_dist =  sonar_center.ping_cm();
-  right_dist =  sonar_right.ping_cm();
+  int left_dist = sonar_left.ping_cm();
+  int center_dist =  sonar_center.ping_cm();
+  int right_dist =  sonar_right.ping_cm();
 
   Serial.print("Left: ");
   Serial.print(left_dist);
@@ -158,10 +147,13 @@ void loop()
 //  display.drawLine(display.width()/2 - 10, display.height()/3 * 2, display.width()/2 + 10, display.height()/3 * 2, BLACK);
 //  display.display();
   
-  // LOW means there is an object to the right
-  if (left_dist < turn_distance_threshold && left_dist > 0) {
+  // if we have something on the left we turn right
+  if (left_dist < TURN_DISTANCE_THRESHOLD && left_dist > 0) {
+    stop_motors();
     display.setCursor(0,30);
-    display.print("Right");
+    display.print("Turning right");
+    display.display();
+    delay(SLOW_DELAY);
     // look to right
     // erase forward eyes
 //    display.fillCircle(display.width()/2 - 10, display.height()/3, 4, WHITE);
@@ -171,34 +163,16 @@ void loop()
 //    display.fillCircle(display.width()/2 + 5, display.height()/3, 4, BLACK);
 //    display.display();
     //tone(SPEAKER_PIN, NOTE_C4, NOTE_DELAY_TIME);
-    turn_left(TURN_DELAY_TIME);
+    turn_right(TURN_DELAY_TIME);
   }
-
-  // LOW means there is an object in front of us
-  else if (center_dist < turn_distance_threshold && center_dist > 0) {
-    display.setCursor(0,40);
-    display.print("Center");
-    // erase streight mouth
-//    display.drawLine(display.width()/2 - 10, display.height()/3 * 2, display.width()/2 + 10, display.height()/3 * 2, WHITE);
-//    // draw round mouth half width and 2/3 down
-//    display.fillCircle(display.width()/2, display.height()/3 * 2, 5, BLACK);
-   
-    move_reverse();
-    delay(REVERSE_DELAY_TIME);
-    //tone(SPEAKER_PIN, NOTE_C5, NOTE_DELAY_TIME);
-    // measure again
-    left_dist = sonar_left.ping_cm();
-    right_dist =  sonar_right.ping_cm();
-    // if we have more room on the right, turn right
-    if (right_dist < left_dist)
-      turn_right(TURN_DELAY_TIME);
-      else turn_left(TURN_DELAY_TIME);
-  }
-
-  // LOW means there is an object to the left
-  else if (right_dist < turn_distance_threshold && right_dist > 0) {
+  
+  else if (right_dist < TURN_DISTANCE_THRESHOLD && right_dist > 0) {
+    stop_motors();
     display.setCursor(0,50);
-    display.print("Left");
+    display.print("Turning left");
+    display.display();
+    delay(SLOW_DELAY);
+    
     // erase forward eyes
 //    display.fillCircle(display.width()/2 - 10, display.height()/3, 4, WHITE);
 //    display.fillCircle(display.width()/2 + 10, display.height()/3, 4, WHITE);
@@ -207,12 +181,38 @@ void loop()
 //    display.fillCircle(display.width()/2 + 15, display.height()/3, 4, BLACK);
 
     //tone(SPEAKER_PIN, NOTE_C6, NOTE_DELAY_TIME);
-    turn_right(TURN_DELAY_TIME);
+    turn_left(TURN_DELAY_TIME);
+  }
+  
+  else if (center_dist < TURN_DISTANCE_THRESHOLD && center_dist > 0) {
+    stop_motors();
+    display.setCursor(0,40);
+    display.print("Obj in frnt, backing up");
+    display.display();
+    delay(SLOW_DELAY);
+    // erase streight mouth
+//    display.drawLine(display.width()/2 - 10, display.height()/3 * 2, display.width()/2 + 10, display.height()/3 * 2, WHITE);
+//    // draw round mouth half width and 2/3 down
+//    display.fillCircle(display.width()/2, display.height()/3 * 2, 5, BLACK);
+   
+    move_reverse();
+    delay(REVERSE_DELAY_TIME);
+    stop_motors();
+    //tone(SPEAKER_PIN, NOTE_C5, NOTE_DELAY_TIME);
+    // measure again
+    left_dist = sonar_left.ping_cm();
+    right_dist =  sonar_right.ping_cm();
+    // if we have more room on the right, turn right
+    if (right_dist < left_dist) 
+      {turn_right(TURN_DELAY_TIME);display.setCursor(0,50);display.print("turning right");display.display();}
+      else {turn_left(TURN_DELAY_TIME);display.setCursor(0,50);display.print("turning left");display.display();}
   };
- display.display();
+  
+  display.display();
   //display.setCursor(0,54);
   //display.print(counter);
-  
+
+  // continue going forward
   move_forward();
 }
 
@@ -251,7 +251,7 @@ void move_reverse() {
   analogWrite(LEFT_REVERSE_PIN, POWER_FORWARD_LEFT);
 }
 
-void stop() {
+void stop_motors() {
   Serial.println("stop");
   analogWrite(RIGHT_FORWARD_PIN, 0);
   analogWrite(RIGHT_REVERSE_PIN, 0);
@@ -276,7 +276,7 @@ void stop() {
 //  delay(1000);
 //  analogWrite(LEFT_REVERSE_PIN, 0);
 //
-//  stop();
+//  stop_motors();
 //}
 
 // take the average of "count" valid values
