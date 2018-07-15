@@ -23,7 +23,8 @@ https://github.com/olikraus/u8g2/wiki/u8g2reference#drawstr.
 #define RES_PIN A2 //  for SPI mode the RES pin becomes "Chip Select".
 // We are using a 4 wire hardware SPI communications system.  Data is on pin 11 and clock on 13
 // U8G2_R0 is the rotation number
-U8G2_SSD1306_128X64_VCOMH0_F_4W_HW_SPI u8g2(U8G2_R0, CS_PIN, DC_PIN, RES_PIN);
+// The Frame buffer option (1,2,F) should be 1 due limitations of memory.  1 uses under 32% of 2K RAM
+U8G2_SSD1309_128X64_NONAME2_1_4W_HW_SPI u8g2(U8G2_R0, CS_PIN, DC_PIN, RES_PIN);
 
 // 20 character buffer for converting counter to an integer
 char buf[20];
@@ -38,12 +39,15 @@ void setup(void) {
 }
 
 void loop() {
-  u8g2.clearBuffer();
-  u8g2.drawStr(0,10,"Hello World!");
-  // convert the integer into a string
-  sprintf(buf, "1/10 sec: %d", counter);
-  u8g2.drawStr(0,24,buf);
-  u8g2.sendBuffer();
+  u8g2.firstPage();
+  do {
+    u8g2.drawStr(0,10,"Hello World!");
+    // convert the integer into a string
+    sprintf(buf, "1/10 sec: %d", counter);
+    u8g2.drawStr(0,24,buf);
+    // draw a horizontal line at 50 pixels down
+    u8g2.drawHLine(0, 50, 127);
+  } while ( u8g2.nextPage() );
   delay(100);
   counter++;
 }
