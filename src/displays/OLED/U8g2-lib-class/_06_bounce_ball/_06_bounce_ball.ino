@@ -10,9 +10,16 @@
 #define DC_PIN 9 // Also known as address 0 or A0, not analog 0
 #define CS_PIN 10 // chip select
 
+#define RADIUS 5
 // We are using a 4 wire hardware SPI communications system.  Data is on pin 11 and clock on 13
 // U8G2_R0 is the rotation number
 U8G2_SSD1306_128X64_VCOMH0_F_4W_HW_SPI u8g2(U8G2_R0, CS_PIN, DC_PIN, RES_PIN);
+
+// circle positon
+int x, y;
+// circle direction
+int xd, yd;
+
 void setup() 
 {
   pinMode(DC_PIN, OUTPUT);
@@ -24,22 +31,21 @@ void setup()
 
 void loop() 
 {
-  u8g2.firstPage();  
-  
-  /* Keep looping until finished drawing screen */
-  do 
-  {
-    int steps = 16;
-    int dx = 128/steps;
-    int dy = 64/steps;
-    int y = 0;
-    for(int x=0; x<128; x+=dx) {
-        u8g2.drawLine(x, 0, 127, y);
-        u8g2.drawLine(127-x, 63, 0, 63-y);
-       y+=dy;     
-    }
-      
+  u8g2.firstPage();
+  do {
+    
+    u8g2.drawDisc(x, y, RADIUS, U8G2_DRAW_ALL);
   } while(u8g2.nextPage());
+  
+  delay(10);
+  if (x - RADIUS < 0) xd = 1;
+  if (x + RADIUS > 126) xd = -1;
+  if (y - RADIUS < 0) yd = 1;
+  if (y + RADIUS > 62) yd = -1;
+  if (x > 126) x = 0;
+  else x += xd;
+  if (y > 62) y = 0;
+  else y += yd;
 }
 
 

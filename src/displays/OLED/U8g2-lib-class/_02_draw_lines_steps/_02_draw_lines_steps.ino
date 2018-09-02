@@ -25,10 +25,35 @@ void setup()
 void loop() 
 {
   u8g2.firstPage();  
+
+  do {
+    int steps = 4;
+    int dx = 128/steps;
+    int dy = 64/steps;
+    int y = 0;
+    for(int x=0; x<128; x+=dx) {
+        u8g2.drawLine(x, 0, 127, y);
+        u8g2.drawLine(127-x, 63, 0, 63-y);
+       y+=dy;     
+    }
+  } while(u8g2.nextPage());
+  delay(1000);
   
-  /* Keep looping until finished drawing screen */
-  do 
-  {
+
+   do {
+    int steps = 8;
+    int dx = 128/steps;
+    int dy = 64/steps;
+    int y = 0;
+    for(int x=0; x<128; x+=dx) {
+        u8g2.drawLine(x, 0, 127, y);
+        u8g2.drawLine(127-x, 63, 0, 63-y);
+       y+=dy;     
+    }
+  } while(u8g2.nextPage());
+  delay(1000);
+  
+  do {
     int steps = 16;
     int dx = 128/steps;
     int dy = 64/steps;
@@ -40,6 +65,35 @@ void loop()
     }
       
   } while(u8g2.nextPage());
+  delay(1000);
+  
+  do {
+    int steps = 32;
+    int dx = 128/steps;
+    int dy = 64/steps;
+    int y = 0;
+    for(int x=0; x<128; x+=dx) {
+        u8g2.drawLine(x, 0, 127, y);
+        u8g2.drawLine(127-x, 63, 0, 63-y);
+       y+=dy;     
+    }
+      
+  } while(u8g2.nextPage());
+
+ delay(1000);
+   do {
+    int steps = 64;
+    int dx = 128/steps;
+    int dy = 64/steps;
+    int y = 0;
+    for(int x=0; x<128; x+=dx) {
+        u8g2.drawLine(x, 0, 127, y);
+        u8g2.drawLine(127-x, 63, 0, 63-y);
+       y+=dy;     
+    }
+      
+  } while(u8g2.nextPage());
+  delay(1000);
 }
 
 

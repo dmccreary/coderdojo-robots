@@ -30,7 +30,7 @@ U8G2_SSD1309_128X64_NONAME2_1_4W_HW_SPI u8g2(U8G2_R0, CS_PIN, DC_PIN, RES_PIN);
 // put a pizzo speaker between this pin and GND
 #define SPEAKER_PIN 2
 
-#define FORWARD_POWER_LEVEL 150 // 150 to 255
+#define FORWARD_POWER_LEVEL 200 // 150 to 255
 #define TURN_POWER_LEVEL 180 // 150 to 255
 #define TURN_DISTANCE 13 // distance threshold in cm
 #define TURN_DELAY_TIME 400 // delay in msec - longer makes us turn more
@@ -64,9 +64,6 @@ void setup() {
 
 void loop() {
 int dist = sonar.ping_cm();
-  u8g2.firstPage();
-  
-  
 
   if (dist < TURN_DISTANCE) {
       stop();
@@ -74,7 +71,8 @@ int dist = sonar.ping_cm();
       delay(500);
       move_reverse();
       delay(500);
-        if (random(1,3) > 2) {
+        // randomly turn left or right
+        if (random(1,3) < 2) {
           draw_face(7, dist);
           tone(SPEAKER_PIN, NOTE_C6, NOTE_DURATION);
           turn_right();
@@ -83,7 +81,7 @@ int dist = sonar.ping_cm();
             draw_face(-7, dist);
             tone(SPEAKER_PIN, NOTE_C7, NOTE_DURATION);
             turn_left();
-          };
+          }
         
       
     } else {
@@ -134,6 +132,7 @@ void stop() {
 }
 
 void draw_face(int eye_offset, int dist) {
+  u8g2.firstPage();
   do {
         u8g2.drawCircle(half_display_width, 32, 30, U8G2_DRAW_ALL);
         // eyes x, y, d, all
@@ -141,10 +140,14 @@ void draw_face(int eye_offset, int dist) {
         u8g2.drawDisc(half_display_width + 15 + eye_offset, half_display_height - 5, EYE_DIAMETER, U8G2_DRAW_ALL);
         // mouth x, y, length
         u8g2.drawHLine(half_display_width -10, half_display_height + 13, 20);
-    
+
+        if (eye_offset < 0) 
+           u8g2.drawStr(0,52, "r");
+        else u8g2.drawStr(0,52, "l");
+        
         // ping distance value
-        sprintf(buf, "dist: %i", dist);
-        u8g2.drawStr(0,64,buf);
+        sprintf(buf, "dist:%d", dist);
+        u8g2.drawStr(0,64, buf);
         
       } while ( u8g2.nextPage() );
 }

@@ -22,24 +22,20 @@ void setup()
   u8g2.setFont(u8g_font_unifont);
 }
 
+int x, y;
+
 void loop() 
 {
-  u8g2.firstPage();  
-  
-  /* Keep looping until finished drawing screen */
-  do 
-  {
-    int steps = 16;
-    int dx = 128/steps;
-    int dy = 64/steps;
-    int y = 0;
-    for(int x=0; x<128; x+=dx) {
-        u8g2.drawLine(x, 0, 127, y);
-        u8g2.drawLine(127-x, 63, 0, 63-y);
-       y+=dy;     
-    }
-      
+  u8g2.firstPage();
+  do {
+    u8g2.drawDisc(x, y, 10, U8G2_DRAW_ALL);
   } while(u8g2.nextPage());
+  
+  delay(10);
+  if (x > 126) x = 0;
+  else x++;
+  if (y > 62) y = 0;
+  else y++;
 }
 
 
