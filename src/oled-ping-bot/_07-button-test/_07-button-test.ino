@@ -5,7 +5,7 @@
 #include <Bounce2.h>
 
 #define SET_PIN 12 // set the current encoder value to be the new variable
-#define PROG_PIN A5 // change the programming mode
+#define PROG_PIN A5 // change the programming mode - note that A6 and A7 don't have an INPUT_PULLUP
 #define LED_PIN 13
 
 Bounce debouncer_set = Bounce();
