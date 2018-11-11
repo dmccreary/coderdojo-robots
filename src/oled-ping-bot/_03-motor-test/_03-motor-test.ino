@@ -15,10 +15,10 @@ Robot Motors Direction Tests
 // change these numbers until you get right forward, right backward, left forward, left reverse
 // you can only use PWM pins.  On the Arduino Nano these are 3, 5, 6, 9, 10 and 11
 // We are going to tuse pin 3 as an interrupt so we can't use it here
-#define RIGHT_FORWARD_PIN 5
-#define RIGHT_REVERSE_PIN 9
+#define RIGHT_FORWARD_PIN 3
+#define RIGHT_REVERSE_PIN 5
 #define LEFT_FORWARD_PIN 6
-#define LEFT_REVERSE_PIN 10
+#define LEFT_REVERSE_PIN 9
 
 int delay_time_on = 2000; // how long should each wheel turn?
 int delay_time_off = 1000; // delay between tests
@@ -43,19 +43,19 @@ void setup() {
 
 void loop() {
   Serial.println("Right Forward Test");
-  digitalWrite(RIGHT_FORWARD_PIN, 255);
+  analogWrite(RIGHT_FORWARD_PIN, 255);
   delay(delay_time_on);
   analogWrite(RIGHT_FORWARD_PIN, 0);
   delay(delay_time_off);
   
   Serial.println("Right reverse test");
-  digitalWrite(RIGHT_REVERSE_PIN, 255);
+  analogWrite(RIGHT_REVERSE_PIN, 255);
   delay(delay_time_on);
-  digitalWrite(RIGHT_REVERSE_PIN, 0);
+  analogWrite(RIGHT_REVERSE_PIN, 0);
   delay(delay_time_off);
   
   Serial.println("Left Forward Test");
-  digitalWrite(LEFT_FORWARD_PIN, 255);
+  analogWrite(LEFT_FORWARD_PIN, 255);
   delay(delay_time_on);
   digitalWrite(LEFT_FORWARD_PIN, 0);
   delay(delay_time_off);
