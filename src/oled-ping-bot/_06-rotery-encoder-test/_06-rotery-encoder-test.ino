@@ -8,7 +8,7 @@
 #define ENC_B_PIN 4 // not an interrupt pin
 
 #define SET_PIN 12 // set the current encoder value to be the new variable
-#define PROG_PIN A5 // change the programming mode
+#define MODE_PIN A5 // change the programming mode
 
 // Change these two numbers to the pins connected to your encoder.
 //   Best Performance: both pins have interrupt capability
@@ -16,6 +16,8 @@
 //   Low Performance:  neither pin has interrupt capability
 Encoder myEnc(ENC_A_PIN, ENC_B_PIN);
 long oldPosition  = -999;
+byte mode = 0;
+byte mode_count = 5;
 
 #include <SPI.h>
 
@@ -43,6 +45,8 @@ void loop(void) {
   // look for the new encoder number
   long newPosition = myEnc.read();
   newPosition = newPosition % 255;
+  byte stop_value = newPosition/4;
+  byte mode = stop_value % mode_count;
   if (newPosition != oldPosition) {
     oldPosition = newPosition;
     u8g2.firstPage();
@@ -51,12 +55,17 @@ void loop(void) {
           u8g2.drawStr(0,20,"Encoder Value:");
           u8g2.setCursor(75,20);
           // right justify but only works up to 3 digits
-          u8g2.print(u8x8_u8toa(newPosition, 3));
+          u8g2.print(newPosition);
 
           u8g2.drawStr(0,30,"Stop Value:");
           u8g2.setCursor(75,30);
           // 1/4 of the position value
-          u8g2.print(u8x8_u8toa(newPosition/4, 3));
+          u8g2.print(stop_value);
+
+          u8g2.drawStr(0,40,"Mode:");
+          u8g2.setCursor(75,40);
+          // 1/4 of the position value
+          u8g2.print(mode);
           
           } while ( u8g2.nextPage() );
    }

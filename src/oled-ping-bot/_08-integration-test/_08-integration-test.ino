@@ -3,17 +3,19 @@
 #include <U8g2lib.h>
 #include <SPI.h>
 #include <NewPing.h>
+#include <Encoder.h>
 // https://github.com/thomasfredericks/Bounce2
 #include <Bounce2.h>
 
-#define TRIGGER_PIN  7  // Arduino pin tied to trigger pin on the ultrasonic sensor.
-#define ECHO_PIN     8  // Arduino pin tied to echo pin on the ultrasonic sensor.
+
 
 // the mode is running or programming one of the parameters
 #define MODE_BUTTON_PIN 2 // momentary push button tied to GNG (interrupt 0)
-
 // when the select button goes low the value of the POT is copied to the variable
-#define SELECT_BUTTON_PIN 3 // momentary push button tied to GNG
+#define SELECT_BUTTON_PIN 3 // momentary push button from rotery encoder tied to GNG
+// we use just one interrupt pin for good performance
+#define ENC_A_PIN 2 // an interrupt pin
+#define ENC_B_PIN 4 // not an interrupt pin
 
 // motor pins - they must be on the PWM pins 3,5,6,9
 #define RIGHT_FORWARD_PIN 3
@@ -29,11 +31,6 @@
 #define CS_PIN 8 // chip select top
 
 
-// The OLED is 128 wide and 64 high
-// This is where we place numbers in the second column
-#define OLED_COL_2 90
-// not using the reset...
-#define OLED_RESET 4
 
 // https://github.com/olikraus/u8g2/wiki/u8x8setupcpp#constructor-reference
 // We are using the 128 byte 4W Hardware SPI with no rotation which only uses 27% of dynamic memory
@@ -44,25 +41,46 @@ U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI u8g2(U8G2_R0, CS_PIN, DC_PIN, RDS_PIN);
 #define MAX_DISTANCE 200 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
 NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
 
+//   Good Performance: only the first pin has interrupt capability
+Encoder myEnc(ENC_A_PIN, ENC_B_PIN);
+#define ENC_A_PIN 2 // an interrupt pin
+#define ENC_B_PIN 4 // not an interrupt pin
+long oldPosition  = -999;
+
+/* this is the mode of the robot 
+0 = running with faces
+1 = set forward speed
+2 = set turn distance
+3 = set turn distance
+4 = set turn speed
+5 = debug mode
+*/
+byte mode = 0; // default mode on power up
+byte mode_count = 6;
+
 #define SET_PIN 12 // set the current encoder value to be the new variable
 #define MODE_PIN A5 // change the programming mode - note that A6 and A7 don't have an INPUT_PULLUP
 Bounce debouncer_set = Bounce();
 Bounce debouncer_mode = Bounce();
 
+// or piezo speaker
+#define SPEAKER_PIN A0
+
 // convert to CM
-int turn_sensor_value = 400; //threshold for IR sensor - a non-linear function - above this it is not reliable
+int turning_flag; 
+int turn_threshold = 16; // 15 CM
 int forward_power_level = 180; // try a number from 100 to 255 for 4 AA batteries forard motors PWM on signal
 
+int turn_delay = 500; // time to turn in milliseconds 
 int turn_power_level = 200; // power while turning
-int turn_delay = 700; // time to turn in milliseconds 
+
 
 // 0 means no, 1 means yes
 unsigned char change_mode_flag = 0;
 unsigned char change_set_flag = 0;
+unsigned int know_value = 0;
 
 // this is the mode of the robot 0 = running, 1,2,3 are set modes
-unsigned char mode = 0;
-unsigned char number_modes = 4;
 int counter; // main loop counter
 
 void setup() {
@@ -96,33 +114,52 @@ void setup() {
   Serial.begin(9600);      // open the serial port at 9600 bps
 }
 
+
+  
 void loop () {
   int dist_to_object = sonar.ping_cm();
+  if (dist_to_object < turn_threshold) turning_flag = 1; else turning_flag = 0;
   
   debouncer_set.update(); // Update the Bounce instance
-  if ( debouncer_set.fell() ) change_set_flag = 1;  // Call code if button transitions from HIGH (default) to LOW
+  if ( debouncer_set.fell() ) change_set_flag = !change_set_flag;  // Call code if button transitions from HIGH (default) to LOW
 
-   debouncer_mode.update();
-   if ( debouncer_mode.fell() ) change_mode_flag = 1;  // Call code if button transitions from HIGH to LOW
+  debouncer_mode.update();
+  if ( debouncer_mode.fell() ) change_mode_flag = !change_mode_flag;  // Call code if button transitions from HIGH to LOW
 
+  long newPosition = myEnc.read();
+  newPosition = newPosition % 255;
+  byte stop_value = newPosition/4;
+  byte mode = stop_value % mode_count;
+  
   u8g2.firstPage();
     do {    
       u8g2.drawStr(0,8,"Integration Test");
-      u8g2.drawStr(0,18,"Mode:");
-      u8g2.setCursor(40,18);
+      
+      u8g2.drawStr(0,20,"Mode Chg:");
+      u8g2.setCursor(60,20);
       u8g2.print(change_mode_flag);
 
-      u8g2.drawStr(0,28,"Set:");
-      u8g2.setCursor(40,28);
+      u8g2.drawStr(0,30,"Set Chg:");
+      u8g2.setCursor(60,30);
       u8g2.print(change_set_flag);
       
-      u8g2.drawStr(0,38,"Dist:");
-      u8g2.setCursor(40,38);
+      u8g2.drawStr(0,40,"Dist:");
+      u8g2.setCursor(60,40);
       u8g2.print(dist_to_object);
+
+      u8g2.drawStr(0,50,"Mode:");
+      u8g2.setCursor(60,50);
+      u8g2.print(mode);
+
+      u8g2.drawStr(0,60,"Turning:");
+      u8g2.setCursor(60,60);
+      u8g2.print(turning_flag);
       
-      u8g2.setCursor(0,63);
-      u8g2.print(counter);
+//      u8g2.setCursor(0,63);
+//      u8g2.print(counter);
     } while ( u8g2.nextPage() );
 
-    counter++;
+    if (turning_flag)
+      tone(SPEAKER_PIN, 1000, 200);
+//    counter++;
 }
