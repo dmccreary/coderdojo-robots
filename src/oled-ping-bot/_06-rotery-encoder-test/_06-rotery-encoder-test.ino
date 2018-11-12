@@ -3,7 +3,7 @@
 #include <SPI.h>
 #include <Encoder.h>
 
-// we will hog both the interrupt pins for best performance
+// we use just one interrupt pin for good performance
 #define ENC_A_PIN 2 // an interrupt pin
 #define ENC_B_PIN 4 // not an interrupt pin
 

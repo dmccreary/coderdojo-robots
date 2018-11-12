@@ -143,34 +143,20 @@ void loop () {
   newPosition = newPosition % 255;
   byte stop_value = newPosition/4;
   byte mode = stop_value % mode_count;
-  
-  u8g2.firstPage();
-    do {    
-      u8g2.drawStr(0,8,"Integration Test");
-      
-      u8g2.drawStr(0,20,"Mode Chg:");
-      u8g2.setCursor(60,20);
-      u8g2.print(change_mode_flag);
 
-      u8g2.drawStr(0,30,"Set Chg:");
-      u8g2.setCursor(60,30);
-      u8g2.print(change_set_flag);
-      
-      u8g2.drawStr(0,40,"Dist:");
-      u8g2.setCursor(60,40);
-      u8g2.print(dist_to_object);
-
-      u8g2.drawStr(0,50,"Mode:");
-      u8g2.setCursor(60,50);
-      u8g2.print(mode);
-
-      u8g2.drawStr(0,60,"Turning:");
-      u8g2.setCursor(60,60);
-      u8g2.print(turning_flag);
-      
-//      u8g2.setCursor(0,63);
-//      u8g2.print(counter);
+  if (mode == 0) {
+    u8g2.firstPage();
+    do {
+        // u8g2.drawFilledEllipse(63,31,20,28);
+        u8g2.drawCircle(63,31,30,U8G2_DRAW_ALL);
+        u8g2.drawEllipse(54,24,6,3);
+        u8g2.drawEllipse(74,24,6,3);
+        u8g2.drawFilledEllipse(63,44,8,2);
+        u8g2.drawStr(0,63,"Dist:");
+        u8g2.setCursor(22,63);
+        u8g2.print(dist_to_object);
     } while ( u8g2.nextPage() );
+  }
 
     if (turning_flag)
       tone(SPEAKER_PIN, 1000, 200);
