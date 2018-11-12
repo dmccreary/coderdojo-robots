@@ -5,7 +5,7 @@
 #include <Bounce2.h>
 
 #define SET_PIN 12 // set the current encoder value to be the new variable
-#define PROG_PIN A5 // change the programming mode - note that A6 and A7 don't have an INPUT_PULLUP
+#define MODE_PIN A5 // change the programming mode - note that A6 and A7 don't have an INPUT_PULLUP
 #define LED_PIN 13
 
 Bounce debouncer_set = Bounce();
@@ -15,11 +15,11 @@ int ledState = LOW;
 void setup() {
 
   pinMode(SET_PIN, INPUT_PULLUP);
-  pinMode(PROG_PIN, INPUT_PULLUP);
+  pinMode(MODE_PIN, INPUT_PULLUP);
   debouncer_set.attach(SET_PIN, INPUT_PULLUP); // Attach the debouncer to a pin with INPUT_PULLUP mode
   debouncer_set.interval(25); // Use a debounce interval of 25 milliseconds
   
-  debouncer_prog.attach(PROG_PIN, INPUT_PULLUP); // Attach the debouncer to a pin with INPUT_PULLUP mode
+  debouncer_prog.attach(MODE_PIN, INPUT_PULLUP); // Attach the debouncer to a pin with INPUT_PULLUP mode
   debouncer_prog.interval(25); // Use a debounce interval of 25 milliseconds 
   
   pinMode(LED_PIN, OUTPUT); // Setup the LED
