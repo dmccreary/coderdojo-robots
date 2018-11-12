@@ -73,9 +73,9 @@ Bounce debouncer_mode = Bounce();
 // or piezo speaker
 #define SPEAKER_PIN A0
 
-// convert to CM
-int turning_flag; 
-int turn_threshold = 16; // 15 CM
+int dist_to_object; // distance in CM from the Ping sensor
+int turning_flag;
+int turn_threshold = 16; // distance that we turn
 int forward_power_level = 180; // try a number from 100 to 255 for 4 AA batteries forard motors PWM on signal
 
 int turn_delay = 500; // time to turn in milliseconds 
@@ -124,7 +124,13 @@ void setup() {
 
   
 void loop () {
-  int dist_to_object = sonar.ping_cm();
+
+  // get a non-zero distance
+  do {
+    delay(33);
+    dist_to_object = sonar.ping_cm();
+  } while (dist_to_object == 0);
+  
   if (dist_to_object < turn_threshold) turning_flag = 1; else turning_flag = 0;
   
   debouncer_set.update(); // Update the Bounce instance
