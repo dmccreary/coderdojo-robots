@@ -15,13 +15,6 @@
 // https://github.com/thomasfredericks/Bounce2
 #include <Bounce2.h>
 
-// the mode is running or programming one of the parameters
-#define MODE_BUTTON_PIN 2 // momentary push button tied to GNG (interrupt 0)
-// when the select button goes low the value of the POT is copied to the variable
-#define SELECT_BUTTON_PIN 3 // momentary push button from rotery encoder tied to GNG
-// we use just one interrupt pin for good performance
-#define ENC_A_PIN 2 // an interrupt pin
-#define ENC_B_PIN 4 // not an interrupt pin
 
 // motor pins - they must be on the PWM pins 3,5,6,9
 #define RIGHT_FORWARD_PIN 3
@@ -46,19 +39,11 @@ U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI u8g2(U8G2_R0, CS_PIN, DC_PIN, RDS_PIN);
 NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
 
 //   Good Performance: only the first pin has interrupt capability
-Encoder myEnc(ENC_A_PIN, ENC_B_PIN);
 #define ENC_A_PIN 2 // an interrupt pin
 #define ENC_B_PIN 4 // not an interrupt pin
-long oldPosition  = -999;
+Encoder myEnc(ENC_A_PIN, ENC_B_PIN);
 
-/* this is the mode of the robot 
-0 = running with faces
-1 = set forward speed
-2 = set turn distance
-3 = set turn distance
-4 = set turn speed
-5 = debug mode
-*/
+long oldPosition  = -999;
 byte mode = 0; // default mode on power up
 byte mode_count = 6;
 
@@ -157,7 +142,8 @@ void loop () {
         // mouth
         if (turning_flag)
            u8g2.drawFilledEllipse(FACE_CENTER,44,8,6);
-           else u8g2.drawEllipse(FACE_CENTER,44,8,2);
+           else u8g2.drawCircle(FACE_CENTER, 40, 8, U8G2_DRAW_LOWER_LEFT|U8G2_DRAW_LOWER_RIGHT);  // U8G2_DRAW_LOWER_LEFT | U8G2_DRAW_LOWER_RIGHT
+
            
         // rotery encoder 
         u8g2.drawStr(0,8,"Pos:");
