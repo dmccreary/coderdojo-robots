@@ -181,7 +181,57 @@ void loop () {
     } while ( u8g2.nextPage() );
  
 
-    if (turning_flag)
+    if (turning_flag) {
       tone(SPEAKER_PIN, 1000, 200);
+      move_reverse();
+      delay(300);
+      turn_right();
+      delay(300);
+      move_forward();
+    }
 //    counter++;
+}
+
+void move_forward() {
+  //Serial.println("moving forward");
+  analogWrite(RIGHT_FORWARD_PIN, forward_power_level);
+  analogWrite(RIGHT_REVERSE_PIN, LOW);
+  analogWrite(LEFT_FORWARD_PIN, forward_power_level);
+  analogWrite(LEFT_REVERSE_PIN, LOW);
+}
+
+void move_reverse() {
+  //Serial.println("moving forward");
+  analogWrite(RIGHT_FORWARD_PIN, LOW);
+  analogWrite(RIGHT_REVERSE_PIN, forward_power_level);
+  analogWrite(LEFT_FORWARD_PIN, LOW);
+  analogWrite(LEFT_REVERSE_PIN, forward_power_level);
+}
+
+void turn_right() {
+  //Serial.println("turning right");
+  analogWrite(RIGHT_FORWARD_PIN, LOW);
+  analogWrite(RIGHT_REVERSE_PIN, turn_power_level);
+  analogWrite(LEFT_FORWARD_PIN, turn_power_level);
+  analogWrite(LEFT_REVERSE_PIN, LOW);
+  delay(turn_delay);
+ all_motors_off();
+}
+
+void turn_left() {
+  //Serial.println("turning right");
+  analogWrite(RIGHT_FORWARD_PIN, turn_power_level);
+  analogWrite(RIGHT_REVERSE_PIN, LOW);
+  analogWrite(LEFT_FORWARD_PIN, LOW);
+  analogWrite(LEFT_REVERSE_PIN, turn_power_level);
+  delay(turn_delay);
+ all_motors_off();
+}
+
+void all_motors_off() {
+  //Serial.println("All motors turning off");
+  analogWrite(RIGHT_FORWARD_PIN, 0);
+  analogWrite(RIGHT_REVERSE_PIN, 0);
+  analogWrite(LEFT_FORWARD_PIN, 0);
+  analogWrite(LEFT_REVERSE_PIN, 0);
 }
