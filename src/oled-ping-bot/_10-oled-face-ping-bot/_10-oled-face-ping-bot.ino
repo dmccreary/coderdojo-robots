@@ -114,7 +114,8 @@ void setup() {
   debouncer_set.interval(25); // Use a debounce interval of 25 milliseconds
   
   debouncer_mode.attach(MODE_PIN, INPUT_PULLUP); // Attach the debouncer to a pin with INPUT_PULLUP mode
-  debouncer_mode.interval(10); // Use a debounce interval of 25 milliseconds 
+  debouncer_mode.interval(10); // Use a debounce interval of 25 milliseconds
+  randomSeed(analogRead(6)); // seed with staic on Analog 6
   Serial.begin(9600);      // open the serial port at 9600 bps
 }
 
@@ -144,6 +145,7 @@ void loop () {
   newPosition = newPosition % 255;
   byte stop_value = newPosition/4;
   byte mode = stop_value % mode_count;
+  byte random_number;
 
   // if (mode == 0)  then do this in final
     u8g2.firstPage();
@@ -152,12 +154,12 @@ void loop () {
         // u8g2.drawFilledEllipse(63,31,20,28);
         u8g2.drawCircle(FACE_CENTER,31,30,U8G2_DRAW_ALL);
         // eyes
-        u8g2.drawEllipse(FACE_CENTER - 10,24,6,3);
-        u8g2.drawEllipse(FACE_CENTER + 10,24,6,3);
+        u8g2.drawFilledEllipse(FACE_CENTER - 10,24,4,4);
+        u8g2.drawFilledEllipse(FACE_CENTER + 10,24,4,4);
         // mouth
         if (turning_flag)
-           u8g2.drawFilledEllipse(FACE_CENTER,44,8,6);
-           else u8g2.drawEllipse(FACE_CENTER,44,8,2);
+           u8g2.drawFilledEllipse(FACE_CENTER,44,8,6); // shock
+           else u8g2.drawCircle(FACE_CENTER,40, 10, U8G2_DRAW_LOWER_LEFT|U8G2_DRAW_LOWER_RIGHT);  // U8G2_DRAW_LOWER_LEFT | U8G2_DRAW_LOWER_RIGHT
            
         // rotery encoder 
         u8g2.drawStr(0,8,"Pos:");
@@ -185,7 +187,15 @@ void loop () {
       tone(SPEAKER_PIN, 1000, 200);
       move_reverse();
       delay(300);
-      turn_right();
+      random_number = random(2);
+      if ( random_number == 0) {
+          tone(SPEAKER_PIN, 1300, 200);
+          turn_right();
+          }
+        else {
+          tone(SPEAKER_PIN, 700, 200);
+          turn_left();
+        }
       delay(300);
       move_forward();
     }
