@@ -144,7 +144,6 @@ void loop () {
            u8g2.drawFilledEllipse(FACE_CENTER,44,8,6);
            else u8g2.drawCircle(FACE_CENTER, 40, 8, U8G2_DRAW_LOWER_LEFT|U8G2_DRAW_LOWER_RIGHT);  // U8G2_DRAW_LOWER_LEFT | U8G2_DRAW_LOWER_RIGHT
 
-           
         // rotery encoder 
         u8g2.drawStr(0,8,"Pos:");
         u8g2.setCursor(22,8);

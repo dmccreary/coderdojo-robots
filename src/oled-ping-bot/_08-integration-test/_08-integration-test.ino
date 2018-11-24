@@ -74,8 +74,8 @@ Bounce debouncer_mode = Bounce();
 #define SPEAKER_PIN A0
 
 // convert to CM
-int turning_flag; 
-int turn_threshold = 16; // 15 CM
+int turning_flag = 0; 
+int turn_threshold = 13; // move something within this distance of the ping sensor and you will turn on the sound
 int forward_power_level = 180; // try a number from 100 to 255 for 4 AA batteries forard motors PWM on signal
 
 int turn_delay = 500; // time to turn in milliseconds 
@@ -121,11 +121,17 @@ void setup() {
   Serial.begin(9600);      // open the serial port at 9600 bps
 }
 
-
-  
 void loop () {
   int dist_to_object = sonar.ping_cm();
-  if (dist_to_object < turn_threshold) turning_flag = 1; else turning_flag = 0;
+  do {
+    delay(33);
+    dist_to_object = sonar.ping_cm();
+  } while (dist_to_object == 0);
+
+  if (dist_to_object < turn_threshold) // Oh no!  We are going to crash!  Let/s turn!
+    turning_flag = 1;
+    else turning_flag = 0;
+      
   
   debouncer_set.update(); // Update the Bounce instance
   if ( debouncer_set.fell() ) change_set_flag = !change_set_flag;  // Call code if button transitions from HIGH (default) to LOW
@@ -167,6 +173,6 @@ void loop () {
     } while ( u8g2.nextPage() );
 
     if (turning_flag)
-      tone(SPEAKER_PIN, 1000, 200);
+      tone(SPEAKER_PIN, 400, 200);
 //    counter++;
 }
