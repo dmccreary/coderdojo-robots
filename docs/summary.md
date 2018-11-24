@@ -1,14 +1,18 @@
 # Summary
 
-* [Introduction](introduction.md)
+* [Introduction](README.md)
 * [Getting Started](getting-started.md)
-* [Robot Components](components.md)
+* [Instructor's Guide](instructors-guide.md)
+* [Components](components.md)
 * [Assembly](assembly.md)
-* [Changing Motor Speed](speed.md)
-* [Changing Motor Direction](direction.md)
-* [Controlling Two Motors](two-motors.md)
-* [Distance Sensing](distance-sensor.md)
-* [Controlling an LED Strip](led-strip.md)
-* [Obstacle Avoidance](obstacle.md)
-* [Advanced Topics](advanced-topics.md)
-* [Glossary](GLOSSARY.md)
+* [Programming](programming.md)
+* [Testing Motor Connections](testing-motor-connections.md)
+* [Motor Speed Lab](motor-speed-lab.md)
+* [Moving Forward and Backward](moving-forward-and-backward.md)
+* Motor Direction Lab
+* [Turning](turning.md)
+* [Sensors](sensors.md)
+* [Programming with Scratch](programming-with-scratch.md)
+* [Extending The Base Robot](extending-the-base-robot.md)
+* [Glossary](glossary.md)
+
