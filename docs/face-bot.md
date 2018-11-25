@@ -2,7 +2,11 @@
 This version of our robot has an nice high-contrast OLED screen on the front of it.  We moved the ping
 sensor below the chasis so that there would be room top front of the robot for the screen.
 
-![Arduino Face Bot]( {{ site.url }} /images/face-bot.jpeg)
+v1:
+![Arduino Face Bot]({{site.url}}/images/face-bot.jpeg)
+
+v2:
+![Arduino Face Bot]({{site.url}}/docs/images/face-bot.jpeg)
 We can draw several things on our screen, including a face with two eyes and a mouth using simple
 drawing commands.  We can also display the parameters on the screen for controlling the collision avoidance robot.
 For example we can display the distance to the object in front of the robot as measured by the ping sensor.
