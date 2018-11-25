@@ -124,7 +124,9 @@ void loop(void) {
   } while ( u8g2.nextPage() );
   delay(10);
   counter++;
-}```
+}
+```
+Video of Display Test
 
 
 
