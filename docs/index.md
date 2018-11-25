@@ -17,3 +17,5 @@
 * [Extending The Base Robot](extending-the-base-robot.md)
 * [Adding a Face](face-bot.md)
 * [Glossary](glossary.md)
+
+Documentation built with GitHub pages - which uses jekyll which use liquid
