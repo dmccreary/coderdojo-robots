@@ -1,5 +1,6 @@
 # CoderDojo OLED IR Sensor Collision Avoidance Robot
-This is the source code for a CoderDojo Robot that uses an IR sensor for the distance sensor and an OLED for a display.
+This is the source code for a CoderDojo Robot that uses an IR sensor for the 
+distance sensor and an OLED for a display.
 
 ## Distance sensor test
 _01-sharp-ir-sensor-test

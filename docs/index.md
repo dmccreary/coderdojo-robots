@@ -15,5 +15,5 @@
 * [Sensors](sensors.md)
 * [Programming with Scratch](programming-with-scratch.md)
 * [Extending The Base Robot](extending-the-base-robot.md)
-* [Adding a Face](../src/oled-ping-bot/README.md)
+* [Adding a Face](face-bot.md)
 * [Glossary](glossary.md)
