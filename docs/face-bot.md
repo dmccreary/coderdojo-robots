@@ -80,7 +80,8 @@ void setup(void) {
   // Set font to Helvetica regular 8 pixel font
   // For other options see https://github.com/olikraus/u8g2/wiki/fntlistall#8-pixel-height
   u8g2.setFont(u8g2_font_helvR08_tf);
-}```
+}
+```
 
 # Getting "Hello World" to Work
 Once we have the right constructor and the font initialization setup we are ready to write our first test program.
