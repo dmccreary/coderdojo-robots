@@ -1,19 +1,27 @@
 # Adding a Face to Your Robot
-This version of our robot has an nice high-contrast screen on the front of it.  We moved the ping
-sensor below the chasis so that there would be room top front of the robot for the screen.  We
-can draw several things on our screen, including a face with two eyes and a mouth using simple
-drawing commands as well as parameters for controlling the robot.
+This version of our robot has an nice high-contrast OLED screen on the front of it.  We moved the ping
+sensor below the chasis so that there would be room top front of the robot for the screen.
+
+![Arduino Face Bot](images/face-bot.jpeg)
+We can draw several things on our screen, including a face with two eyes and a mouth using simple
+drawing commands.  We can also display the parameters on the screen for controlling the collision avoidance robot.
+For example we can display the distance to the object in front of the robot as measured by the ping sensor.
+This is a great way to debug our robot.  Rather than hooking up the robot up to the USB connection
+to display the robot status on the Arduino serial console we can display the values "in the field"
+where the robot is running.
 
 # The OLED Screen
-Although there are many types of small displays that you can use with the Arduino, my favorite
-is the 128x64 OLED type.  I like it because it has a very bright high-contrast display that
+Although there are many types of small displays that we can use with the Arduino, our favorite
+is the 128x64 OLED type.  We like this screen because it has a very bright high-contrast display that
 is easy to view from all angles and under a variety of power conditions.  This is in contrast
-to some LCD screens that are difficult to read in bright light.
-You can get this display on E-Bay (as of the end of 2018) or around $17.00
+to some LCD screens that are difficult to read in bright light and whose contrast changes as the batteries
+lose power.
+You can get this display on E-Bay (as of the end of 2018) for around $17.00 (includes shipping) but we hope
+that the prices come down soon since OLED technology is relatively new.
 
 [Sample E-Bay OLED Screen](https://www.ebay.com/itm/2-42-inch-OLED-Display-SSD1309-128x64-SPI-IIC-Serial-Port-Blue-For-Arduino-KO/283274161519)
 
-This version has a stanard SSD1309 chip that drives it and by default the display is configured to use 
+This version of the OLED has a standard SSD1309 chip that drives it and by default the display is configured to use 
 the SPI interface.  There are a few different versions of the OLED displays,
 but the ones that are the lowest cost provide for seven SPI connectors:
 
@@ -48,7 +56,7 @@ mode that only uses a small amount of RAM.
 
 Getting the right setup for the U8g2 library took some time.  There are several setup options that will work.
 The one I chose is the 4-wire hardware SPI.  Hardware interfaces are usually a little bit faster than the software
-interfaces but they also reqired a few more connections.  Here are the options I selected:
+interfaces but they also required a few more connections.  Here are the options I selected:
 
 1. SSD1306 (the name of the display driver)
 2. 128x64 (the size of our display)
@@ -83,30 +91,33 @@ void setup(void) {
 }
 ```
 
-# Getting "Hello World" to Work
+# Simple Test of the Display Connections
 Once we have the right constructor and the font initialization setup we are ready to write our first test program.
+If this test works, you will know that you have hooked up all seven wires of the display correctly.
 The following test program just displays "CoderDojo Rocks" with a counter that increments so you can see
 that the display is updating correctly for each loop.
 
-Here is the full program:
+Here is the full program for our simple display test:
 ```
 #include <Arduino.h>
-//// https://github.com/olikraus/u8g2/wiki
+// For details on the o8g2 library see https://github.com/olikraus/u8g2/wiki
 #include <U8g2lib.h>
 #include <SPI.h>
 
 // order on OLED - GND, VCC, SCL, SDA, RDS, DC, CS
+// You can't move these two pins if you use the hardware SPI
 #define SCL_PIN 13 // SCL clock - 3rd from bottom
 #define SDA_PIN 11 // SDA, Data, MOSI - must be on pin 11 on the Nano
+// you can move these pins around as long as you reference the names correctly
 #define RDS_PIN 10 // reset
 #define DC_PIN 7 // DC moved from pin 9 which is needed as a PWM pin
 #define CS_PIN 8 // chip select top
 
-// https://github.com/olikraus/u8g2/wiki/u8x8setupcpp#constructor-reference
-// We are using the 128 byte 4W Hardware SPI with no rotation which only uses 27% of dynamic memory
+// There are many options for initialzation of the display.  See https://github.com/olikraus/u8g2/wiki/u8x8setupcpp#constructor-reference
+// We are using the 128 byte 4W Hardware SPI with no rotation.  This uses 27% of the 2K of dynamic memory available on the Arduino Nano
 U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI u8g2(U8G2_R0, CS_PIN, DC_PIN, RDS_PIN);
 
-int counter; // main loop counter
+int counter; // main loop counter to verify the disply is updating.
 
 void setup(void) {
   u8g2.begin();
@@ -117,16 +128,16 @@ void setup(void) {
 
 void loop(void) {
   u8g2.firstPage();
-  do {    
+  do {
+    // x (horiz) is 0 and 7 (vertical) is 8 down for a 8-pixel high font  
     u8g2.drawStr(0,8,"CoderDojo Rocks!");
     u8g2.setCursor(0,63);
     u8g2.print(counter);
   } while ( u8g2.nextPage() );
-  delay(10);
-  counter++;
+  counter++; // increment the counter by 1
 }
 ```
-Video of Display Test
+
 
 
 
