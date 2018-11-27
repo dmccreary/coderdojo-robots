@@ -40,7 +40,7 @@ Serial Peripheral Interface Pins:
 
 To use the Hardware SPI on the Arduino Nano, we MUST connect the SCL to pin 13 and the SDA to pin 11.
 See the [Documentation tab](https://store.arduino.cc/usa/arduino-nano) on the Arduino web site.
-Note that since 11 is also a PWM pin we have to run the motors on pins 3, 5, 6 and 9.
+Note that since the Arduino Nano pin 11 is also a PWM pin we have to run the motors on pins 3, 5, 6 and 9.
 
 This chip is supported by several Arduino libraries, which we will talk about next.
 
