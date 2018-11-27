@@ -1,5 +1,5 @@
 # Adding a Face to Your Robot
-This version of our robot has an nice high-contrast OLED screen on the front of it.  We moved the ping
+This version of our robot has an nice high-contrast 128x64 pixel OLED screen on the front of it.  We moved the ping
 sensor below the chasis so that there would be room top front of the robot for the screen.
 
 ![Arduino Face Bot](images/face-bot.jpg)
@@ -159,6 +159,11 @@ push buttons that are used to change the mode and select an option.
 # Static Integration Display Test
 Once all the components are individually working you can then run a "static" or non-moving components together.
 This means that all the connections are working but the motor functions are not enabled.
+[Static Integration Display Test](https://github.com/dmccreary/coderdojo-robots/blob/master/src/oled-ping-bot/_09-oled-static-test/_09-oled-static-test.ino)
 
+# Collision Avoidance Robot
+In this version the robot will move forward until it gets close to an object in front of it.  It will then backup
+a bit and turn either right or left and continue on.
 
+[OLED Face Ping Bot](https://github.com/dmccreary/coderdojo-robots/blob/master/src/oled-ping-bot/_10-oled-face-ping-bot/_10-oled-face-ping-bot.ino)
 
