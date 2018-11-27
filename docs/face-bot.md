@@ -144,7 +144,9 @@ void loop(void) {
 
 # Testing the Robot Connections
 Once you have the display working, we can now use the display to verify that the various components are
-each wired up correctly.  The following test are used to test each component:
+each wired up correctly.  You can also do some of this testing using the serial monitor within the Arduino IDE.
+However, that option requires that your robot be connected via the USB to your computer.
+The following test are used to test each component, even when the USB is unplugged:
 
 .1 Ping Sensor Display Test - this test will display the ping sensor distance on the display.
 You can use this test to verify that the Trigger and Echo pins are connected correctly.
