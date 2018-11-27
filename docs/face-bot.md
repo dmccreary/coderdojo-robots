@@ -142,6 +142,23 @@ void loop(void) {
 }
 ```
 
+# Testing the Robot Connections
+Once you have the display working, we can now use the display to verify that the various components are
+each wired up correctly.  The following test are used to test each component:
+
+.1 Ping Sensor Display Test - this test will display the ping sensor distance on the display.
+You can use this test to verify that the Trigger and Echo pins are connected correctly.
+.2 [Motor Connection Display Test](https://github.com/dmccreary/coderdojo-robots/blob/master/src/oled-ping-bot/_03-motor-display-test/_03-motor-display-test.ino) - this test will cycle through each of the motor controller connections.
+It will fist run the right forward motor, then the right reverse motor, then the left forward and
+finally the left reverse.  An arrow on the display will show you what wheel should be turning
+and in what direction.
+.3 Speaker Display Test - this will display a frequency on the display as it plays on the speaker
+.4 Rotery Encoder Display Test - this will test the rotary encorder know and the momentary
+push buttons that are used to change the mode and select an option.
+
+# Static Integration Display Test
+Once all the components are individually working you can then run a "static" or non-moving components together.
+This means that all the connections are working but the motor functions are not enabled.
 
 
 
