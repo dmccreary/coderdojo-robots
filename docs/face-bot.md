@@ -12,13 +12,13 @@ This is a great way to debug our robot.  Rather than hooking up the robot up to 
 to display the robot status on the Arduino serial console we can display the values "in the field"
 where the robot is running.
 
-# The OLED Screen
-![OLED Screen](images/oled-display.jpg)
+# The 128x64 OLED Screen
+![OLED Screen](images/oled-display.png)
 
 Although there are many types of small displays that we can use with the Arduino, our favorite
-is the 128x64 OLED type.  We like this screen because it has a very bright high-contrast display that
-is easy to view from all angles and under a variety of power conditions.  This is in contrast
-to some LCD screens that are difficult to read in bright light and whose contrast changes as the batteries
+is the 2.24" 128x64 OLED type.  We like this screen because it has a bright high-contrast display that
+is easy to view from all angles and works well under a variety of power conditions.  This is in contrast
+to some LCD screens that are difficult to read in bright light and the contrast changes as the batteries
 lose power.
 
 You can get this display on E-Bay (as of the end of 2018) for around $17.00 (includes shipping) but we hope
