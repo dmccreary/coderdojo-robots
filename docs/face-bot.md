@@ -2,7 +2,6 @@
 This version of our robot has an nice high-contrast OLED screen on the front of it.  We moved the ping
 sensor below the chasis so that there would be room top front of the robot for the screen.
 
-v1:
 ![Arduino Face Bot](images/face-bot.jpg)
 
 We can draw several things on our screen, including a face with two eyes and a mouth using simple
