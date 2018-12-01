@@ -30,7 +30,6 @@ void loop(void) {
     u8g2.setCursor(0,63);
     u8g2.print(counter);
   } while ( u8g2.nextPage() );
-  delay(10);
   counter++;
 }
 
