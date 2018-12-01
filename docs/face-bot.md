@@ -1,12 +1,9 @@
 # Adding a Face to Your Robot
-This version of our robot has an nice high-contrast OLED screen on the front of it.  We moved the ping
+This version of our robot has an nice high-contrast 128x64 pixel OLED screen on the front of it.  We moved the ping
 sensor below the chasis so that there would be room top front of the robot for the screen.
 
-v1:
-![Arduino Face Bot]({{site.url}}/images/face-bot.jpeg)
+![Arduino Face Bot](images/face-bot.jpg)
 
-v2:
-![Arduino Face Bot]({{site.url}}/docs/images/face-bot.jpeg)
 We can draw several things on our screen, including a face with two eyes and a mouth using simple
 drawing commands.  We can also display the parameters on the screen for controlling the collision avoidance robot.
 For example we can display the distance to the object in front of the robot as measured by the ping sensor.
@@ -14,12 +11,15 @@ This is a great way to debug our robot.  Rather than hooking up the robot up to 
 to display the robot status on the Arduino serial console we can display the values "in the field"
 where the robot is running.
 
-# The OLED Screen
+# The 128x64 OLED Screen
+![OLED Screen](images/oled-display.png)
+
 Although there are many types of small displays that we can use with the Arduino, our favorite
-is the 128x64 OLED type.  We like this screen because it has a very bright high-contrast display that
-is easy to view from all angles and under a variety of power conditions.  This is in contrast
-to some LCD screens that are difficult to read in bright light and whose contrast changes as the batteries
+is the 2.24" 128x64 OLED type.  We like this screen because it has a bright high-contrast display that
+is easy to view from all angles and works well under a variety of power conditions.  This is in contrast
+to some LCD screens that are difficult to read in bright light and the contrast changes as the batteries
 lose power.
+
 You can get this display on E-Bay (as of the end of 2018) for around $17.00 (includes shipping) but we hope
 that the prices come down soon since OLED technology is relatively new.
 
@@ -40,7 +40,7 @@ Serial Peripheral Interface Pins:
 
 To use the Hardware SPI on the Arduino Nano, we MUST connect the SCL to pin 13 and the SDA to pin 11.
 See the [Documentation tab](https://store.arduino.cc/usa/arduino-nano) on the Arduino web site.
-Note that since 11 is also a PWM pin we have to run the motors on pins 3, 5, 6 and 9.
+Note that since the Arduino Nano pin 11 is also a PWM pin we have to run the motors on pins 3, 5, 6 and 9.
 
 This chip is supported by several Arduino libraries, which we will talk about next.
 
@@ -142,6 +142,30 @@ void loop(void) {
 }
 ```
 
+# Testing the Robot Connections
+Once you have the display working, we can now use the display to verify that the various components are
+each wired up correctly.  You can also do some of this testing using the serial monitor within the Arduino IDE.
+However, that option requires that your robot be connected via the USB to your computer.
+The following test are used to test each component, even when the USB is unplugged:
 
+.1 Ping Sensor Display Test - this test will display the ping sensor distance on the display.
+You can use this test to verify that the Trigger and Echo pins are connected correctly.
+.2 [Motor Connection Display Test](https://github.com/dmccreary/coderdojo-robots/blob/master/src/oled-ping-bot/_03-motor-display-test/_03-motor-display-test.ino) - this test will cycle through each of the motor controller connections.
+It will fist run the right forward motor, then the right reverse motor, then the left forward and
+finally the left reverse.  An arrow on the display will show you what wheel should be turning
+and in what direction.
+.3 Speaker Display Test - this will display a frequency on the display as it plays on the speaker
+.4 Rotery Encoder Display Test - this will test the rotary encorder know and the momentary
+push buttons that are used to change the mode and select an option.
 
+# Static Integration Display Test
+Once all the components are individually working you can then run a "static" or non-moving components together.
+This means that all the connections are working but the motor functions are not enabled.
+[Static Integration Display Test](https://github.com/dmccreary/coderdojo-robots/blob/master/src/oled-ping-bot/_09-oled-static-test/_09-oled-static-test.ino)
+
+# Collision Avoidance Robot
+In this version the robot will move forward until it gets close to an object in front of it.  It will then backup
+a bit and turn either right or left and continue on.
+
+[OLED Face Ping Bot](https://github.com/dmccreary/coderdojo-robots/blob/master/src/oled-ping-bot/_10-oled-face-ping-bot/_10-oled-face-ping-bot.ino)
 
