@@ -25,12 +25,13 @@ void setup(void) {
 
 void loop(void) {
   u8g2.firstPage();
-  do {    
-    u8g2.drawStr(0,8,"CoderDojo Rocks!");
-    u8g2.setCursor(0,63);
+  do {
+    u8g2.drawStr(0, 8, "CoderDojo Rocks!");
+    u8g2.setCursor(0, 63);
     u8g2.print(counter);
   } while ( u8g2.nextPage() );
   counter++;
 }
+
 
 
