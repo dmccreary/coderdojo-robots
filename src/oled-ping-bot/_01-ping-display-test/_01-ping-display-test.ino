@@ -63,7 +63,8 @@ void loop() {
     u8g2.print(counter);
 
     if (distance_cm < 13)
-       u8g2.drawStr(0, 60,"Turning...");
+       u8g2.drawStr(0, 6
+       0,"Turning...");
   } while ( u8g2.nextPage() );
   
   delay(100);
