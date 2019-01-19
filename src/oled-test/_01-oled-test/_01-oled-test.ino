@@ -1,17 +1,17 @@
 #include <Arduino.h>
-//// https://github.com/olikraus/u8g2/wiki
+// https://github.com/olikraus/u8g2/wiki
 #include <U8g2lib.h>
 #include <SPI.h>
 
 // order on OLED - GND, VCC, SCL, SDA, RDS, DC, CS
-#define SCL_PIN 13 // SCL clock - 3rd from bottom
-#define SDA_PIN 11 // SDA, Data, MOSI - must be on pin 11 on the Nano
-#define RDS_PIN 10 // reset
-#define DC_PIN 9 // DC moved from pin 9 which is needed as a PWM pin
-#define CS_PIN 8 // chip select top
+// #define SCL_PIN 13 // SCL clock - SCL is pin 13 on the Arduino Nano
+// #define SDA_PIN 11 // SDA, Data, MOSI - must be on pin 11 on the Nano
+#define RDS_PIN 10 // Reset
+#define DC_PIN 9 // Data/Command
+#define CS_PIN 8 // Chip select
 
 // https://github.com/olikraus/u8g2/wiki/u8x8setupcpp#constructor-reference
-// We are using the 128 byte 4W Hardware SPI with no rotation which only uses 27% of dynamic memory
+// We are using the SSD1306, 128x64, single-page, unnamed, 4 wire, Hardware, SPI with no rotation which only uses 27% of dynamic memory
 U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI u8g2(U8G2_R0, CS_PIN, DC_PIN, RDS_PIN);
 
 int counter; // main loop counter
@@ -31,7 +31,5 @@ void loop(void) {
     u8g2.print(counter);
   } while ( u8g2.nextPage() );
   counter++;
+  delay(1000); // update every second
 }
-
-
-
