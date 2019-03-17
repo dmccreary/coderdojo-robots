@@ -14,34 +14,70 @@
 // We are using the SSD1306, 128x64, single-page, unnamed, 4 wire, Hardware, SPI with no rotation which only uses 27% of dynamic memory
 U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI u8g2(U8G2_R0, CS_PIN, DC_PIN, RDS_PIN);
 
-int width = 2; // width of the pulse
-#define HEIGHT 40 // hight of the wave
-#define MAX_WIDTH 64
+int percent = 0; // percent high of total pulse width
+int high_width = 0;
+int start = 0;
+  
+#define HEIGHT 20 // hight of the wave
+#define PULSE_WIDTH 16 // pixels in the pulse width
+#define NUM_PULSES 7 // pulses we can fit on the 128 wide screen screen
+#define PULSE_TOP_OFFSET 20 // offset from the top of the screen down to draw the top of the pulse wave
+
 void setup(void) {
   u8g2.begin();
   // Set font to Helvetica regular 8 pixel font
   // For other options see https://github.com/olikraus/u8g2/wiki/fntlistall#8-pixel-height
   u8g2.setFont(u8g2_font_helvR08_tf);
+  // u8g2.setDrawColor(1);
   welcome();
-  delay(3000);
+  // delay(3000);
+  Serial.begin(9600);
 }
 
 void loop(void) {
+
   u8g2.firstPage();
   do {
-    draw_square_wave(width, HEIGHT, 50);
+
+    // draw NUM_PULSES square waves at a fixed distance apart
+    start = 0;
+    for (int i=0; i<=NUM_PULSES; i++) {
+      draw_single_pulse(start, high_width);
+      start += PULSE_WIDTH; 
+    }
+
+    u8g2.drawStr(0, 63, "% Power:");
+
+    u8g2.setCursor(50, 63);
+    u8g2.print(percent);
+    
+    u8g2.setCursor(80, 63);
+    u8g2.print(high_width);
+    
+    
   } while ( u8g2.nextPage() );
-  delay(500);
-  width++;
-  if (width > MAX_WIDTH) width = 0;
+  
+  delay(1000);
+  high_width++; // cycles between 1 and CYCLE_WIDTH
+  if (high_width > PULSE_WIDTH) high_width = 1;
+  percent = high_width * 6;
 }
 
-void draw_square_wave(int width, int height, int percent) {
-    u8g2.drawHLine(0, height, width);
-    u8g2.drawVLine(width, 0, height);
-    u8g2.drawHLine(width, 0, width);
-    u8g2.drawVLine(2*width, 0, height);
-    u8g2.drawHLine(2*width, height, width);
+// start is the screen x-position (horizontal) and high-with is the height of the high pulse
+void draw_single_pulse(int start, int high_width) {
+    u8g2.drawVLine(start, PULSE_TOP_OFFSET, HEIGHT); // first vertical base to top
+    // u8g2.drawLine(start, PULSE_TOP_OFFSET, start, HEIGHT);
+    u8g2.drawHLine(start, PULSE_TOP_OFFSET, high_width); // top horizontal line of width of the height of the high part of the square wave
+    u8g2.drawVLine(start + high_width, PULSE_TOP_OFFSET, HEIGHT); // top down to base
+    u8g2.drawHLine(start + high_width, HEIGHT + PULSE_TOP_OFFSET, PULSE_WIDTH - high_width); // lower horizontal
+
+//    Serial.print("start: ");
+//    Serial.print(start);
+//    Serial.print(" high width:");
+//    Serial.print(high_width);
+//    Serial.print(" low width:");
+//    Serial.println(PULSE_WIDTH - high_width);
+//    delay(100);
 }
 
 void welcome() {
