@@ -18,7 +18,7 @@ int percent = 0; // percent high of total pulse width
 int high_width = 0;
 int start = 0;
   
-#define HEIGHT 20 // hight of the wave
+#define HEIGHT 15 // hight of the wave
 #define PULSE_WIDTH 16 // pixels in the pulse width
 #define NUM_PULSES 7 // pulses we can fit on the 128 wide screen screen
 #define PULSE_TOP_OFFSET 20 // offset from the top of the screen down to draw the top of the pulse wave
@@ -42,16 +42,27 @@ void loop(void) {
     // draw NUM_PULSES square waves at a fixed distance apart
     start = 0;
     for (int i=0; i<=NUM_PULSES; i++) {
-      draw_single_pulse(start, high_width);
+      draw_single_pulse(start, 14, high_width);
       start += PULSE_WIDTH; 
     }
 
-    u8g2.drawStr(0, 63, "% Power:");
+    start = 0;
+    for (int i=0; i<=NUM_PULSES; i++) {
+      draw_single_pulse(start, 35, high_width);
+      start += PULSE_WIDTH; 
+    }
 
-    u8g2.setCursor(50, 63);
+    u8g2.drawStr(0, 10, "Pulse Width Modulation");
+    
+    u8g2.drawStr(0, 63, "Fwd:");
+    u8g2.setCursor(30, 63);
+    u8g2.print(percent);
+
+    u8g2.drawStr(56, 63, "Rev:");
+    u8g2.setCursor(80, 63);
     u8g2.print(percent);
     
-    u8g2.setCursor(80, 63);
+    u8g2.setCursor(110, 63);
     u8g2.print(high_width);
     
     
@@ -64,12 +75,12 @@ void loop(void) {
 }
 
 // start is the screen x-position (horizontal) and high-with is the height of the high pulse
-void draw_single_pulse(int start, int high_width) {
-    u8g2.drawVLine(start, PULSE_TOP_OFFSET, HEIGHT); // first vertical base to top
-    // u8g2.drawLine(start, PULSE_TOP_OFFSET, start, HEIGHT);
-    u8g2.drawHLine(start, PULSE_TOP_OFFSET, high_width); // top horizontal line of width of the height of the high part of the square wave
-    u8g2.drawVLine(start + high_width, PULSE_TOP_OFFSET, HEIGHT); // top down to base
-    u8g2.drawHLine(start + high_width, HEIGHT + PULSE_TOP_OFFSET, PULSE_WIDTH - high_width); // lower horizontal
+void draw_single_pulse(int start, int top_offset, int high_width) {
+    u8g2.drawVLine(start, top_offset, HEIGHT); // first vertical base to top
+    // u8g2.drawLine(start, top_offset, start, HEIGHT);
+    u8g2.drawHLine(start, top_offset, high_width); // top horizontal line of width of the height of the high part of the square wave
+    u8g2.drawVLine(start + high_width, top_offset, HEIGHT); // top down to base
+    u8g2.drawHLine(start + high_width, HEIGHT + top_offset, PULSE_WIDTH - high_width); // lower horizontal
 
 //    Serial.print("start: ");
 //    Serial.print(start);
