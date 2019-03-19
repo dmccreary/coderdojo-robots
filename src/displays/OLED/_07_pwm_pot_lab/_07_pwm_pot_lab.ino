@@ -26,6 +26,7 @@ int pot_value;
 #define PULSE_WIDTH 16 // pixels in the pulse width
 #define NUM_PULSES 7 // pulses we can fit on the 128 wide screen screen
 #define PULSE_TOP_OFFSET 15 // offset from the top of the screen down to draw the top of the pulse wave - leave room to draw the title
+#define PULSE_LEFT_OFFSET 8 // offset from the top of the screen down to draw the top of the pulse wave - leave room to draw the title
 #define FWD_REV_SEP 10 // separation between forward and reverse pulse waves
 
 void setup(void) {
@@ -35,7 +36,7 @@ void setup(void) {
   u8g2.setFont(u8g2_font_helvR08_tf);
   // u8g2.setDrawColor(1);
   welcome();
-  // delay(3000);
+  delay(3000);
   Serial.begin(9600);
 }
 
@@ -59,10 +60,8 @@ void loop(void) {
     start = 0;
     if (pot_value < 0) {
       // we have n reverse speed
-      // draw a flat line for the forward PWM
-      //
-      
-      u8g2.drawHLine(0, PULSE_TOP_OFFSET + HEIGHT * 2, 123);
+      // draw a flat line for the forward PWM when we are going in reverse
+      u8g2.drawHLine(PULSE_TOP_OFFSET, PULSE_TOP_OFFSET + (HEIGHT * 2) + 4, 123);
       // draw the lower PWM lines      
       for (int i=0; i<=NUM_PULSES; i++) {
         draw_single_pulse(start, 14, -pot_value);
@@ -74,7 +73,7 @@ void loop(void) {
     } else {
       // we have a forward speed
       // draw the reverse PWM as flat
-      u8g2.drawHLine(0, PULSE_TOP_OFFSET + HEIGHT, 123);
+      u8g2.drawHLine(PULSE_TOP_OFFSET, PULSE_TOP_OFFSET + HEIGHT, 123);
       for (int i=0; i<=NUM_PULSES; i++) {
         draw_single_pulse(start, 35, pot_value);
         start += PULSE_WIDTH; 
@@ -85,14 +84,17 @@ void loop(void) {
 
     // draw the labels
     u8g2.drawStr(0, 10, "Pulse Width Modulation");
+
+    u8g2.drawStr(0, 28, "R:");
+    u8g2.drawStr(0, 50, "F:");
     
-    u8g2.drawStr(0, 63, "Fwd:");
+    u8g2.drawStr(0, 63, "Rev:");
     u8g2.setCursor(25, 63);
-    u8g2.print(fwd_percent);
-    
-    u8g2.drawStr(50, 63, "Rev:");
-    u8g2.setCursor(75, 63);
     u8g2.print(rev_percent);
+    
+    u8g2.drawStr(50, 63, "Fwd:");
+    u8g2.setCursor(75, 63);
+    u8g2.print(fwd_percent);
 
     u8g2.setCursor(105, 63);
     u8g2.print(pot_value);
@@ -106,11 +108,12 @@ void loop(void) {
 
 // start is the screen x-position (horizontal) and high-with is the height of the high pulse
 void draw_single_pulse(int start, int top_offset, int high_width) {
-    u8g2.drawVLine(start, top_offset, HEIGHT); // first vertical base to top
+    int left_border = PULSE_TOP_OFFSET + start;
+    u8g2.drawVLine(left_border, top_offset, HEIGHT); // first vertical base to top
     // u8g2.drawLine(start, top_offset, start, HEIGHT);
-    u8g2.drawHLine(start, top_offset, high_width); // top horizontal line of width of the height of the high part of the square wave
-    u8g2.drawVLine(start + high_width, top_offset, HEIGHT); // top down to base
-    u8g2.drawHLine(start + high_width, HEIGHT + top_offset, PULSE_WIDTH - high_width); // lower horizontal
+    u8g2.drawHLine(left_border, top_offset, high_width); // top horizontal line of width of the height of the high part of the square wave
+    u8g2.drawVLine(left_border + high_width, top_offset, HEIGHT); // top down to base
+    u8g2.drawHLine(left_border + high_width, HEIGHT + top_offset, PULSE_WIDTH - high_width); // lower horizontal
 
 //    Serial.print("start: ");
 //    Serial.print(start);
