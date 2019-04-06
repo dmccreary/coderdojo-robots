@@ -10,7 +10,7 @@
 //// https://github.com/olikraus/u8g2/wiki
 #include <U8g2lib.h>
 #include <SPI.h>
-#include <NewPing.h>
+// #include <NewPing.h>
 #include <Encoder.h>
 // https://github.com/thomasfredericks/Bounce2
 #include <Bounce2.h>
@@ -24,9 +24,10 @@
 // order on OLED - GND, VCC, SCL, SDA, RDS, DC, CS
 #define SCL_PIN 13 // SCL clock - 3rd from bottom
 #define SDA_PIN 11 // SDA, Data, MOSI - must be on pin 11 on the Nano
-#define RDS_PIN 10 // reset
-#define DC_PIN 7 // DC moved from pin 9 which is needed as a PWM pin
-#define CS_PIN 8 // chip select top
+#define RDS_PIN 10 // DC moved from pin 9 which is needed as a PWM pin
+// skip 9 for PWM
+#define DC_PIN 8 // DC moved from pin 9 which is needed as a PWM pin
+#define CS_PIN 7 // chip select top
 
 // https://github.com/olikraus/u8g2/wiki/u8x8setupcpp#constructor-reference
 // We are using the 128 byte 4 wire Hardware SPI (pin 11 and 13 impiled) with no screen rotation which only uses 27% of dynamic memory
@@ -35,7 +36,7 @@ U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI u8g2(U8G2_R0, CS_PIN, DC_PIN, RDS_PIN);
 #define TRIGGER_PIN  A2  // Arduino pin tied to trigger pin on the ultrasonic sensor.
 #define ECHO_PIN     A3  // Arduino pin tied to echo pin on the ultrasonic sensor.
 #define MAX_DISTANCE 200 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
-NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
+// NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
 
 //   Good Performance: only the first pin has interrupt capability
 // we use just one interrupt pin for good performance
@@ -118,20 +119,20 @@ void loop () {
   // get a non-zero distance
   do {
     delay(33);
-    dist_to_object = sonar.ping_cm();
+    dist_to_object = 10; // sonar.ping_cm();
   } while (dist_to_object == 0);
   
   if (dist_to_object < turn_threshold) turning_flag = 1; else turning_flag = 0;
   
   debouncer_set.update(); // Update the Bounce instance
   if (debouncer_set.fell()) {
-     tone(SPEAKER_PIN, 2000, 200);
+     // tone(SPEAKER_PIN, 2000, 200);
      change_set_flag = !change_set_flag;
   }   // Call code if button transitions from HIGH (default) to LOW
 
   debouncer_mode.update();
   if (debouncer_mode.fell()) {
-    tone(SPEAKER_PIN, 3000, 200);
+    // tone(SPEAKER_PIN, 3000, 200);
     change_mode_flag = !change_mode_flag;  // Call code if button transitions from HIGH to LOW
   }
 

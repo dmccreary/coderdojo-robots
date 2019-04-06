@@ -31,5 +31,5 @@ void loop(void) {
     u8g2.print(counter);
   } while ( u8g2.nextPage() );
   counter++;
-  delay(1000); // update every second
+  
 }

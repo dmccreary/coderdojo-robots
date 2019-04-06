@@ -24,9 +24,12 @@ byte mode_count = 5;
 // order on OLED - GND, VCC, SCL, SDA, RDS, DC, CS
 #define SCL_PIN 13 // SCL clock - 3rd from bottom
 #define SDA_PIN 11 // SDA, Data, MOSI - must be on pin 11 on the Nano
+#define DC_PIN 10 // DC moved from pin 9 which is needed as a PWM pin
+// skip 9 for PWM
 #define RDS_PIN 10 // reset
-#define DC_PIN 7 // DC moved from pin 9 which is needed as a PWM pin
-#define CS_PIN 8 // chip select top
+#define DC_PIN 8 // DC moved from pin 9 which is needed as a PWM pin
+#define CS_PIN 7 // chip select top
+
 
 // https://github.com/olikraus/u8g2/wiki/u8x8setupcpp#constructor-reference
 // We are using the 128 byte 4W Hardware SPI with no rotation which only uses 27% of dynamic memory
@@ -71,4 +74,3 @@ void loop(void) {
    }
   delay(10);
 }
-

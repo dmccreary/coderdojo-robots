@@ -21,6 +21,7 @@ int rev_percent = 0;
 int high_width = 0;
 int start;
 int pot_value;
+// int counter; // main loop counter for debug
 
 #define HEIGHT 15 // hight of the pulse in pixels
 #define PULSE_WIDTH 16 // pixels in the pulse width
@@ -50,7 +51,7 @@ void loop(void) {
   pot_value = pot_value/10;
 
   // scale between a negative and positive pulse width in pixels
-  pot_value = -map(pot_value, 10, 1010, -PULSE_WIDTH, PULSE_WIDTH);
+  pot_value = map(pot_value, 10, 1010, -PULSE_WIDTH, PULSE_WIDTH);
 
   u8g2.firstPage();
   do {
@@ -96,14 +97,18 @@ void loop(void) {
     u8g2.setCursor(75, 63);
     u8g2.print(fwd_percent);
 
-    u8g2.setCursor(105, 63);
+    u8g2.setCursor(115, 63);
     u8g2.print(pot_value);
+
+//    u8g2.setCursor(105, 63);
+//    u8g2.print(counter);
     
   } while ( u8g2.nextPage() );
   
-  high_width++; // cycles between 1 and PULSE_WIDTH
-  if (high_width > PULSE_WIDTH) high_width = 1;
-  
+//  high_width++; // cycles between 1 and PULSE_WIDTH
+//  if (high_width > PULSE_WIDTH) high_width = 1;
+  Serial.println(pot_value);
+  //counter++;
 }
 
 // start is the screen x-position (horizontal) and high-with is the height of the high pulse
