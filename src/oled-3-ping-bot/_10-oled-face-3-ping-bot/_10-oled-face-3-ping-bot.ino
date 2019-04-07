@@ -19,7 +19,8 @@
 // motor pins - they must be on the PWM pins 3,5,6,9
 #define RIGHT_FORWARD_PIN 3
 #define RIGHT_REVERSE_PIN 5
-#define LEFT_FORWARD_PIN 6
+// port 6 does not seem to be working
+#define LEFT_FORWARD_PIN 4
 #define LEFT_REVERSE_PIN 9
 
 // order on OLED - GND, VCC, SCL, SDA, RDS, DC, CS
@@ -34,16 +35,25 @@
 // We are using the 128 byte 4 wire Hardware SPI (pin 11 and 13 impiled) with no screen rotation which only uses 27% of dynamic memory
 U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI u8g2(U8G2_R0, CS_PIN, DC_PIN, RDS_PIN);
 
-#define TRIGGER_PIN  A0  // Arduino pin tied to trigger pin on the ultrasonic sensor.
-#define ECHO_PIN     A1  // Arduino pin tied to echo pin on the ultrasonic sensor.
+#define LEFT_TRIGGER_PIN  A0  // Arduino pin tied to trigger pin on the ultrasonic sensor.
+#define LEFT_ECHO_PIN     A1  // Arduino pin tied to echo pin on the ultrasonic sensor.
+
+#define CENTER_TRIGGER_PIN  A2  // Arduino pin tied to trigger pin on the ultrasonic sensor.
+#define CENTER_ECHO_PIN     A3  // Arduino pin tied to echo pin on the ultrasonic sensor.
+
+#define RIGHT_TRIGGER_PIN  A4  // Arduino pin tied to trigger pin on the ultrasonic sensor.
+#define RIGHT_ECHO_PIN  A5  // Arduino pin tied to echo pin on the ultrasonic sensor.
+
 #define MAX_DISTANCE 200 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
-NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
+NewPing sonar_left(LEFT_TRIGGER_PIN, LEFT_ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
+NewPing sonar_center(CENTER_TRIGGER_PIN, CENTER_ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
+NewPing sonar_right(RIGHT_TRIGGER_PIN, RIGHT_ECHO_PIN, MAX_DISTANCE); // NewPing setup of pins and maximum distance.
 
 //   Good Performance: only the first pin has interrupt capability
 // we use just one interrupt pin for good performance
-#define ENC_A_PIN 2 // an interrupt pin
-#define ENC_B_PIN 4 // not an interrupt pin
-Encoder myEnc(ENC_A_PIN, ENC_B_PIN);
+//#define ENC_A_PIN 2 // an interrupt pin
+//#define ENC_B_PIN 4 // not an interrupt pin
+//Encoder myEnc(ENC_A_PIN, ENC_B_PIN);
 
 long oldPosition  = -999;
 
@@ -58,10 +68,10 @@ long oldPosition  = -999;
 byte mode = 0; // default mode on power up
 byte mode_count = 6;
 
-#define SET_PIN 12 // set the current encoder value to be the new variable
-#define MODE_PIN A5 // change the programming mode - note that A6 and A7 don't have an INPUT_PULLUP
-Bounce debouncer_set = Bounce();
-Bounce debouncer_mode = Bounce();
+//#define SET_PIN 12 // set the current encoder value to be the new variable
+//#define MODE_PIN A5 // change the programming mode - note that A6 and A7 don't have an INPUT_PULLUP
+//Bounce debouncer_set = Bounce();
+//Bounce debouncer_mode = Bounce();
 
 // speaker or piezo speaker
 #define SPEAKER_PIN A0
@@ -104,14 +114,14 @@ void setup() {
   // For other options see https://github.com/olikraus/u8g2/wiki/fntlistall#8-pixel-height
   u8g2.setFont(u8g2_font_helvR08_tf);
 
-  pinMode(SET_PIN, INPUT_PULLUP);
-  pinMode(MODE_PIN, INPUT_PULLUP);
-  debouncer_set.attach(SET_PIN, INPUT_PULLUP); // Attach the debouncer to a pin with INPUT_PULLUP mode
-  debouncer_set.interval(25); // Use a debounce interval of 25 milliseconds
-  
-  debouncer_mode.attach(MODE_PIN, INPUT_PULLUP); // Attach the debouncer to a pin with INPUT_PULLUP mode
-  debouncer_mode.interval(10); // Use a debounce interval of 25 milliseconds
-  randomSeed(analogRead(6)); // seed with staic on Analog 6
+//  pinMode(SET_PIN, INPUT_PULLUP);
+//  pinMode(MODE_PIN, INPUT_PULLUP);
+//  debouncer_set.attach(SET_PIN, INPUT_PULLUP); // Attach the debouncer to a pin with INPUT_PULLUP mode
+//  debouncer_set.interval(25); // Use a debounce interval of 25 milliseconds
+//  
+//  debouncer_mode.attach(MODE_PIN, INPUT_PULLUP); // Attach the debouncer to a pin with INPUT_PULLUP mode
+//  debouncer_mode.interval(10); // Use a debounce interval of 25 milliseconds
+
   Serial.begin(9600);      // open the serial port at 9600 bps
 }
 
@@ -120,28 +130,28 @@ void loop () {
   // get a non-zero distance
   do {
     delay(33);
-    dist_to_object = sonar.ping_cm();
+    dist_to_object = sonar_center.ping_cm();
   } while (dist_to_object == 0);
   
   if (dist_to_object < turn_threshold) turning_flag = 1; else turning_flag = 0;
   
-  debouncer_set.update(); // Update the Bounce instance
-  if (debouncer_set.fell()) {
-     // tone(SPEAKER_PIN, 2000, 200);
-     change_set_flag = !change_set_flag;
-  }   // Call code if button transitions from HIGH (default) to LOW
+//  debouncer_set.update(); // Update the Bounce instance
+//  if (debouncer_set.fell()) {
+//     // tone(SPEAKER_PIN, 2000, 200);
+//     change_set_flag = !change_set_flag;
+//  }   // Call code if button transitions from HIGH (default) to LOW
+//
+//  debouncer_mode.update();
+//  if (debouncer_mode.fell()) {
+//    // tone(SPEAKER_PIN, 3000, 200);
+//    change_mode_flag = !change_mode_flag;  // Call code if button transitions from HIGH to LOW
+//  }
 
-  debouncer_mode.update();
-  if (debouncer_mode.fell()) {
-    // tone(SPEAKER_PIN, 3000, 200);
-    change_mode_flag = !change_mode_flag;  // Call code if button transitions from HIGH to LOW
-  }
-
-  long newPosition = myEnc.read();
-  newPosition = newPosition % 255;
-  byte stop_value = newPosition/4;
-  byte mode = stop_value % mode_count;
-  byte random_number;
+//  long newPosition = myEnc.read();
+//  newPosition = newPosition % 255;
+//  byte stop_value = newPosition/4;
+//  byte mode = stop_value % mode_count;
+//  byte random_number;
 
   // if (mode == 0)  then do this in final
     u8g2.firstPage();
@@ -160,17 +170,17 @@ void loop () {
         // rotery encoder 
         u8g2.drawStr(0,8,"Pos:");
         u8g2.setCursor(22,8);
-        u8g2.print(newPosition);
+//        u8g2.print(newPosition);
 
         // set
         u8g2.drawStr(0,18,"SFlg:");
         u8g2.setCursor(28,18);
-        u8g2.print(change_set_flag);
+//        u8g2.print(change_set_flag);
 
         // mode
-        u8g2.drawStr(0,28,"MFlg:");
-        u8g2.setCursor(28,28);
-        u8g2.print(change_mode_flag);
+//        u8g2.drawStr(0,28,"MFlg:");
+//        u8g2.setCursor(28,28);
+//        u8g2.print(change_mode_flag);
         
         // ping sensor
         u8g2.drawStr(0,63,"Dist:");
@@ -183,8 +193,9 @@ void loop () {
       tone(SPEAKER_PIN, 1000, 200);
       move_reverse();
       delay(300);
-      random_number = random(2);
-      if ( random_number == 0) {
+
+      // turn right or left randome FIXME put in right and left distance
+      if ( random(2) == 0) {
           tone(SPEAKER_PIN, 1300, 200);
           turn_right();
           }
