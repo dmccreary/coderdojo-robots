@@ -16,6 +16,7 @@ We are firm believers in building materials that fit the CoderDojo models:
 1. mentor guided learning
 2. flexibile materials
 3. accessibility for all
+
 We like materials like concept cards (aka Sushi Cards) that make it easy for students to guide their own exploration and allow a single enviroments were students with
 different backgrounds can all jump right in and start learning.  The once-concept-per-card makes it easy for students to 
 quicly pick up a deck of cards and see what they could learn in a two hour sessions.
