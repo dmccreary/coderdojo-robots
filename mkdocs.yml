@@ -47,8 +47,8 @@ edit_uri: 'blob/master/docs'
 theme:
   name: material
   palette:
-    primary: 'amber'
-    accent: 'amber'
+    primary: '#642580'
+    accent: '#41BAC1'
   feature:
     tabs: true
   custom_dir: 'theme'
