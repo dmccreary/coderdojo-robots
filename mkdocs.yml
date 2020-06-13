@@ -1,0 +1,66 @@
+site_name: 'CoderDojo TC Robots'
+nav:
+  - mBot:
+    - Introduction: mbot/introduction.md
+    - Set LED Color: mbot/01-set-led-color.md
+    - Blink LED: mbot/02-blink-led.md
+    - Alternate Blink: mbot/03-alternate-blink.md
+    - Ping Color: mbot/04-ping-color.md
+    - Ping Rainbow: mbot/05-ping-rainbow.md
+    - Drive Square: mbot/06-drive-square.md
+    - Dance: mbot/07-dance.md
+    - Collision Avoidance: mbot/08-collision-avoidance.md
+    - Collision Avoidance Random: mbot/09-collision-avoidance-random.md
+    - Collision Avoidance Reverse: mbot/10-collision-avoidance-reverse.md
+    - Collision Avoidance LED Status: mbot/11-collision-avoidance-led-status.md
+  - Basic Arduino:
+    - Introduction: arduino/00-intro.md
+    - Blink: arduino/01-blink.md
+    - Turn Motor: arduino/02-turn-motor.md
+    - Forward and Reverse: arduino/03-turn-motor.md
+    - Drive Square: arduino/04-drive-square.md
+    - Dance: arduino/05-dance.md
+    - Ping Check: arduino/06-ping-check.md
+    - Ping Reverse: arduino/07-ping-reverse.md
+    - Collision Avoidence: arduino/08-collision-avoidence.md
+    - Collision Random: arduino/09-collision-random.md
+    - Collision Reverse: arduino/10-collision-reverse.md
+    - Collision Parameters: arduino/11-collision-parameters.md
+  - Advanced Arduino:
+    - Introduction: arduino-adv/00-intro.md
+    - Display Check: arduino-adv/02-display-check.md
+    - Display Ping: arduino-adv/03-display-ping.md
+    - Display Parameters: arduino-adv/04-display-params.md
+    - Programing Mode: arduino-adv/05-programing-mode.md
+    - Draw Face: arduino-adv/06-draw-face.md
+    - Rotery Encoder: arduino-adv/07-rotery-encoder.md
+  - Contributing:
+    - How to Contribute Examples: contribute.md
+  - Contact:
+    - Contact: contact.md
+
+site_description: 'Resources for Teaching Robots to CoderDojo Twin Cities students.'
+site_author: 'Dan McCreary'
+repo_name: 'coderdojo-robots'
+repo_url: 'https://github.com/dmccreary/coderdojo-robots'
+edit_uri: 'blob/master/docs'
+theme:
+  name: material
+  palette:
+    primary: 'amber'
+    accent: 'amber'
+  feature:
+    tabs: true
+  custom_dir: 'theme'
+  include_sidebar: true
+markdown_extensions:
+  - admonition
+  - footnotes
+  - toc:
+      permalink: true
+  - codehilite:
+      linenums: true
+plugins:
+    - search
+markdown_extensions:
+  - codehilite
