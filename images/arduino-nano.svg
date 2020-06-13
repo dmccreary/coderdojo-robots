@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Circuit Diagram, cdlibrary.dll 1.0.0.0 -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="640" height="480" xmlns="http://www.w3.org/2000/svg">
+	<text x="320" y="157" style="font-family:Arial;font-size:11px;text-anchor:middle" dy=".3em">Arduino Nano v3</text>
+	<rect x="270" y="167" width="100" height="160" style="fill-opacity:0;stroke:rgb(0,0,0);stroke-width:2" />
+	<line x1="260" y1="177" x2="270" y2="177" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="274" y="177" style="font-family:Arial;font-size:11px;text-anchor:start" dy=".3em">D1 TX</text>
+	<line x1="370" y1="177" x2="380" y2="177" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="366" y="177" style="font-family:Arial;font-size:11px;text-anchor:end" dy=".3em">Vin</text>
+	<line x1="260" y1="187" x2="270" y2="187" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="274" y="187" style="font-family:Arial;font-size:11px;text-anchor:start" dy=".3em">D0 RX</text>
+	<line x1="370" y1="187" x2="380" y2="187" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="366" y="187" style="font-family:Arial;font-size:11px;text-anchor:end" dy=".3em">GND</text>
+	<line x1="260" y1="197" x2="270" y2="197" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="274" y="197" style="font-family:Arial;font-size:11px;text-anchor:start" dy=".3em">RST</text>
+	<line x1="370" y1="197" x2="380" y2="197" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="366" y="197" style="font-family:Arial;font-size:11px;text-anchor:end" dy=".3em">RST</text>
+	<line x1="260" y1="207" x2="270" y2="207" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="274" y="207" style="font-family:Arial;font-size:11px;text-anchor:start" dy=".3em">GND</text>
+	<line x1="370" y1="207" x2="380" y2="207" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="366" y="207" style="font-family:Arial;font-size:11px;text-anchor:end" dy=".3em">5V</text>
+	<line x1="260" y1="217" x2="270" y2="217" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="274" y="217" style="font-family:Arial;font-size:11px;text-anchor:start" dy=".3em">D2</text>
+	<line x1="370" y1="217" x2="380" y2="217" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="366" y="217" style="font-family:Arial;font-size:11px;text-anchor:end" dy=".3em">A7</text>
+	<line x1="260" y1="227" x2="270" y2="227" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="274" y="227" style="font-family:Arial;font-size:11px;text-anchor:start" dy=".3em">D3</text>
+	<line x1="370" y1="227" x2="380" y2="227" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="366" y="227" style="font-family:Arial;font-size:11px;text-anchor:end" dy=".3em">A6</text>
+	<line x1="260" y1="237" x2="270" y2="237" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="274" y="237" style="font-family:Arial;font-size:11px;text-anchor:start" dy=".3em">D4</text>
+	<line x1="370" y1="237" x2="380" y2="237" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="366" y="237" style="font-family:Arial;font-size:11px;text-anchor:end" dy=".3em">A5</text>
+	<line x1="260" y1="247" x2="270" y2="247" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="274" y="247" style="font-family:Arial;font-size:11px;text-anchor:start" dy=".3em">D5</text>
+	<line x1="370" y1="247" x2="380" y2="247" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="366" y="247" style="font-family:Arial;font-size:11px;text-anchor:end" dy=".3em">A4</text>
+	<line x1="260" y1="257" x2="270" y2="257" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="274" y="257" style="font-family:Arial;font-size:11px;text-anchor:start" dy=".3em">D6</text>
+	<line x1="370" y1="257" x2="380" y2="257" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="366" y="257" style="font-family:Arial;font-size:11px;text-anchor:end" dy=".3em">A3</text>
+	<line x1="260" y1="267" x2="270" y2="267" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="274" y="267" style="font-family:Arial;font-size:11px;text-anchor:start" dy=".3em">D7</text>
+	<line x1="370" y1="267" x2="380" y2="267" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="366" y="267" style="font-family:Arial;font-size:11px;text-anchor:end" dy=".3em">A2</text>
+	<line x1="260" y1="277" x2="270" y2="277" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="274" y="277" style="font-family:Arial;font-size:11px;text-anchor:start" dy=".3em">D8</text>
+	<line x1="370" y1="277" x2="380" y2="277" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="366" y="277" style="font-family:Arial;font-size:11px;text-anchor:end" dy=".3em">A1</text>
+	<line x1="260" y1="287" x2="270" y2="287" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="274" y="287" style="font-family:Arial;font-size:11px;text-anchor:start" dy=".3em">D9</text>
+	<line x1="370" y1="287" x2="380" y2="287" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="366" y="287" style="font-family:Arial;font-size:11px;text-anchor:end" dy=".3em">A0</text>
+	<line x1="260" y1="297" x2="270" y2="297" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="274" y="297" style="font-family:Arial;font-size:11px;text-anchor:start" dy=".3em">D10</text>
+	<line x1="370" y1="297" x2="380" y2="297" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="366" y="297" style="font-family:Arial;font-size:11px;text-anchor:end" dy=".3em">AREF</text>
+	<line x1="260" y1="307" x2="270" y2="307" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="274" y="307" style="font-family:Arial;font-size:11px;text-anchor:start" dy=".3em">D11</text>
+	<line x1="370" y1="307" x2="380" y2="307" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="366" y="307" style="font-family:Arial;font-size:11px;text-anchor:end" dy=".3em">3V3</text>
+	<line x1="260" y1="317" x2="270" y2="317" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="274" y="317" style="font-family:Arial;font-size:11px;text-anchor:start" dy=".3em">D12</text>
+	<line x1="370" y1="317" x2="380" y2="317" style="stroke:rgb(0,0,0);stroke-linecap:square;stroke-width:2" />
+	<text x="366" y="317" style="font-family:Arial;font-size:11px;text-anchor:end" dy=".3em">D13</text>
+</svg>

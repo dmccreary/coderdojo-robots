@@ -1,0 +1,960 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Resources for Teaching Robots to CoderDojo Twin Cities students.">
+      
+      
+      
+        <meta name="author" content="Dan McCreary">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.1">
+    
+    
+      
+        <title>Adding a Face to Your Robot - CoderDojo TC Robots</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.71dfd922.min.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/palette.616af814.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ffc107">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="amber" data-md-color-accent="amber">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#adding-a-face-to-your-robot" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="CoderDojo TC Robots" class="md-header-nav__button md-logo" aria-label="CoderDojo TC Robots">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            CoderDojo TC Robots
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Adding a Face to Your Robot
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/dmccreary/coderdojo-robots/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    coderdojo-robots
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CoderDojo TC Robots" class="md-nav__button md-logo" aria-label="CoderDojo TC Robots">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    CoderDojo TC Robots
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/dmccreary/coderdojo-robots/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    coderdojo-robots
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      mBot
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="mBot" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        mBot
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mbot/introduction.md" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mbot/01-set-led-color.md" title="Set LED Color" class="md-nav__link">
+      Set LED Color
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mbot/02-blink-led.md" title="Blink LED" class="md-nav__link">
+      Blink LED
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mbot/03-alternate-blink.md" title="Alternate Blink" class="md-nav__link">
+      Alternate Blink
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mbot/04-ping-color.md" title="Ping Color" class="md-nav__link">
+      Ping Color
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mbot/05-ping-rainbow.md" title="Ping Rainbow" class="md-nav__link">
+      Ping Rainbow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mbot/06-drive-square.md" title="Drive Square" class="md-nav__link">
+      Drive Square
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mbot/07-dance.md" title="Dance" class="md-nav__link">
+      Dance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mbot/08-collision-avoidance.md" title="Collision Avoidance" class="md-nav__link">
+      Collision Avoidance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mbot/09-collision-avoidance-random.md" title="Collision Avoidance Random" class="md-nav__link">
+      Collision Avoidance Random
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mbot/10-collision-avoidance-reverse.md" title="Collision Avoidance Reverse" class="md-nav__link">
+      Collision Avoidance Reverse
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mbot/11-collision-avoidance-led-status.md" title="Collision Avoidance LED Status" class="md-nav__link">
+      Collision Avoidance LED Status
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Basic Arduino
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Basic Arduino" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Basic Arduino
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arduino/00-intro.md" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arduino/01-blink.md" title="Blink" class="md-nav__link">
+      Blink
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arduino/02-turn-motor.md" title="Turn Motor" class="md-nav__link">
+      Turn Motor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arduino/03-turn-motor.md" title="Forward and Reverse" class="md-nav__link">
+      Forward and Reverse
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arduino/04-drive-square.md" title="Drive Square" class="md-nav__link">
+      Drive Square
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arduino/05-dance.md" title="Dance" class="md-nav__link">
+      Dance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arduino/06-ping-check.md" title="Ping Check" class="md-nav__link">
+      Ping Check
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arduino/07-ping-reverse.md" title="Ping Reverse" class="md-nav__link">
+      Ping Reverse
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arduino/08-collision-avoidence.md" title="Collision Avoidence" class="md-nav__link">
+      Collision Avoidence
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arduino/09-collision-random.md" title="Collision Random" class="md-nav__link">
+      Collision Random
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arduino/10-collision-reverse.md" title="Collision Reverse" class="md-nav__link">
+      Collision Reverse
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arduino/11-collision-parameters.md" title="Collision Parameters" class="md-nav__link">
+      Collision Parameters
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Advanced Arduino
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Advanced Arduino" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Advanced Arduino
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arduino-adv/00-intro.md" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arduino-adv/02-display-check.md" title="Display Check" class="md-nav__link">
+      Display Check
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arduino-adv/03-display-ping.md" title="Display Ping" class="md-nav__link">
+      Display Ping
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arduino-adv/04-display-params.md" title="Display Parameters" class="md-nav__link">
+      Display Parameters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arduino-adv/05-programing-mode.md" title="Programing Mode" class="md-nav__link">
+      Programing Mode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arduino-adv/06-draw-face.md" title="Draw Face" class="md-nav__link">
+      Draw Face
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../arduino-adv/07-rotery-encoder.md" title="Rotery Encoder" class="md-nav__link">
+      Rotery Encoder
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Contributing
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Contributing" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Contributing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../contribute.md" title="How to Contribute Examples" class="md-nav__link">
+      How to Contribute Examples
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Contact
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Contact" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Contact
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../contact.md" title="Contact" class="md-nav__link">
+      Contact
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/dmccreary/coderdojo-robots/blob/master/docs/face-bot.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="adding-a-face-to-your-robot">Adding a Face to Your Robot</h1>
+<p>This version of our robot has an nice high-contrast 128x64 pixel OLED screen on the front of it.  We moved the ping
+sensor below the chasis so that there would be room top front of the robot for the screen.</p>
+<p><img alt="Arduino Face Bot" src="../images/face-bot.jpg" /></p>
+<p>We can draw several things on our screen, including a face with two eyes and a mouth using simple
+drawing commands.  We can also display the parameters on the screen for controlling the collision avoidance robot.
+For example we can display the distance to the object in front of the robot as measured by the ping sensor.
+This is a great way to debug our robot.  Rather than hooking up the robot up to the USB connection
+to display the robot status on the Arduino serial console we can display the values "in the field"
+where the robot is running.</p>
+<h1 id="the-128x64-oled-screen">The 128x64 OLED Screen</h1>
+<p><img alt="OLED Screen" src="../images/oled-display.png" /></p>
+<p>Although there are many types of small displays that we can use with the Arduino, our favorite
+is the 2.24" 128x64 OLED type.  We like this screen because it has a bright high-contrast display that
+is easy to view from all angles and works well under a variety of power conditions.  This is in contrast
+to some LCD screens that are difficult to read in bright light and the contrast changes as the batteries
+lose power.</p>
+<p>You can get this display on E-Bay (as of the end of 2018) for around $17.00 (includes shipping) but we hope
+that the prices come down soon since OLED technology is relatively new.</p>
+<p><a href="https://www.ebay.com/itm/2-42-inch-OLED-Display-SSD1309-128x64-SPI-IIC-Serial-Port-Blue-For-Arduino-KO/283274161519">Sample E-Bay OLED Screen</a></p>
+<p>This version of the OLED has a standard SSD1309 chip that drives it and by default the display is configured to use 
+the SPI interface.  There are a few different versions of the OLED displays,
+but the ones that are the lowest cost provide for seven SPI connectors:</p>
+<p>Serial Peripheral Interface Pins:
+1.GND (Power Supply Ground)
+2.VCC (Power Supply Positive)
+3.SCL (Clock Line/SCK to pin 13 on the Nano)
+4.SDA (Data Line/MOSI to pin 11 on the Nano)
+5.RES (Reset Line)
+6.DC (Data/Command)
+7.CS (Chip Select)</p>
+<p>To use the Hardware SPI on the Arduino Nano, we MUST connect the SCL to pin 13 and the SDA to pin 11.
+See the <a href="https://store.arduino.cc/usa/arduino-nano">Documentation tab</a> on the Arduino web site.
+Note that since the Arduino Nano pin 11 is also a PWM pin we have to run the motors on pins 3, 5, 6 and 9.</p>
+<p>This chip is supported by several Arduino libraries, which we will talk about next.</p>
+<h1 id="the-u8g2-monochrome-graphics-library">The u8g2 Monochrome Graphics Library</h1>
+<p>When I first started using these OLED displays I started out using the Adafruit libraries.  I ran into a problem with
+the library using most of my Arduino dynamic memory (about 70% of the 2K available in the Arduino Nano).<br />
+However, I found another library, the u8g2 Monochrome Graphics Library, that only used about 1/3 of the memory.<br />
+This library has a 
+<a href="https://github.com/olikraus/u8g2/wiki/setup_tutorial#page-buffer-mode-picture-loop">Page Buffer Picture Loop</a>
+mode that only uses a small amount of RAM.</p>
+<p><a href="https://github.com/olikraus/U8g2_Arduino">U8g2 Github Site</a>
+<a href="https://github.com/olikraus/u8g2/wiki/u8g2install">U8g2 Wiki</a></p>
+<h1 id="configuring-the-right-constructor">Configuring the Right Constructor</h1>
+<p>Getting the right setup for the U8g2 library took some time.  There are several setup options that will work.
+The one I chose is the 4-wire hardware SPI.  Hardware interfaces are usually a little bit faster than the software
+interfaces but they also required a few more connections.  Here are the options I selected:</p>
+<ol>
+<li>SSD1306 (the name of the display driver)</li>
+<li>128x64 (the size of our display)</li>
+<li>NONAME (no specific brand name)</li>
+<li>1 page (single 128 byte buffer)</li>
+<li>4 wire (as opposed to a 2 wire version)</li>
+<li>Hardware (as opposed to software)</li>
+<li>SPI (not the IIC interface)</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="err">// We are using the 128 byte 4W Hardware SPI with no rotation which only uses 27% of dynamic memory</span>
+<span class="err">U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI u8g2(U8G2_R0, CS_PIN, DC_PIN, RDS_PIN);</span>
+</code></pre></div>
+
+
+<p><a href="https://github.com/olikraus/u8g2/wiki/u8x8setupcpp#constructor-reference">Setup Constructor Reference</a></p>
+<h1 id="selecting-the-font">Selecting The Font</h1>
+<p>The U8g2 library comes with a large number of font to choose from ranging from 4 to 92 pixels high.<br />
+I tried several sizes of fonts and I found the 8 pixel fonts to be large enough to read even from a
+looking down at the floor from a standing position.  I also selected a variable with Helvetica font
+that I felt was easy to read.
+You can read more about the <a href="https://github.com/olikraus/u8g2/wiki/fntlistall">font installation options here</a></p>
+<p>Here is the setup function that supports initialization of the display and the font selection:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">void setup(void) {</span>
+<span class="err">  u8g2.begin();</span>
+<span class="err">  // Set font to Helvetica regular 8 pixel font</span>
+<span class="err">  // For other options see https://github.com/olikraus/u8g2/wiki/fntlistall#8-pixel-height</span>
+<span class="err">  u8g2.setFont(u8g2_font_helvR08_tf);</span>
+<span class="err">}</span>
+</code></pre></div>
+
+
+<h1 id="simple-test-of-the-display-connections">Simple Test of the Display Connections</h1>
+<p>Once we have the right constructor and the font initialization setup we are ready to write our first test program.
+If this test works, you will know that you have hooked up all seven wires of the display correctly.
+The following test program just displays "CoderDojo Rocks" with a counter that increments so you can see
+that the display is updating correctly for each loop.</p>
+<p>Here is the full program for our simple display test:</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<span class="c1">// For details on the o8g2 library see https://github.com/olikraus/u8g2/wiki</span>
+<span class="cp">#include</span> <span class="cpf">&lt;U8g2lib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;SPI.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// order on OLED - GND, VCC, SCL, SDA, RDS, DC, CS</span>
+<span class="c1">// You can&#39;t move these two pins if you use the hardware SPI</span>
+<span class="cp">#define SCL_PIN 13 </span><span class="c1">// SCL clock - 3rd from bottom</span>
+<span class="cp">#define SDA_PIN 11 </span><span class="c1">// SDA, Data, MOSI - must be on pin 11 on the Nano</span>
+<span class="c1">// you can move these pins around as long as you reference the names correctly</span>
+<span class="cp">#define RDS_PIN 10 </span><span class="c1">// reset</span>
+<span class="cp">#define DC_PIN 7 </span><span class="c1">// DC moved from pin 9 which is needed as a PWM pin</span>
+<span class="cp">#define CS_PIN 8 </span><span class="c1">// chip select top</span>
+
+<span class="c1">// There are many options for initialzation of the display.  See https://github.com/olikraus/u8g2/wiki/u8x8setupcpp#constructor-reference</span>
+<span class="c1">// We are using the 128 byte 4W Hardware SPI with no rotation.  This uses 27% of the 2K of dynamic memory available on the Arduino Nano</span>
+<span class="n">U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI</span> <span class="nf">u8g2</span><span class="p">(</span><span class="n">U8G2_R0</span><span class="p">,</span> <span class="n">CS_PIN</span><span class="p">,</span> <span class="n">DC_PIN</span><span class="p">,</span> <span class="n">RDS_PIN</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="n">counter</span><span class="p">;</span> <span class="c1">// main loop counter to verify the disply is updating.</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">u8g2</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+  <span class="c1">// Set font to Helvetica regular 8 pixel font</span>
+  <span class="c1">// For other options see https://github.com/olikraus/u8g2/wiki/fntlistall#8-pixel-height</span>
+  <span class="n">u8g2</span><span class="p">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">u8g2_font_helvR08_tf</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">u8g2</span><span class="p">.</span><span class="n">firstPage</span><span class="p">();</span>
+  <span class="k">do</span> <span class="p">{</span>
+    <span class="c1">// x (horiz) is 0 and 7 (vertical) is 8 down for a 8-pixel high font  </span>
+    <span class="n">u8g2</span><span class="p">.</span><span class="n">drawStr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="s">&quot;CoderDojo Rocks!&quot;</span><span class="p">);</span>
+    <span class="n">u8g2</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">63</span><span class="p">);</span>
+    <span class="n">u8g2</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">counter</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">while</span> <span class="p">(</span> <span class="n">u8g2</span><span class="p">.</span><span class="n">nextPage</span><span class="p">()</span> <span class="p">);</span>
+  <span class="n">counter</span><span class="o">++</span><span class="p">;</span> <span class="c1">// increment the counter by 1</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<h1 id="testing-the-robot-connections">Testing the Robot Connections</h1>
+<p>Once you have the display working, we can now use the display to verify that the various components are
+each wired up correctly.  You can also do some of this testing using the serial monitor within the Arduino IDE.
+However, that option requires that your robot be connected via the USB to your computer.
+The following test are used to test each component, even when the USB is unplugged:</p>
+<p>.1 Ping Sensor Display Test - this test will display the ping sensor distance on the display.
+You can use this test to verify that the Trigger and Echo pins are connected correctly.
+.2 <a href="https://github.com/dmccreary/coderdojo-robots/blob/master/src/oled-ping-bot/_03-motor-display-test/_03-motor-display-test.ino">Motor Connection Display Test</a> - this test will cycle through each of the motor controller connections.
+It will fist run the right forward motor, then the right reverse motor, then the left forward and
+finally the left reverse.  An arrow on the display will show you what wheel should be turning
+and in what direction.
+.3 Speaker Display Test - this will display a frequency on the display as it plays on the speaker
+.4 Rotery Encoder Display Test - this will test the rotary encorder know and the momentary
+push buttons that are used to change the mode and select an option.</p>
+<h1 id="static-integration-display-test">Static Integration Display Test</h1>
+<p>Once all the components are individually working you can then run a "static" or non-moving components together.
+This means that all the connections are working but the motor functions are not enabled.
+<a href="https://github.com/dmccreary/coderdojo-robots/blob/master/src/oled-ping-bot/_09-oled-static-test/_09-oled-static-test.ino">Static Integration Display Test</a></p>
+<h1 id="collision-avoidance-robot">Collision Avoidance Robot</h1>
+<p>In this version the robot will move forward until it gets close to an object in front of it.  It will then backup
+a bit and turn either right or left and continue on.</p>
+<p><a href="https://github.com/dmccreary/coderdojo-robots/blob/master/src/oled-ping-bot/_10-oled-face-ping-bot/_10-oled-face-ping-bot.ino">OLED Face Ping Bot</a></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.27c6a5e6.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
