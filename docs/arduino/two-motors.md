@@ -5,8 +5,7 @@ The following program has three sections.  The first defines the pin numbers and
 
 ## Sample Robot Movement Test
 
-```
-
+```C
 int right_forward = 3;
 int right_backward = 5;
 int left_forward = 6;
@@ -61,6 +60,7 @@ void loop() {
   // repeat (go to the top of the loop)
 }
 ```
+
 Note that this program does not use the AnalogWrite() functions that use PWM signals.  The motors are either completely  on or completely off.
 
 Also note that the delay_time is 1000ms for each interval.  You can change the amount the robot rotates by changing the value of the time in the turn right block of code.  A shorter time will turn the robot a smaller angle.
