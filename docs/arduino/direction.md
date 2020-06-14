@@ -6,7 +6,7 @@ This program will be slightly different in that we will send not just one but tw
 
 We will also add an if/then/else statement that will change what PWM signal is sent to the motor controller.  All inputs that are in the lower half of the potentiometer range will turn one direction, and the other half will turn the opposite direction.  By placing the pot in the middle the wheel will not rotate.
 
-```
+```C
 int potPin = A0; // the pin for the potentiometer
 int motorAForwardPin = 3;  // Pin to make the motor go forward
 int motorABackwardPin = 5; // Pin to make the motor go backward

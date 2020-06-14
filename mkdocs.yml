@@ -15,14 +15,16 @@ nav:
     - Collision Avoidance LED Status: mbot/11-collision-avoidance-led-status.md
   - Basic Arduino:
     - Introduction: arduino/00-intro.md
+    - Components: arduino/00-components.md
+    - Assembly: arduino/00-assembly.md
     - Blink: arduino/01-blink.md
-    - Turn Motor: arduino/02-turn-motor.md
+    - Change Motor: arduino/02-motor-speed.md
     - Forward and Reverse: arduino/03-turn-motor.md
     - Drive Square: arduino/04-drive-square.md
     - Dance: arduino/05-dance.md
     - Ping Check: arduino/06-ping-check.md
     - Ping Reverse: arduino/07-ping-reverse.md
-    - Collision Avoidence: arduino/08-collision-avoidence.md
+    - Collision Avoidance: arduino/08-collision-avoidance.md
     - Collision Random: arduino/09-collision-random.md
     - Collision Reverse: arduino/10-collision-reverse.md
     - Collision Parameters: arduino/11-collision-parameters.md

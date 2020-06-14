@@ -1,4 +1,4 @@
-# Changing Motor Speed with PWM
+## Changing Motor Speed with PWM
 In this lab we will change motor speed using Pulse Wave Modulation (PWM).  We will read a value from a potentiometer and change the motor speed as the value changes.
 
 To use this lab, connect the ends of a 10K potentiomer to the ground and +5 volts.  Then connect the center pin of the pot to the Analog pin 0 (A0) of the Arduino.  Then connect a male-female wire from Digital Pin 3 to one of the input pins of the motor control.  For this lab you can use any one of the four input pins.
