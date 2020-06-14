@@ -25,7 +25,7 @@ four wires connected from the motor controller to the correct pins on the Arduin
 
 Here is the wiring diagram for our robot:
 
-![Arduino compatible Nano](images/deek-robot-motor-controller-wiring.jpg)
+![Arduino compatible Nano](img/deek-robot-motor-controller-wiring.jpg)
 
 Note that the motors are hooked up to the green "screw header" shown at the top of the diagram.
 * The power from your battery is connected to GND (black wire) and VIN (red wire)

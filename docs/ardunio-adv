@@ -2,7 +2,7 @@
 This version of our robot has an nice high-contrast 128x64 pixel OLED screen on the front of it.  We moved the ping
 sensor below the chasis so that there would be room top front of the robot for the screen.
 
-![Arduino Face Bot](images/face-bot.jpg)
+![Arduino Face Bot](img/face-bot.jpg)
 
 We can draw several things on our screen, including a face with two eyes and a mouth using simple
 drawing commands.  We can also display the parameters on the screen for controlling the collision avoidance robot.
@@ -12,7 +12,7 @@ to display the robot status on the Arduino serial console we can display the val
 where the robot is running.
 
 # The 128x64 OLED Screen
-![OLED Screen](images/oled-display.png)
+![OLED Screen](img/oled-display.png)
 
 Although there are many types of small displays that we can use with the Arduino, our favorite
 is the 2.24" 128x64 OLED type.  We like this screen because it has a bright high-contrast display that
