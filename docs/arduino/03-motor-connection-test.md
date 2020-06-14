@@ -11,7 +11,7 @@ Keep changing the numbers in the first four lines around until you get the robot
 3. Left forward
 4. Left reverse
 
-```
+```C
 int right_forward = 5;
 int right_reverse = 3;
 int left_forward = 6;
@@ -23,7 +23,7 @@ int delay_end_of_test= 3000; // delay between tests
 
 Here is our setup code:
 
-```
+```C
 void setup() {
   // Turn these pins on for PWM OUTPUT
   pinMode(right_forward, OUTPUT);
@@ -43,7 +43,7 @@ void setup() {
 
 Here is the main loop:
 
-```
+```C
 void loop() {
   Serial.println("Right Forward Test");
   digitalWrite(right_forward, HIGH);

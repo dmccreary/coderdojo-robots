@@ -18,11 +18,15 @@ nav:
     - Components: arduino/00-components.md
     - Assembly: arduino/00-assembly.md
     - Blink: arduino/01-blink.md
-    - Change Motor: arduino/02-motor-speed.md
-    - Forward and Reverse: arduino/03-turn-motor.md
-    - Drive Square: arduino/04-drive-square.md
+    - Programming Arduino: arduino/01-programming.md
+    - Change Motor Speed: arduino/02-change-motor-speed.md
+    - L293C Motor Controller: arduino/03-motor-direction.md
+    - Testing Motor Connections: arduino/03-motor-connection-test.md
+    - Using PWM Signals: arduino/04-pwm.md
+    - Moving Forward and Backward: arduino/05-moving-forward-and-backward.md
+    - Drive Square: arduino/06-drive-square.md
     - Dance: arduino/05-dance.md
-    - Ping Check: arduino/06-ping-check.md
+    - Ping Test: arduino/06-ping-test.md
     - Ping Reverse: arduino/07-ping-reverse.md
     - Collision Avoidance: arduino/08-collision-avoidance.md
     - Collision Random: arduino/09-collision-random.md

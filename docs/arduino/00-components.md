@@ -35,13 +35,13 @@ See [Arduino Nano Specication](http://arduino.cc/en/Main/arduinoBoardNano) for t
 ## 2 DC Motors and Wheels
 
 We have decided to use simple Direct Current \(DC\) motors for our robots.  These motors are low cost and work under a variety of voltages from 6 to 12 volts.  They come included with our Robot Chassis.  
-![DC Motor](docs/img/dc-motor.png)
+![DC Motor](../img/dc-motor.png)
 
 ## L293D Two Motor Controller
 
 This part allows us to send signals to each motor to turn the wheels forward and backwards.  It has a set of screw terminals to connect the motors and power.  This board also has a voltage regulator that will convert voltages from 6 to 12 volts down to 5 volts for controlling our Arduino Nano.
 
-![Motor Controler](docs/img/motor-controller.jpg)
+![Motor Controler](../img/motor-controller.jpg)
 
 This part allow us to drive two motors.
 
@@ -53,7 +53,7 @@ You can use the keywords "Mini Motor Drive Shield Expansion Board L293D Module F
 
 We will use low-cost HC-SR04 ultrasonic distance sensors for our robot.  They send out a set of ultrasonic pulse waves out of one speaker and listen for the pulse to return to a microphone.  The delay of the return signal corresponds to a distance of an object in front of the robot.  They can be purchased for around a dollar on e-bay.
 
-![Ultrasonic Distance Sensore](docs/img/ultrasonic-distnace-sensor-HC-SR04.jpg)
+![Ultrasonic Distance Sensore](../img/ultrasonic-distnace-sensor-HC-SR04.jpg)
 
 We will also use a powerful library to convert the signals into distance measurements.  
 [New Ping](https://code.google.com/p/arduino-new-ping/)

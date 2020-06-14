@@ -1,5 +1,3 @@
-# Changing Motor Direction
-
 In this lab we use the same setup as the prior speed control lab.  We use a single potentiometer to control both the speed and direction of a single wheel.
 
 This program will be slightly different in that we will send not just one but two PWM signals to our motor.  One will be the forward speed and one will be the reverse speed.
