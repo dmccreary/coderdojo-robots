@@ -1,4 +1,0 @@
-# Motor Speed Lab
-
-
-
