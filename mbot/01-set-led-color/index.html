@@ -15,17 +15,17 @@
         <meta name="author" content="Dan McCreary">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.1">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
     
     
       
-        <title>Extending the base robot - CoderDojo TC Robots</title>
+        <title>Set LED Color - CoderDojo TC Robots</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.71dfd922.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fe0cca5b.min.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.616af814.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
       
       
         
@@ -55,10 +55,16 @@
     
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="#642580" data-md-color-accent="#41bac1">
   
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#set-led-color" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -84,7 +90,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Extending the base robot
+              Set LED Color
             
           </span>
         </div>
@@ -182,10 +188,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
     
     <label class="md-nav__link" for="nav-1">
       mBot
@@ -209,7 +217,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../mbot/introduction/" title="Introduction" class="md-nav__link">
+    <a href="../introduction/" title="Introduction" class="md-nav__link">
       Introduction
     </a>
   </li>
@@ -219,11 +227,49 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../mbot/01-set-led-color.md" title="Set LED Color" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Set LED Color
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Set LED Color" class="md-nav__link md-nav__link--active">
       Set LED Color
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-led-color" class="md-nav__link">
+    Set LED Color
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -233,7 +279,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../mbot/02-blink-led.md" title="Blink LED" class="md-nav__link">
+    <a href="../02-blink/" title="Blink LED" class="md-nav__link">
       Blink LED
     </a>
   </li>
@@ -245,7 +291,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../mbot/03-alternate-blink.md" title="Alternate Blink" class="md-nav__link">
+    <a href="../03-alternate-blink.md" title="Alternate Blink" class="md-nav__link">
       Alternate Blink
     </a>
   </li>
@@ -257,7 +303,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../mbot/04-ping-color.md" title="Ping Color" class="md-nav__link">
+    <a href="../04-ping-color.md" title="Ping Color" class="md-nav__link">
       Ping Color
     </a>
   </li>
@@ -269,7 +315,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../mbot/05-ping-rainbow.md" title="Ping Rainbow" class="md-nav__link">
+    <a href="../05-ping-rainbow.md" title="Ping Rainbow" class="md-nav__link">
       Ping Rainbow
     </a>
   </li>
@@ -281,7 +327,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../mbot/06-drive-square.md" title="Drive Square" class="md-nav__link">
+    <a href="../06-drive-square.md" title="Drive Square" class="md-nav__link">
       Drive Square
     </a>
   </li>
@@ -293,7 +339,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../mbot/07-dance.md" title="Dance" class="md-nav__link">
+    <a href="../07-dance.md" title="Dance" class="md-nav__link">
       Dance
     </a>
   </li>
@@ -305,7 +351,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../mbot/08-collision-avoidance.md" title="Collision Avoidance" class="md-nav__link">
+    <a href="../08-collision-avoidance.md" title="Collision Avoidance" class="md-nav__link">
       Collision Avoidance
     </a>
   </li>
@@ -317,7 +363,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../mbot/09-collision-avoidance-random.md" title="Collision Avoidance Random" class="md-nav__link">
+    <a href="../09-collision-avoidance-random.md" title="Collision Avoidance Random" class="md-nav__link">
       Collision Avoidance Random
     </a>
   </li>
@@ -329,7 +375,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../mbot/10-collision-avoidance-reverse.md" title="Collision Avoidance Reverse" class="md-nav__link">
+    <a href="../10-collision-avoidance-reverse.md" title="Collision Avoidance Reverse" class="md-nav__link">
       Collision Avoidance Reverse
     </a>
   </li>
@@ -341,7 +387,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../mbot/11-collision-avoidance-led-status.md" title="Collision Avoidance LED Status" class="md-nav__link">
+    <a href="../11-collision-avoidance-led-status.md" title="Collision Avoidance LED Status" class="md-nav__link">
       Collision Avoidance LED Status
     </a>
   </li>
@@ -629,8 +675,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../00-intro.md" title="Introduction" class="md-nav__link">
-      Introduction
+    <a href="../../arduino-advanced/advanced-topics/" title="Advanced Topics" class="md-nav__link">
+      Advanced Topics
     </a>
   </li>
 
@@ -641,8 +687,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../02-display-check.md" title="Display Check" class="md-nav__link">
-      Display Check
+    <a href="../../arduino-advanced/extending-the-base-robot/" title="Extending the Base Robot" class="md-nav__link">
+      Extending the Base Robot
     </a>
   </li>
 
@@ -653,8 +699,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../03-display-ping.md" title="Display Ping" class="md-nav__link">
-      Display Ping
+    <a href="../../arduino-advanced/drawing-to-oled/" title="Drawing to the OLED" class="md-nav__link">
+      Drawing to the OLED
     </a>
   </li>
 
@@ -665,44 +711,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../04-display-params.md" title="Display Parameters" class="md-nav__link">
-      Display Parameters
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../05-programing-mode.md" title="Programing Mode" class="md-nav__link">
-      Programing Mode
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../06-draw-face.md" title="Draw Face" class="md-nav__link">
-      Draw Face
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../07-rotery-encoder.md" title="Rotery Encoder" class="md-nav__link">
-      Rotery Encoder
+    <a href="../../arduino-advanced/face-bot/" title="Face Bot" class="md-nav__link">
+      Face Bot
     </a>
   </li>
 
@@ -803,12 +813,42 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-led-color" class="md-nav__link">
+    Set LED Color
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmccreary/coderdojo-robots/blob/master/docs/arduino-adv/extending-the-base-robot.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmccreary/coderdojo-robots/blob/master/docs/mbot/01-set-led-color.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -816,9 +856,10 @@
                   
                 
                 
-                  <h1>Extending the base robot</h1>
+                  <h1>Set LED Color</h1>
                 
-                
+                <h2 id="set-led-color">Set LED Color</h2>
+<p><img alt="Set LED Color" src="../img/set-led-color.png" /></p>
                 
               
               
@@ -834,6 +875,41 @@
         
   <footer class="md-footer">
     
+      <div class="md-footer-nav">
+        <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="../introduction/" title="Introduction" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span class="md-footer-nav__direction">
+                    Previous
+                  </span>
+                  Introduction
+                </span>
+              </div>
+            </a>
+          
+          
+            <a href="../02-blink/" title="Blink LED" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span class="md-footer-nav__direction">
+                    Next
+                  </span>
+                  Blink LED
+                </span>
+              </div>
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+              </div>
+            </a>
+          
+        </nav>
+      </div>
+    
     <div class="md-footer-meta md-typeset">
       <div class="md-footer-meta__inner md-grid">
         <div class="md-footer-copyright">
@@ -848,14 +924,14 @@
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "../..",
           features: [],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.27c6a5e6.min.js"
+            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
