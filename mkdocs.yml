@@ -3,7 +3,7 @@ nav:
   - mBot:
     - Introduction: mbot/introduction.md
     - Set LED Color: mbot/01-set-led-color.md
-    - Blink LED: mbot/02-blink-led.md
+    - Blink LED: mbot/02-blink.md
     - Alternate Blink: mbot/03-alternate-blink.md
     - Ping Color: mbot/04-ping-color.md
     - Ping Rainbow: mbot/05-ping-rainbow.md
@@ -33,13 +33,17 @@ nav:
     - Collision Reverse: arduino/10-collision-reverse.md
     - Collision Parameters: arduino/11-collision-parameters.md
   - Advanced Arduino:
-    - Introduction: arduino-adv/00-intro.md
-    - Display Check: arduino-adv/02-display-check.md
-    - Display Ping: arduino-adv/03-display-ping.md
-    - Display Parameters: arduino-adv/04-display-params.md
-    - Programing Mode: arduino-adv/05-programing-mode.md
-    - Draw Face: arduino-adv/06-draw-face.md
-    - Rotery Encoder: arduino-adv/07-rotery-encoder.md
+    - Advanced Topics: arduino-advanced/advanced-topics.md
+    - Extending the Base Robot: arduino-advanced/extending-the-base-robot.md
+    - Drawing to the OLED: arduino-advanced/drawing-to-oled.md
+    - Face Bot: arduino-advanced/face-bot.md
+    #- Introduction: arduino-advanced/00-intro.md
+    #- Display Check: arduino-advanced/02-display-check.md
+    #- Display Ping: arduino-adv/03-display-ping.md
+    #- Display Parameters: arduino-adv/04-display-params.md
+    #- Programing Mode: arduino-adv/05-programing-mode.md
+    #- Draw Face: arduino-adv/06-draw-face.md
+    #- Rotery Encoder: arduino-adv/07-rotery-encoder.md
   - Contributing:
     - How to Contribute Examples: contribute.md
   - Contact:
