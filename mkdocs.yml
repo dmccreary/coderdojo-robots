@@ -5,15 +5,17 @@ nav:
     - Set LED Color: mbot/01-set-led-color.md
     - Blink LED: mbot/02-blink.md
     - Alternate Blink: mbot/03-alternate-blink.md
+    - Random Color: mbot/04-random-color.md
     - Ping Color: mbot/04-ping-color.md
     - Green Means Go: mbot/05-green-to-go.md
     - Drive Square: mbot/07-drive-square.md
-#- Dance: mbot/07-dance.md 
+    # - Dance: mbot/08-dance.md
     - Collision Avoidance: mbot/08-collision-avoidance.md
     - Collision Avoidance Random: mbot/09-collision-avoidance-random.md
     - Collision Avoidance Reverse: mbot/10-collision-avoidance-reverse.md
     - Collision Avoidance LED Status: mbot/11-collision-avoidance-led-status.md
-    - Line Follower: mbot/12-line-follower.md
+    - Line Follower: mbot/10-line-follower.md
+
   - Basic Arduino:
     - Introduction: arduino/00-intro.md
     - Components: arduino/00-components.md

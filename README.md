@@ -1,10 +1,12 @@
 # Welcome to the CoderDojo Robot Documentation
 
-Welcome to the CoderDojo Robot book!  This book allows CoderDojo mentors to teach the concepts of Computer Science using an open
+Our new documentation is [here](http://dmccreary.github.io/coderdojo-robots/)
+
+Welcome to the CoderDojo Robot book!  This book allows CoderDojo mentors to teach the concepts of Computer Science using an open-source, open-platform,
 low-cost $30 Arduino components.  Because this is an open system, students may create many variations of these robots.  Note
-that we never sell anything - we only supply parts lists and suggest age-specific device categories and examples within these catgories.
-We are committed to vendor-neutral open platform and open source components that promote a sustainable classroom enviroments.  Our designs
-are designed to be continiously upgraded.
+that we never sell anything - we only supply parts lists and suggest age-specific device categories and examples within these categories.
+We are committed to vendor-neutral open platform and open source components that promote a sustainable classroom environments.  Our designs
+are designed to be continuously upgraded.
 
 ## About This Book
 This book was written by a group of CoderDojo mentors interested in teaching the fundamentals of
