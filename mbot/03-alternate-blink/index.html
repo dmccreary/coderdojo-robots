@@ -260,9 +260,56 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Alternate Blink
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
     <a href="./" title="Alternate Blink" class="md-nav__link md-nav__link--active">
       Alternate Blink
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#steps" class="md-nav__link">
+    Steps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample-block-diagram" class="md-nav__link">
+    Sample Block Diagram
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#experiments" class="md-nav__link">
+    Experiments
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -793,6 +840,37 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#steps" class="md-nav__link">
+    Steps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample-block-diagram" class="md-nav__link">
+    Sample Block Diagram
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#experiments" class="md-nav__link">
+    Experiments
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -812,7 +890,26 @@
                 
                 
                 <h1 id="alternate-blink-led">Alternate Blink LED</h1>
-<p><img alt="Blink" src="../img/left-right-led.png" /></p>
+<p>In this lab we will make both the LEDs on top of the robot blink red, then green, then blue.  Each color will display for 1/2 second.</p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>First, drag the "When <strong>space</strong> Key Pressed" block onto the screen.</li>
+<li>Next, drag the "Forever" block under that block.</li>
+<li>Next, "Set LED on board <strong>all</strong> red <strong>255</strong>"</li>
+<li>Under that add a "Wait .5 second" block</li>
+<li>Next, "Set LED on board "all" green 255"</li>
+<li>Under that add a "Wait .5 second" block</li>
+<li>Next, "Set LED on board "all" blue 255"</li>
+<li>Under that add a "Wait .5 second" block</li>
+</ol>
+<p>Now press the "Space" bar on the keyboard.  The block should briefly flash
+with a yellow border so you know that the block event has been triggered.</p>
+<h2 id="sample-block-diagram">Sample Block Diagram</h2>
+<p><img alt="Alternte Blink LED" src="../img/left-right-led.png" /></p>
+<h2 id="experiments">Experiments</h2>
+<ol>
+<li>What happens when you change the "Set LED on board" from "All" to be "Right" or "Left".</li>
+</ol>
                 
               
               
