@@ -19,7 +19,7 @@
     
     
       
-        <title>Collision Avoidance - CoderDojo TC Robots</title>
+        <title>Line Follower - CoderDojo TC Robots</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#collision-avoidance" class="md-skip">
+        <a href="#line-follower" class="md-skip">
           Skip to content
         </a>
       
@@ -89,7 +89,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Collision Avoidance
+              Line Follower
             
           </span>
         </div>
@@ -187,10 +187,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
     
     <label class="md-nav__link" for="nav-1">
       mBot
@@ -356,11 +358,73 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../12-line-follower.md" title="Line Follower" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Line Follower
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Line Follower" class="md-nav__link md-nav__link--active">
       Line Follower
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sample-block-programs" class="md-nav__link">
+    Sample Block Programs
+  </a>
+  
+    <nav class="md-nav" aria-label="Sample Block Programs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#change-led-from-sensor" class="md-nav__link">
+    Change LED From Sensor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line-follower-full" class="md-nav__link">
+    Line Follower Full
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -794,6 +858,43 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sample-block-programs" class="md-nav__link">
+    Sample Block Programs
+  </a>
+  
+    <nav class="md-nav" aria-label="Sample Block Programs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#change-led-from-sensor" class="md-nav__link">
+    Change LED From Sensor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line-follower-full" class="md-nav__link">
+    Line Follower Full
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -812,11 +913,15 @@
                   
                 
                 
-                <h1 id="collision-avoidance">Collision Avoidance</h1>
-<p>When we get too close to an object we turn right to avoid it.</p>
-<!-- Image missing -->
-
-<p><img alt="Collision Avoidance Random" src="./img/collision-avoidance-random.png" /></p>
+                <h1 id="line-follower">Line Follower</h1>
+<p>This is the third demo program (blue LED lights).  When you turn the
+mBot on, press the mode button twice.  Then place the mBot on the figure
+8 track.</p>
+<h2 id="sample-block-programs">Sample Block Programs</h2>
+<h3 id="change-led-from-sensor">Change LED From Sensor</h3>
+<p><img alt="Line Follower Test" src="../img/line-followers.png" /></p>
+<h3 id="line-follower-full">Line Follower Full</h3>
+<p><img alt="Line Follower Full" src="../img/line-followers.png" /></p>
                 
               
               
@@ -831,6 +936,41 @@
       
         
   <footer class="md-footer">
+    
+      <div class="md-footer-nav">
+        <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="../11-collision-avoidance-led-status/" title="Collision Avoidance LED Status" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span class="md-footer-nav__direction">
+                    Previous
+                  </span>
+                  Collision Avoidance LED Status
+                </span>
+              </div>
+            </a>
+          
+          
+            <a href="../../arduino/00-intro/" title="Introduction" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span class="md-footer-nav__direction">
+                    Next
+                  </span>
+                  Introduction
+                </span>
+              </div>
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+              </div>
+            </a>
+          
+        </nav>
+      </div>
     
     <div class="md-footer-meta md-typeset">
       <div class="md-footer-meta__inner md-grid">

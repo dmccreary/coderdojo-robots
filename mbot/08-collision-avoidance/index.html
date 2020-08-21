@@ -320,9 +320,63 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Collision Avoidance
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
     <a href="./" title="Collision Avoidance" class="md-nav__link md-nav__link--active">
       Collision Avoidance
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#demo-mode-2-green-led-demo" class="md-nav__link">
+    Demo Mode 2 (Green LED) Demo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-algorithm" class="md-nav__link">
+    The algorithm
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#block-diagram" class="md-nav__link">
+    Block Diagram
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mbot-links-and-video" class="md-nav__link">
+    mBot Links and Video
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -369,7 +423,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../12-line-follower.md" title="Line Follower" class="md-nav__link">
+    <a href="../10-line-follower/" title="Line Follower" class="md-nav__link">
       Line Follower
     </a>
   </li>
@@ -805,6 +859,44 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#demo-mode-2-green-led-demo" class="md-nav__link">
+    Demo Mode 2 (Green LED) Demo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-algorithm" class="md-nav__link">
+    The algorithm
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#block-diagram" class="md-nav__link">
+    Block Diagram
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mbot-links-and-video" class="md-nav__link">
+    mBot Links and Video
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -824,7 +916,23 @@
                 
                 
                 <h1 id="collision-avoidance">Collision Avoidance</h1>
+<p>In the world of teaching robotics, the equivalent of "Hello World!" is the
+collision avoidance program.  The idea is to put your robot on the floor
+with a set of objects that it must drive around.  The robot must be
+going forward if there are no objects in front of it.  But if an object
+is in front of it, it will need to turn and drive in another direction.</p>
+<h2 id="demo-mode-2-green-led-demo">Demo Mode 2 (Green LED) Demo</h2>
+<p>For our mBot, the collision avoidance algorithm can be turned by using Mode 2 where the
+top LED lights turn green after pressing the mode switch from the default white mode.  But we want to be able to program our own collision avoidance mode.</p>
+<h2 id="the-algorithm">The algorithm</h2>
+<h2 id="block-diagram">Block Diagram</h2>
 <p><img alt="Collision Avoidance" src="../img/collision-avoidance.png" /></p>
+<h2 id="mbot-links-and-video">mBot Links and Video</h2>
+<ul>
+<li><a href="https://www.mblock.cc/example/avoid-barriers/">mBlock example site</a></li>
+<li><a href="https://www.youtube.com/watch?v=vMgXEOiqUWo">Collision Avoidance Video on YouTube</a></li>
+<li><a href="https://www.youtube.com/watch?v=vodYQCeS5Xk">Jack Dahms Video: Obstacle Detection and Avoidance</a></li>
+</ul>
                 
               
               
