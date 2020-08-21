@@ -1,6 +1,7 @@
 site_name: 'CoderDojo TC Robots'
 nav:
   - mBot:
+    - Instructor's Guide: mbot/mbot-instructors-guides.md
     - Introduction: mbot/introduction.md
     - Set LED Color: mbot/01-set-led-color.md
     - Blink LED: mbot/02-blink.md
