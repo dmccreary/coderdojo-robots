@@ -21,4 +21,7 @@ with a yellow border so you know that the block event has been triggered.
 
 ## Experiments
 
-1. What happens when you change the "Set LED on board" from "All" to be "Right" or "Left".
+
+1. Can you make the left and right lights alternate?  What happens when you change the "Set LED on board" from "All" to be "Right" or "Left".
+
+![Alternate Blink](./img/alternate-blink.gif)

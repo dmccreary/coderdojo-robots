@@ -1,6 +1,13 @@
-# Collision Avoidance
+# Line Follower
 
-When we get too close to an object we turn right to avoid it.
+This is the third demo program (blue LED lights).  When you turn the
+mBot on, press the mode button twice.  Then place the mBot on the figure
+8 track.
 
-<!-- Image missing -->
-![Collision Avoidance Random](./img/collision-avoidance-random.png)
+## Sample Block Programs
+
+### Change LED From Sensor
+![Line Follower Test](./img/line-followers.png)
+
+### Line Follower Full
+![Line Follower Full](./img/line-followers.png)
