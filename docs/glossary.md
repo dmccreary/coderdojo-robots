@@ -3,7 +3,14 @@
 ## ChatGPT Prompt
 
 ```linenums="0"
-Create a Glossy of Terms for a STEM robotics class.  Return the results in alphabetical order using raw markdown format with each term being in a level 4 header.
+Create a Glossy of Terms for a high school robotics class.
+Return the results in alphabetical order using raw
+markdown format with each term being in a
+level 4 header.
+Include terms related to batteries, buttons, displays,
+microcontrollers, programming, python, MicroPython,
+sensors, displays, potentiometers, LEDs, neopixels,
+DC motors, motor controllers, PWM, interrupts, and debugging.
 ```
 
 #### Algorithm
