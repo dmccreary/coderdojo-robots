@@ -1,9 +1,10 @@
 # CoderDojo Robots
 
 !!! Note
-    We are no longer supporting Arduino robots.  All of our
-    new CoderDojo an Code Savvy lesson plans are being
-    moved to [MicroPython](https://www.coderdojotc.org/micropython/).
+     We are no longer supporting Arduino robots.  All of our
+     new CoderDojo and Code Savvy lesson plans are being
+     moved to [MicroPython](https://www.coderdojotc.org/micropython/).
+     This repository is used for historical purposes only.
 
 # Table of Contents
 
@@ -23,4 +24,4 @@
 * [Adding a Face](face-bot.md)
 * [Glossary](glossary.md)
 
-Documentation built with GitHub pages - which uses jekyll which use liquid
+Documentation built with mkdocs material and GitHub Pages 

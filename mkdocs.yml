@@ -58,8 +58,6 @@ nav:
     - How to Contribute Examples: contribute.md
   - Contact:
     - Contact: contact.md
-
-
 theme:
   name: material
   palette:
@@ -67,9 +65,13 @@ theme:
     accent: '#41BAC1'
   feature:
     tabs: true
-  custom_dir: 'theme'
   include_sidebar: true
 markdown_extensions:
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - pymdownx.highlight:
+      linenums: true
   - admonition
   - footnotes
   - toc:
@@ -78,5 +80,4 @@ markdown_extensions:
       linenums: true
 plugins:
     - search
-markdown_extensions:
-  - codehilite
+
