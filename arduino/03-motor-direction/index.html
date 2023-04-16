@@ -978,70 +978,131 @@ Some systems turn both of PWMs on for "break", however
 this uses extra power.</p>
 <p>Note that the red and black connections here will go to the red and black (or blue) rails of your breadboard.</p>
 <p>From the rails you will connect power to your Arduino Nano.</p>
-<div class="codehilite"><pre><span></span><code>/*
-<span class="n">Robot</span> <span class="n">Motors</span> <span class="n">Direction</span> <span class="n">Tests</span>
- <span class="n">This</span> <span class="n">test</span> <span class="n">makes</span> <span class="n">sure</span> <span class="n">we</span> <span class="nb">get</span> <span class="nb">all</span> <span class="n">four</span> <span class="nb">of</span> <span class="n">the</span> <span class="n">motor</span> <span class="n">dirction</span> <span class="n">pins</span> <span class="n">correct</span>
- <span class="n">Keep</span> <span class="n">changing</span> <span class="n">these</span> <span class="n">numbers</span> <span class="k">until</span> <span class="n">you</span> <span class="nb">get</span> <span class="n">it</span> <span class="nb">right</span> <span class="n">directions</span> <span class="k">for</span> <span class="n">each</span> <span class="n">wheel</span>
- <span class="n">Use</span> <span class="n">the</span> <span class="n">serial</span> <span class="n">monitor</span> <span class="nb">to</span> <span class="n">verify</span> <span class="n">which</span> <span class="nb">one</span> <span class="n">should</span> <span class="n">be</span> <span class="n">working</span>
- <span class="n">Note</span>, <span class="n">On</span> <span class="n">the</span> <span class="n">Arduino</span> <span class="n">Nano</span>, <span class="n">only</span> <span class="n">pins</span> <span class="mi">3</span>,<span class="mi">5</span>,<span class="mi">6</span>,<span class="mi">9</span>,<span class="mi">10</span> <span class="o">and</span> <span class="mi">11</span> <span class="n">have</span> <span class="n">PWM</span> <span class="n">output</span>.  <span class="n">You</span> <span class="n">must</span> <span class="k">use</span> <span class="n">these</span> <span class="nb">to</span> <span class="n">drive</span> <span class="n">the</span> <span class="n">motors</span>.
- <span class="n">See</span> <span class="n">https:</span>//<span class="n">www</span>.<span class="n">arduino</span>.<span class="n">cc</span><span class="o">/</span><span class="n">en</span><span class="o">/</span><span class="n">Main</span><span class="o">/</span><span class="n">ArduinoBoardNano</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>/*
+Robot Motors Direction Tests
+ This test makes sure we get all four of the motor dirction pins correct
+ Keep changing these numbers until you get it right directions for each wheel
+ Use the serial monitor to verify which one should be working
+ Note, On the Arduino Nano, only pins 3,5,6,9,10 and 11 have PWM output.  You must use these to drive the motors.
+ See https://www.arduino.cc/en/Main/ArduinoBoardNano
 
- <span class="n">The</span> <span class="n">convention</span> <span class="k">is</span> <span class="nb">to</span> <span class="k">use</span> <span class="n">the</span> <span class="nb">first</span> <span class="n">four</span> <span class="n">pins</span> (<span class="mi">3</span>,<span class="mi">5</span>,<span class="mi">6</span>,<span class="mi">9</span>) <span class="k">for</span> <span class="n">the</span> <span class="n">motor</span> <span class="n">controls</span>
- <span class="n">If</span> <span class="n">you</span> <span class="k">use</span> <span class="n">a</span> <span class="n">ribbon</span> <span class="n">connector</span> <span class="n">the</span> <span class="n">order</span> <span class="n">will</span> <span class="n">be</span> <span class="mi">5</span>,<span class="mi">3</span>,<span class="mi">6</span> <span class="o">and</span> <span class="mi">9</span>
+ The convention is to use the first four pins (3,5,6,9) for the motor controls
+ If you use a ribbon connector the order will be 5,3,6 and 9
 */
 
-<span class="n">int</span> <span class="n">right_forward</span> = <span class="mi">5</span>;
-<span class="n">int</span> <span class="n">right_reverse</span> = <span class="mi">3</span>;
-<span class="n">int</span> <span class="n">left_forward</span> = <span class="mi">6</span>;
-<span class="n">int</span> <span class="n">left_reverse</span> = <span class="mi">9</span>;
-<span class="n">int</span> <span class="n">delay_time_on</span> = <span class="mi">2000</span>; // <span class="nb">how</span> <span class="nb">long</span> <span class="n">should</span> <span class="n">each</span> <span class="n">wheel</span> <span class="n">turn</span>?
-<span class="n">int</span> <span class="n">delay_time_off</span> = <span class="mi">2000</span>; // <span class="n">delay</span> <span class="n">between</span> <span class="n">tests</span>
+int right_forward = 5;
+int right_reverse = 3;
+int left_forward = 6;
+int left_reverse = 9;
+int delay_time_on = 2000; // how long should each wheel turn?
+int delay_time_off = 2000; // delay between tests
 
-<span class="n">void</span> <span class="n">setup</span>() {
-  // <span class="n">Turn</span> <span class="n">these</span> <span class="n">pins</span> <span class="n">on</span> <span class="k">for</span> <span class="n">PWM</span> <span class="n">OUTPUT</span>
-  <span class="n">pinMode</span>(<span class="n">right_forward</span>, <span class="n">OUTPUT</span>);
-  <span class="n">pinMode</span>(<span class="n">right_reverse</span>, <span class="n">OUTPUT</span>); 
-  <span class="n">pinMode</span>(<span class="n">left_forward</span>, <span class="n">OUTPUT</span>); 
-  <span class="n">pinMode</span>(<span class="n">left_reverse</span>, <span class="n">OUTPUT</span>);
-  // <span class="n">turn</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">motors</span> <span class="n">off</span>
-  <span class="n">digitalWrite</span>(<span class="n">right_forward</span>, <span class="n">LOW</span>);
-  <span class="n">digitalWrite</span>(<span class="n">right_reverse</span>, <span class="n">LOW</span>);
-  <span class="n">digitalWrite</span>(<span class="n">left_forward</span>, <span class="n">LOW</span>);
-  <span class="n">digitalWrite</span>(<span class="n">left_reverse</span>, <span class="n">LOW</span>);
-  // <span class="k">for</span> <span class="n">debugging</span>.  <span class="n">The</span> <span class="n">output</span> <span class="n">will</span> <span class="n">appear</span> <span class="n">on</span> <span class="n">the</span> <span class="n">serial</span> <span class="n">monitor</span>
-  // <span class="n">To</span> <span class="nb">open</span> <span class="n">the</span> <span class="n">serial</span> <span class="n">monitor</span>, <span class="n">click</span> <span class="n">the</span> <span class="n">magnafing</span> <span class="n">glass</span> <span class="n">icon</span> <span class="nb">in</span> <span class="n">the</span> <span class="n">upper</span> <span class="nb">right</span> <span class="n">corner</span>
-  <span class="n">Serial</span>.<span class="n">begin</span>(<span class="mi">9600</span>);      // <span class="nb">open</span> <span class="n">the</span> <span class="n">serial</span> <span class="n">port</span> <span class="nb">at</span> <span class="mi">9600</span> <span class="n">bps</span>
+void setup() {
+  // Turn these pins on for PWM OUTPUT
+  pinMode(right_forward, OUTPUT);
+  pinMode(right_reverse, OUTPUT); 
+  pinMode(left_forward, OUTPUT); 
+  pinMode(left_reverse, OUTPUT);
+  // turn all the motors off
+  digitalWrite(right_forward, LOW);
+  digitalWrite(right_reverse, LOW);
+  digitalWrite(left_forward, LOW);
+  digitalWrite(left_reverse, LOW);
+  // for debugging.  The output will appear on the serial monitor
+  // To open the serial monitor, click the magnafing glass icon in the upper right corner
+  Serial.begin(9600);      // open the serial port at 9600 bps
 }
 
-<span class="n">void</span> <span class="k">loop</span>() {
-  <span class="n">Serial</span>.<span class="n">println</span>(<span class="s">&quot;Right Forward Test&quot;</span>);
-  <span class="n">digitalWrite</span>(<span class="n">right_forward</span>, <span class="n">HIGH</span>);
-  <span class="n">delay</span>(<span class="n">delay_time_on</span>);
-  <span class="n">digitalWrite</span>(<span class="n">right_forward</span>, <span class="n">LOW</span>);
-  <span class="n">delay</span>(<span class="n">delay_time_off</span>);
+void loop() {
+  Serial.println(&quot;Right Forward Test&quot;);
+  digitalWrite(right_forward, HIGH);
+  delay(delay_time_on);
+  digitalWrite(right_forward, LOW);
+  delay(delay_time_off);
 
-  <span class="n">Serial</span>.<span class="n">println</span>(<span class="s">&quot;Right reverse test&quot;</span>);
-  <span class="n">digitalWrite</span>(<span class="n">right_reverse</span>, <span class="n">HIGH</span>);
-  <span class="n">delay</span>(<span class="n">delay_time_on</span>);
-  <span class="n">digitalWrite</span>(<span class="n">right_reverse</span>, <span class="n">LOW</span>);
-  <span class="n">delay</span>(<span class="n">delay_time_off</span>);
+  Serial.println(&quot;Right reverse test&quot;);
+  digitalWrite(right_reverse, HIGH);
+  delay(delay_time_on);
+  digitalWrite(right_reverse, LOW);
+  delay(delay_time_off);
 
-  <span class="n">Serial</span>.<span class="n">println</span>(<span class="s">&quot;Left Forward Test&quot;</span>);
-  <span class="n">digitalWrite</span>(<span class="n">left_forward</span>, <span class="n">HIGH</span>);
-  <span class="n">delay</span>(<span class="n">delay_time_on</span>);
-  <span class="n">digitalWrite</span>(<span class="n">left_forward</span>, <span class="n">LOW</span>);
-  <span class="n">delay</span>(<span class="n">delay_time_off</span>);
+  Serial.println(&quot;Left Forward Test&quot;);
+  digitalWrite(left_forward, HIGH);
+  delay(delay_time_on);
+  digitalWrite(left_forward, LOW);
+  delay(delay_time_off);
 
-  <span class="n">Serial</span>.<span class="n">println</span>(<span class="s">&quot;Left Reverse Test&quot;</span>);
-  <span class="n">digitalWrite</span>(<span class="n">left_reverse</span>, <span class="n">HIGH</span>);
-  <span class="n">delay</span>(<span class="n">delay_time_on</span>);
-  <span class="n">digitalWrite</span>(<span class="n">left_reverse</span>, <span class="n">LOW</span>);
-  <span class="n">delay</span>(<span class="n">delay_time_off</span>);
+  Serial.println(&quot;Left Reverse Test&quot;);
+  digitalWrite(left_reverse, HIGH);
+  delay(delay_time_on);
+  digitalWrite(left_reverse, LOW);
+  delay(delay_time_off);
 
 
 }
 </code></pre></div>
-
+</td></tr></table>
 <p>If the the motors are each turning both forward and backward in the order of the
 test then you know your connections are correct!</p>
 
@@ -1052,56 +1113,58 @@ test then you know your connections are correct!</p>
         
       </main>
       
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
         
-  <footer class="md-footer">
-    
-      <div class="md-footer-nav">
-        <nav class="md-footer-nav__inner md-grid">
-          
-            <a href="../02-change-motor-speed/" title="Change Motor Speed" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-              <div class="md-flex__cell md-flex__cell--shrink">
-                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-              </div>
-              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-                <span class="md-flex__ellipsis">
-                  <span class="md-footer-nav__direction">
-                    Previous
-                  </span>
-                  Change Motor Speed
-                </span>
-              </div>
-            </a>
-          
-          
-            <a href="../03-motor-connection-test/" title="Testing Motor Connections" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-                <span class="md-flex__ellipsis">
-                  <span class="md-footer-nav__direction">
-                    Next
-                  </span>
-                  Testing Motor Connections
-                </span>
-              </div>
-              <div class="md-flex__cell md-flex__cell--shrink">
-                <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-              </div>
-            </a>
-          
-        </nav>
-      </div>
-    
-    <div class="md-footer-meta md-typeset">
-      <div class="md-footer-meta__inner md-grid">
-        <div class="md-footer-copyright">
-          
-            built with the <a href="http://microsite.optum.com">Micro-Site Builder</a>
-        </div>
-        <div class="md-social">
+        <a href="../02-change-motor-speed/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Change Motor Speed" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Change Motor Speed
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../03-motor-connection-test/" class="md-footer__link md-footer__link--next" aria-label="Next: Testing Motor Connections" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Testing Motor Connections
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
   
 </div>
-      </div>
+      
     </div>
-  </footer>
+  </div>
+</footer>
       
     </div>
     <div class="md-dialog" data-md-component="dialog">

@@ -948,7 +948,39 @@
 <p>In this lab we use the same setup as the prior speed control lab.  We use a single potentiometer to control both the speed and direction of a single wheel.</p>
 <p>This program will be slightly different in that we will send not just one but two PWM signals to our motor.  One will be the forward speed and one will be the reverse speed.</p>
 <p>We will also add an if/then/else statement that will change what PWM signal is sent to the motor controller.  All inputs that are in the lower half of the potentiometer range will turn one direction, and the other half will turn the opposite direction.  By placing the pot in the middle the wheel will not rotate.</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">potPin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A0</span><span class="p">;</span><span class="w"> </span><span class="c1">// the pin for the potentiometer</span>
+<p><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">potPin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A0</span><span class="p">;</span><span class="w"> </span><span class="c1">// the pin for the potentiometer</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">motorAForwardPin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w">  </span><span class="c1">// Pin to make the motor go forward</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">motorABackwardPin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="c1">// Pin to make the motor go backward</span>
 <span class="c1">// one of the inputs on the Motor controller</span>
@@ -982,8 +1014,8 @@
 <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w"> </span><span class="c1">// sample ever 1/10th of a second</span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
-
-<p>Note that there are now two map statements.  One is for the postive direction and one is for the negative direction.</p>
+</td></tr></table>
+Note that there are now two map statements.  One is for the postive direction and one is for the negative direction.</p>
 
               
             </article>
@@ -992,56 +1024,58 @@
         
       </main>
       
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
         
-  <footer class="md-footer">
-    
-      <div class="md-footer-nav">
-        <nav class="md-footer-nav__inner md-grid">
-          
-            <a href="../03-motor-connection-test/" title="Testing Motor Connections" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-              <div class="md-flex__cell md-flex__cell--shrink">
-                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-              </div>
-              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-                <span class="md-flex__ellipsis">
-                  <span class="md-footer-nav__direction">
-                    Previous
-                  </span>
-                  Testing Motor Connections
-                </span>
-              </div>
-            </a>
-          
-          
-            <a href="../05-moving-forward-and-backward/" title="Moving Forward and Backward" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-                <span class="md-flex__ellipsis">
-                  <span class="md-footer-nav__direction">
-                    Next
-                  </span>
-                  Moving Forward and Backward
-                </span>
-              </div>
-              <div class="md-flex__cell md-flex__cell--shrink">
-                <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-              </div>
-            </a>
-          
-        </nav>
-      </div>
-    
-    <div class="md-footer-meta md-typeset">
-      <div class="md-footer-meta__inner md-grid">
-        <div class="md-footer-copyright">
-          
-            built with the <a href="http://microsite.optum.com">Micro-Site Builder</a>
-        </div>
-        <div class="md-social">
+        <a href="../03-motor-connection-test/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Testing Motor Connections" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Testing Motor Connections
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../05-moving-forward-and-backward/" class="md-footer__link md-footer__link--next" aria-label="Next: Moving Forward and Backward" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Moving Forward and Backward
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
   
 </div>
-      </div>
+      
     </div>
-  </footer>
+  </div>
+</footer>
       
     </div>
     <div class="md-dialog" data-md-component="dialog">

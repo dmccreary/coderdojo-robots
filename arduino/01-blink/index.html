@@ -948,7 +948,16 @@
 <p>Our first step is to verify that our PC or laptop can communicate with the Arduino.  To test this first startup the Arduino IDE.  You can download it from the internet.  Then go to the following menu:</p>
 <p><strong>File</strong> &gt; <strong>Examples</strong> &gt; <strong>01.Basics</strong> &gt; <strong>Blink</strong></p>
 <p>The following program should be visible on your computer screen:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">pinMode</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span><span class="w"> </span><span class="n">OUTPUT</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
@@ -959,17 +968,22 @@
 <span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w">                       </span><span class="c1">// wait for a second</span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
-
+</td></tr></table>
 <p>Next, go to the <strong>Tools</strong> menu and make sure that you have selected the right Arduino processor, the right port and the right version of the bootloader.  Note that the Arduino Nano processors we use must be configured to use the old bootloader.</p>
 <p>No click the right arrow <strong>Upload</strong> button above the <strong>Blink</strong> tab.  You should see the LEDs on the Arduino briefly blink.  After around five seconds you should see the LED on the Arduino flashing on and off every second.  You can now change the delay time from one second (1000 milliseconds) to 1/10th of a second (100 milliseconds). The loop function will now look like the following lines:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH</span><span class="p">);</span><span class="w">   </span><span class="c1">// turn the LED on (HIGH is the voltage level)</span>
 <span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w">                       </span><span class="c1">// wait for a second</span>
 <span class="w">  </span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED_BUILTIN</span><span class="p">,</span><span class="w"> </span><span class="n">LOW</span><span class="p">);</span><span class="w">    </span><span class="c1">// turn the LED off by making the voltage LOW</span>
 <span class="w">  </span><span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w">                       </span><span class="c1">// wait for a second</span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
-
+</td></tr></table>
 <p>Now press the <strong>Upoad</strong> button again.  The LED on the Arduino will now be flashing ten times as fast or 10 times per second.</p>
 
               
@@ -979,56 +993,58 @@
         
       </main>
       
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
         
-  <footer class="md-footer">
-    
-      <div class="md-footer-nav">
-        <nav class="md-footer-nav__inner md-grid">
-          
-            <a href="../00-assembly/" title="Assembly" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-              <div class="md-flex__cell md-flex__cell--shrink">
-                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-              </div>
-              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-                <span class="md-flex__ellipsis">
-                  <span class="md-footer-nav__direction">
-                    Previous
-                  </span>
-                  Assembly
-                </span>
-              </div>
-            </a>
-          
-          
-            <a href="../01-programming/" title="Programming Arduino" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-                <span class="md-flex__ellipsis">
-                  <span class="md-footer-nav__direction">
-                    Next
-                  </span>
-                  Programming Arduino
-                </span>
-              </div>
-              <div class="md-flex__cell md-flex__cell--shrink">
-                <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-              </div>
-            </a>
-          
-        </nav>
-      </div>
-    
-    <div class="md-footer-meta md-typeset">
-      <div class="md-footer-meta__inner md-grid">
-        <div class="md-footer-copyright">
-          
-            built with the <a href="http://microsite.optum.com">Micro-Site Builder</a>
-        </div>
-        <div class="md-social">
+        <a href="../00-assembly/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Assembly" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Assembly
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../01-programming/" class="md-footer__link md-footer__link--next" aria-label="Next: Programming Arduino" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Programming Arduino
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
   
 </div>
-      </div>
+      
     </div>
-  </footer>
+  </div>
+</footer>
       
     </div>
     <div class="md-dialog" data-md-component="dialog">

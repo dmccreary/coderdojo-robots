@@ -1121,26 +1121,26 @@
 <p>There is also a sample collection of parts on e-bay <a href="http://www.ebay.com/cln/mccr.da/coderdojo-robot-parts/387718727013">here</a>.  Note that the links may point to items that are no longer for sale.  However you can find parts with similar descriptions and purchase these parts.  You can use our cost estimator Google Docs spreadsheet <a href="https://docs.google.com/spreadsheets/d/1490iFuOG5PWHkeJBN2z3KLHy_9ROB9P-rnTeExFqWqo/edit?usp=sharing">here</a>.</p>
 <p>A blog post with sample parts is listed <a href="http://datadictionary.blogspot.com/2015/01/30-coderdojo-robot-version-3.html">here</a>.  Note that the links that this article provides might change, however you should be able to find similar parts using the keywords provided.</p>
 <p>Now lets step through each of our individual components.</p>
-<h2 id="arduino-compatible-nano">Arduino compatible Nano</h2>
+<h2 id="arduino-compatible-nano">Arduino compatible Nano<a class="headerlink" href="#arduino-compatible-nano" title="Permanent link">&para;</a></h2>
 <p>This low-cost microcontoller component is the "brains" of our robot.  Some of these can be ordered with a USB connector so we can connect them directly to our laptop or desktop computer.  We can purchase these for under $5.00.  The Nano has eight Analog inputs and 14 Digital input/output pins, six of them can be used to control motor speed with PWM signals. Note that ONLY pings 3, 5, 6, 9, 10, and 11 have PWM output.  We will be using Digital Output pins 3,5,6 and 9 in our book.</p>
 <p>Make sure you read our Getting Started section to properly load the CH340 USB interface.</p>
 <p><img alt="Arduino compatible Nano" src="docs/img/nano.jpeg" /></p>
 <p>See <a href="http://arduino.cc/en/Main/arduinoBoardNano">Arduino Nano Specication</a> for the full specification.</p>
-<h2 id="2-dc-motors-and-wheels">2 DC Motors and Wheels</h2>
+<h2 id="2-dc-motors-and-wheels">2 DC Motors and Wheels<a class="headerlink" href="#2-dc-motors-and-wheels" title="Permanent link">&para;</a></h2>
 <p>We have decided to use simple Direct Current (DC) motors for our robots.  These motors are low cost and work under a variety of voltages from 6 to 12 volts.  They come included with our Robot Chassis.<br />
 <img alt="DC Motor" src="../../img/dc-motor.png" /></p>
-<h2 id="l293d-two-motor-controller">L293D Two Motor Controller</h2>
+<h2 id="l293d-two-motor-controller">L293D Two Motor Controller<a class="headerlink" href="#l293d-two-motor-controller" title="Permanent link">&para;</a></h2>
 <p>This part allows us to send signals to each motor to turn the wheels forward and backwards.  It has a set of screw terminals to connect the motors and power.  This board also has a voltage regulator that will convert voltages from 6 to 12 volts down to 5 volts for controlling our Arduino Nano.</p>
 <p><img alt="Motor Controler" src="../../img/motor-controller.jpg" /></p>
 <p>This part allow us to drive two motors.</p>
 <p>See the <a href="http://en.wikipedia.org/wiki/H_bridge">Wikipedia page</a> for more on how the H-Bridge circuit works.</p>
 <p>You can use the keywords "Mini Motor Drive Shield Expansion Board L293D Module For Arduino" to find your own parts. There are  many good on-line tutorials on how these parts work.  One example is <a href="https://www.instructables.com/id/Control-your-motors-with-L293D-and-Arduino/">here</a>.  These devices can be found for $1.54 (including shipping) when ordered on e-bay.</p>
-<h2 id="ultrasonic-distance-sensor">Ultrasonic Distance Sensor</h2>
+<h2 id="ultrasonic-distance-sensor">Ultrasonic Distance Sensor<a class="headerlink" href="#ultrasonic-distance-sensor" title="Permanent link">&para;</a></h2>
 <p>We will use low-cost HC-SR04 ultrasonic distance sensors for our robot.  They send out a set of ultrasonic pulse waves out of one speaker and listen for the pulse to return to a microphone.  The delay of the return signal corresponds to a distance of an object in front of the robot.  They can be purchased for around a dollar on e-bay.</p>
 <p><img alt="Ultrasonic Distance Sensore" src="../../img/ultrasonic-distnace-sensor-HC-SR04.jpg" /></p>
 <p>We will also use a powerful library to convert the signals into distance measurements.<br />
 <a href="https://code.google.com/p/arduino-new-ping/">New Ping</a></p>
-<h2 id="solderless-breadboards">Solderless Breadboards</h2>
+<h2 id="solderless-breadboards">Solderless Breadboards<a class="headerlink" href="#solderless-breadboards" title="Permanent link">&para;</a></h2>
 <p>The robot kit comes with two solderless breadboards,  One has 400 connection points and the other smaller board for the sensors has 170 connection points.</p>
 
               
@@ -1150,56 +1150,58 @@
         
       </main>
       
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
         
-  <footer class="md-footer">
-    
-      <div class="md-footer-nav">
-        <nav class="md-footer-nav__inner md-grid">
-          
-            <a href="../00-intro/" title="Introduction" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-              <div class="md-flex__cell md-flex__cell--shrink">
-                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-              </div>
-              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-                <span class="md-flex__ellipsis">
-                  <span class="md-footer-nav__direction">
-                    Previous
-                  </span>
-                  Introduction
-                </span>
-              </div>
-            </a>
-          
-          
-            <a href="../00-assembly/" title="Assembly" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-                <span class="md-flex__ellipsis">
-                  <span class="md-footer-nav__direction">
-                    Next
-                  </span>
-                  Assembly
-                </span>
-              </div>
-              <div class="md-flex__cell md-flex__cell--shrink">
-                <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-              </div>
-            </a>
-          
-        </nav>
-      </div>
-    
-    <div class="md-footer-meta md-typeset">
-      <div class="md-footer-meta__inner md-grid">
-        <div class="md-footer-copyright">
-          
-            built with the <a href="http://microsite.optum.com">Micro-Site Builder</a>
-        </div>
-        <div class="md-social">
+        <a href="../00-intro/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Introduction
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../00-assembly/" class="md-footer__link md-footer__link--next" aria-label="Next: Assembly" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Assembly
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
   
 </div>
-      </div>
+      
     </div>
-  </footer>
+  </div>
+</footer>
       
     </div>
     <div class="md-dialog" data-md-component="dialog">

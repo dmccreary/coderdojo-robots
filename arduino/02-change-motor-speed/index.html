@@ -996,33 +996,55 @@
 
 <p>In this lab we will change motor speed using Pulse Wave Modulation (PWM).  We will read a value from a potentiometer and change the motor speed as the value changes.</p>
 <p>To use this lab, connect the ends of a 10K potentiomer to the ground and +5 volts.  Then connect the center pin of the pot to the Analog pin 0 (A0) of the Arduino.  Then connect a male-female wire from Digital Pin 3 to one of the input pins of the motor control.  For this lab you can use any one of the four input pins.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">int</span> <span class="n">potPin</span> = <span class="n">A0</span>;   // <span class="n">select</span> <span class="n">the</span> <span class="n">input</span> <span class="n">pin</span> <span class="k">for</span> <span class="n">the</span> <span class="n">potentiometer</span>
-<span class="n">int</span> <span class="n">motorPin</span> = <span class="mi">3</span>;  // <span class="n">select</span> <span class="n">the</span> <span class="n">pin</span> <span class="k">for</span> <span class="n">the</span> <span class="n">motor</span> - <span class="n">immutable</span>
-<span class="n">int</span> <span class="n">potValue</span>;      // <span class="nb">variable</span> <span class="nb">to</span> <span class="n">store</span> <span class="n">the</span> <span class="n">incomming</span> <span class="nb">value</span> <span class="nb">from</span> <span class="n">the</span> <span class="n">a</span> <span class="n">potentiometer</span>
-<span class="n">int</span> <span class="n">speed</span>;         // <span class="n">The</span> <span class="n">speed</span> <span class="nb">of</span> <span class="k">our</span> <span class="n">motor</span> (<span class="mi">0</span>=<span class="n">stop</span>, <span class="mi">255</span>=<span class="nb">full</span> <span class="n">speed</span>)
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>int potPin = A0;   // select the input pin for the potentiometer
+int motorPin = 3;  // select the pin for the motor - immutable
+int potValue;      // variable to store the incomming value from the a potentiometer
+int speed;         // The speed of our motor (0=stop, 255=full speed)
 
-<span class="n">void</span> <span class="n">setup</span>() {
-  <span class="n">pinMode</span>(<span class="n">potPin</span>, <span class="n">INPUT</span>);
-  <span class="n">pinMode</span>(<span class="n">motorPin</span>, <span class="n">OUTPUT</span>);
+void setup() {
+  pinMode(potPin, INPUT);
+  pinMode(motorPin, OUTPUT);
 }
 
-<span class="n">void</span> <span class="k">loop</span>() {
-  // <span class="nb">read</span> <span class="n">the</span> <span class="nb">value</span> <span class="nb">from</span> <span class="n">the</span> <span class="n">Potentiometer</span>
-  <span class="n">potValue</span> = <span class="n">analogRead</span>(<span class="n">potPin</span>);
+void loop() {
+  // read the value from the Potentiometer
+  potValue = analogRead(potPin);
 
-  // <span class="n">convert</span> <span class="n">the</span> <span class="nb">range</span> <span class="nb">from</span> <span class="mi">1</span> <span class="nb">to</span> <span class="mi">1023</span> <span class="nb">in</span> <span class="nb">to</span> <span class="mi">0</span> <span class="nb">to</span> <span class="mi">255</span> <span class="n">out</span>
-  <span class="n">speed</span> = <span class="n">map</span>(<span class="n">potValue</span>, <span class="mi">0</span>, <span class="mi">1023</span>, <span class="mi">0</span>, <span class="mi">255</span>);
+  // convert the range from 1 to 1023 in to 0 to 255 out
+  speed = map(potValue, 0, 1023, 0, 255);
 
-  // <span class="k">use</span> <span class="n">PWM</span> <span class="nb">to</span> <span class="n">change</span> <span class="n">the</span> <span class="n">speed</span>
-  <span class="n">analogWrite</span>(<span class="n">motorPin</span>, <span class="n">speed</span>);
+  // use PWM to change the speed
+  analogWrite(motorPin, speed);
 
-  // <span class="nb">wait</span> <span class="k">for</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span> <span class="nb">of</span> <span class="n">a</span> <span class="nb">second</span> <span class="o">before</span> <span class="n">we</span> <span class="n">continue</span>
-  <span class="n">delay</span>(<span class="mi">100</span>);
+  // wait for 1/10 of a second before we continue
+  delay(100);
 }
 </code></pre></div>
-
+</td></tr></table>
 <p>Note that we can only use one of the 6 PWM pins (3, 5, 6, 9, 10 or 11) to control the speed.  The other digital outptus do not support PWM.</p>
-<h2 id="more-to-explore">More to Explore</h2>
+<h2 id="more-to-explore">More to Explore<a class="headerlink" href="#more-to-explore" title="Permanent link">&para;</a></h2>
 <p>While the program is running, try moving the wire from the digital output pin to any of the other input pins on the motor controller.  What happens?  Can you make both wheels move?  What direction are they moving?</p>
 
               
@@ -1032,56 +1054,58 @@
         
       </main>
       
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
         
-  <footer class="md-footer">
-    
-      <div class="md-footer-nav">
-        <nav class="md-footer-nav__inner md-grid">
-          
-            <a href="../01-programming/" title="Programming Arduino" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-              <div class="md-flex__cell md-flex__cell--shrink">
-                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-              </div>
-              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-                <span class="md-flex__ellipsis">
-                  <span class="md-footer-nav__direction">
-                    Previous
-                  </span>
-                  Programming Arduino
-                </span>
-              </div>
-            </a>
-          
-          
-            <a href="../03-motor-direction/" title="L293C Motor Controller" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-                <span class="md-flex__ellipsis">
-                  <span class="md-footer-nav__direction">
-                    Next
-                  </span>
-                  L293C Motor Controller
-                </span>
-              </div>
-              <div class="md-flex__cell md-flex__cell--shrink">
-                <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-              </div>
-            </a>
-          
-        </nav>
-      </div>
-    
-    <div class="md-footer-meta md-typeset">
-      <div class="md-footer-meta__inner md-grid">
-        <div class="md-footer-copyright">
-          
-            built with the <a href="http://microsite.optum.com">Micro-Site Builder</a>
-        </div>
-        <div class="md-social">
+        <a href="../01-programming/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Programming Arduino" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Programming Arduino
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../03-motor-direction/" class="md-footer__link md-footer__link--next" aria-label="Next: L293C Motor Controller" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              L293C Motor Controller
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
   
 </div>
-      </div>
+      
     </div>
-  </footer>
+  </div>
+</footer>
       
     </div>
     <div class="md-dialog" data-md-component="dialog">

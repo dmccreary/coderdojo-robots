@@ -952,7 +952,7 @@
 
 
 
-<h1 id="adding-a-oled-face-to-your-robot">Adding a OLED Face to Your Robot</h1>
+<h1 id="adding-a-oled-face-to-your-robot">Adding a OLED Face to Your Robot<a class="headerlink" href="#adding-a-oled-face-to-your-robot" title="Permanent link">&para;</a></h1>
 <p>This version of our robot has an nice high-contrast 128x64 pixel OLED screen on the front of it.  We moved the ping
 sensor below the chasis so that there would be room top front of the robot for the screen.</p>
 <p><img alt="Arduino Face Bot" src="../../img/face-bot.jpg" /></p>
@@ -962,7 +962,7 @@ For example we can display the distance to the object in front of the robot as m
 This is a great way to debug our robot.  Rather than hooking up the robot up to the USB connection
 to display the robot status on the Arduino serial console we can display the values "in the field"
 where the robot is running.</p>
-<h1 id="the-128x64-oled-screen">The 128x64 OLED Screen</h1>
+<h1 id="the-128x64-oled-screen">The 128x64 OLED Screen<a class="headerlink" href="#the-128x64-oled-screen" title="Permanent link">&para;</a></h1>
 <p><img alt="OLED Screen" src="../../img/oled-display.png" /></p>
 <p>Although there are many types of small displays that we can use with the Arduino, our favorite
 is the 2.24" 128x64 OLED type.  We like this screen because it has a bright high-contrast display that
@@ -987,7 +987,7 @@ but the ones that are the lowest cost provide for seven SPI connectors:</p>
 See the <a href="https://store.arduino.cc/usa/arduino-nano">Documentation tab</a> on the Arduino web site.
 Note that since the Arduino Nano pin 11 is also a PWM pin we have to run the motors on pins 3, 5, 6 and 9.</p>
 <p>This chip is supported by several Arduino libraries, which we will talk about next.</p>
-<h1 id="the-u8g2-monochrome-graphics-library">The u8g2 Monochrome Graphics Library</h1>
+<h1 id="the-u8g2-monochrome-graphics-library">The u8g2 Monochrome Graphics Library<a class="headerlink" href="#the-u8g2-monochrome-graphics-library" title="Permanent link">&para;</a></h1>
 <p>When I first started using these OLED displays I started out using the Adafruit libraries.  I ran into a problem with
 the library using most of my Arduino dynamic memory (about 70% of the 2K available in the Arduino Nano).<br />
 However, I found another library, the u8g2 Monochrome Graphics Library, that only used about 1/3 of the memory.<br />
@@ -996,7 +996,7 @@ This library has a
 mode that only uses a small amount of RAM.</p>
 <p><a href="https://github.com/olikraus/U8g2_Arduino">U8g2 Github Site</a>
 <a href="https://github.com/olikraus/u8g2/wiki/u8g2install">U8g2 Wiki</a></p>
-<h1 id="configuring-the-right-constructor">Configuring the Right Constructor</h1>
+<h1 id="configuring-the-right-constructor">Configuring the Right Constructor<a class="headerlink" href="#configuring-the-right-constructor" title="Permanent link">&para;</a></h1>
 <p>Getting the right setup for the U8g2 library took some time.  There are several setup options that will work.
 The one I chose is the 4-wire hardware SPI.  Hardware interfaces are usually a little bit faster than the software
 interfaces but they also required a few more connections.  Here are the options I selected:</p>
@@ -1009,33 +1009,75 @@ interfaces but they also required a few more connections.  Here are the options 
 <li>Hardware (as opposed to software)</li>
 <li>SPI (not the IIC interface)</li>
 </ol>
-<div class="codehilite"><pre><span></span><code><span class="c1">// We are using the 128 byte 4W Hardware SPI with no rotation which only uses 27% of dynamic memory</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1">// We are using the 128 byte 4W Hardware SPI with no rotation which only uses 27% of dynamic memory</span>
 <span class="n">U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI</span><span class="w"> </span><span class="nf">u8g2</span><span class="p">(</span><span class="n">U8G2_R0</span><span class="p">,</span><span class="w"> </span><span class="n">CS_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">DC_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">RDS_PIN</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
-
+</td></tr></table>
 <p><a href="https://github.com/olikraus/u8g2/wiki/u8x8setupcpp#constructor-reference">Setup Constructor Reference</a></p>
-<h1 id="selecting-the-font">Selecting The Font</h1>
+<h1 id="selecting-the-font">Selecting The Font<a class="headerlink" href="#selecting-the-font" title="Permanent link">&para;</a></h1>
 <p>The U8g2 library comes with a large number of font to choose from ranging from 4 to 92 pixels high.<br />
 I tried several sizes of fonts and I found the 8 pixel fonts to be large enough to read even from a
 looking down at the floor from a standing position.  I also selected a variable with Helvetica font
 that I felt was easy to read.
 You can read more about the <a href="https://github.com/olikraus/u8g2/wiki/fntlistall">font installation options here</a></p>
 <p>Here is the setup function that supports initialization of the display and the font selection:</p>
-<div class="codehilite"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"></span>
 <span class="w">  </span><span class="c1">// Set font to Helvetica regular 8 pixel font</span>
 <span class="w">  </span><span class="c1">// For other options see https://github.com/olikraus/u8g2/wiki/fntlistall#8-pixel-height</span>
 <span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">u8g2_font_helvR08_tf</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
-
-<h1 id="simple-test-of-the-display-connections">Simple Test of the Display Connections</h1>
+</td></tr></table>
+<h1 id="simple-test-of-the-display-connections">Simple Test of the Display Connections<a class="headerlink" href="#simple-test-of-the-display-connections" title="Permanent link">&para;</a></h1>
 <p>Once we have the right constructor and the font initialization setup we are ready to write our first test program.
 If this test works, you will know that you have hooked up all seven wires of the display correctly.
 The following test program just displays "CoderDojo Rocks" with a counter that increments so you can see
 that the display is updating correctly for each loop.</p>
 <p>Here is the full program for our simple display test:</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span><span class="cp"></span>
 <span class="c1">// For details on the o8g2 library see https://github.com/olikraus/u8g2/wiki</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;U8g2lib.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SPI.h&gt;</span><span class="cp"></span>
@@ -1073,8 +1115,8 @@ that the display is updating correctly for each loop.</p>
 <span class="w">  </span><span class="n">counter</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="c1">// increment the counter by 1</span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
-
-<h1 id="testing-the-robot-connections">Testing the Robot Connections</h1>
+</td></tr></table>
+<h1 id="testing-the-robot-connections">Testing the Robot Connections<a class="headerlink" href="#testing-the-robot-connections" title="Permanent link">&para;</a></h1>
 <p>Once you have the display working, we can now use the display to verify that the various components are
 each wired up correctly.  You can also do some of this testing using the serial monitor within the Arduino IDE.
 However, that option requires that your robot be connected via the USB to your computer.
@@ -1088,11 +1130,11 @@ and in what direction.
 .3 Speaker Display Test - this will display a frequency on the display as it plays on the speaker
 .4 Rotery Encoder Display Test - this will test the rotary encorder know and the momentary
 push buttons that are used to change the mode and select an option.</p>
-<h1 id="static-integration-display-test">Static Integration Display Test</h1>
+<h1 id="static-integration-display-test">Static Integration Display Test<a class="headerlink" href="#static-integration-display-test" title="Permanent link">&para;</a></h1>
 <p>Once all the components are individually working you can then run a "static" or non-moving components together.
 This means that all the connections are working but the motor functions are not enabled.
 <a href="https://github.com/dmccreary/coderdojo-robots/blob/master/src/oled-ping-bot/_09-oled-static-test/_09-oled-static-test.ino">Static Integration Display Test</a></p>
-<h1 id="collision-avoidance-robot">Collision Avoidance Robot</h1>
+<h1 id="collision-avoidance-robot">Collision Avoidance Robot<a class="headerlink" href="#collision-avoidance-robot" title="Permanent link">&para;</a></h1>
 <p>In this version the robot will move forward until it gets close to an object in front of it.  It will then backup
 a bit and turn either right or left and continue on.</p>
 <p><a href="https://github.com/dmccreary/coderdojo-robots/blob/master/src/oled-ping-bot/_10-oled-face-ping-bot/_10-oled-face-ping-bot.ino">OLED Face Ping Bot</a></p>
@@ -1104,42 +1146,43 @@ a bit and turn either right or left and continue on.</p>
         
       </main>
       
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
         
-  <footer class="md-footer">
-    
-      <div class="md-footer-nav">
-        <nav class="md-footer-nav__inner md-grid">
-          
-            <a href="../drawing-to-oled/" title="Drawing to the OLED" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-              <div class="md-flex__cell md-flex__cell--shrink">
-                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-              </div>
-              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-                <span class="md-flex__ellipsis">
-                  <span class="md-footer-nav__direction">
-                    Previous
-                  </span>
-                  Drawing to the OLED
-                </span>
-              </div>
-            </a>
-          
-          
-        </nav>
-      </div>
-    
-    <div class="md-footer-meta md-typeset">
-      <div class="md-footer-meta__inner md-grid">
-        <div class="md-footer-copyright">
-          
-            built with the <a href="http://microsite.optum.com">Micro-Site Builder</a>
-        </div>
-        <div class="md-social">
+        <a href="../drawing-to-oled/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Drawing to the OLED" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Drawing to the OLED
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
   
 </div>
-      </div>
+      
     </div>
-  </footer>
+  </div>
+</footer>
       
     </div>
     <div class="md-dialog" data-md-component="dialog">

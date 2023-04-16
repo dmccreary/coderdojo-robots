@@ -1012,15 +1012,15 @@
 
 
 
-<h1 id="drawing-to-oled">Drawing to OLED</h1>
+<h1 id="drawing-to-oled">Drawing to OLED<a class="headerlink" href="#drawing-to-oled" title="Permanent link">&para;</a></h1>
 <p>There are two libraries for drawing to small monochrome OLED screens: the Adfruit libraries and the u8g2 libraries.
 For our robots, which only have 2K or RAM, we will be using the u8g2 libraries because they use only about 1/3 of the RAM when used in the Page Buffer Picture Loop mode.
 See <a href="https://github.com/olikraus/u8g2/wiki/setup_tutorial#page-buffer-mode-picture-loop">Page Buffer Picture Loop</a></p>
-<h2 id="the-u8g2-monochrome-graphics-library">The u8g2 Monochrome Graphics Library</h2>
+<h2 id="the-u8g2-monochrome-graphics-library">The u8g2 Monochrome Graphics Library<a class="headerlink" href="#the-u8g2-monochrome-graphics-library" title="Permanent link">&para;</a></h2>
 <p><a href="https://github.com/olikraus/U8g2_Arduino">U8g2 Github Site</a></p>
 <p><a href="https://github.com/olikraus/u8g2/wiki/u8g2reference">u8g2 Reference Libreary</a>
 <a href="https://github.com/olikraus/u8g2/wiki/u8g2install">U8g2 Wiki</a></p>
-<h2 id="adafruit">Adafruit</h2>
+<h2 id="adafruit">Adafruit<a class="headerlink" href="#adafruit" title="Permanent link">&para;</a></h2>
 <p>Adafruit_SSD1306, which handles the low-level communication with the hardware, and Adafruit_GFX, which builds atop this to add graphics functions like lines, circles and text.</p>
 <p>We will not be using these libraries because they are too memory intensive.  They take over 70% of the available 2K RAM on the Arduino Nano.</p>
 
@@ -1031,56 +1031,58 @@ See <a href="https://github.com/olikraus/u8g2/wiki/setup_tutorial#page-buffer-mo
         
       </main>
       
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
         
-  <footer class="md-footer">
-    
-      <div class="md-footer-nav">
-        <nav class="md-footer-nav__inner md-grid">
-          
-            <a href="../extending-the-base-robot/" title="Extending the Base Robot" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-              <div class="md-flex__cell md-flex__cell--shrink">
-                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-              </div>
-              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-                <span class="md-flex__ellipsis">
-                  <span class="md-footer-nav__direction">
-                    Previous
-                  </span>
-                  Extending the Base Robot
-                </span>
-              </div>
-            </a>
-          
-          
-            <a href="../face-bot/" title="Face Bot" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-                <span class="md-flex__ellipsis">
-                  <span class="md-footer-nav__direction">
-                    Next
-                  </span>
-                  Face Bot
-                </span>
-              </div>
-              <div class="md-flex__cell md-flex__cell--shrink">
-                <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-              </div>
-            </a>
-          
-        </nav>
-      </div>
-    
-    <div class="md-footer-meta md-typeset">
-      <div class="md-footer-meta__inner md-grid">
-        <div class="md-footer-copyright">
-          
-            built with the <a href="http://microsite.optum.com">Micro-Site Builder</a>
-        </div>
-        <div class="md-social">
+        <a href="../extending-the-base-robot/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Extending the Base Robot" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Extending the Base Robot
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../face-bot/" class="md-footer__link md-footer__link--next" aria-label="Next: Face Bot" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Face Bot
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
   
 </div>
-      </div>
+      
     </div>
-  </footer>
+  </div>
+</footer>
       
     </div>
     <div class="md-dialog" data-md-component="dialog">
