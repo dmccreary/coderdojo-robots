@@ -54,10 +54,10 @@ nav:
     #- Programing Mode: arduino-adv/05-programing-mode.md
     #- Draw Face: arduino-adv/06-draw-face.md
     #- Rotery Encoder: arduino-adv/07-rotery-encoder.md
+  - glossary.md
   - Contributing:
     - How to Contribute Examples: contribute.md
-  - Contact:
-    - Contact: contact.md
+  - Contact: contact.md
 theme:
   name: material
   palette:
