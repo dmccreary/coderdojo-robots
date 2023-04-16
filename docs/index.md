@@ -1,5 +1,10 @@
 # CoderDojo Robots
 
+!!! Note
+    We are no longer supporting Arduino robots.  All of our
+    new CoderDojo an Code Savvy lesson plans are being
+    moved to [MicroPython](https://www.coderdojotc.org/micropython/).
+
 # Table of Contents
 
 * [Getting Started](getting-started.md)

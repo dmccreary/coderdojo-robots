@@ -1,4 +1,10 @@
-site_name: 'CoderDojo TC Robots'
+site_name: 'CoderDojo Twin Cities Robots'
+site_description: 'Resources for Teaching Robots to CoderDojo Twin Cities students.'
+site_author: 'Dan McCreary'
+repo_name: 'coderdojo-robots'
+repo_url: 'https://github.com/dmccreary/coderdojo-robots'
+edit_uri: 'blob/master/docs'
+
 nav:
   - mBot:
     - Instructor's Guide: mbot/mbot-instructors-guides.md
@@ -53,11 +59,7 @@ nav:
   - Contact:
     - Contact: contact.md
 
-site_description: 'Resources for Teaching Robots to CoderDojo Twin Cities students.'
-site_author: 'Dan McCreary'
-repo_name: 'coderdojo-robots'
-repo_url: 'https://github.com/dmccreary/coderdojo-robots'
-edit_uri: 'blob/master/docs'
+
 theme:
   name: material
   palette:
