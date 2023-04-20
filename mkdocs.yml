@@ -9,6 +9,7 @@ nav:
   - mBot:
     - Instructor's Guide: mbot/mbot-instructors-guides.md
     - Introduction: mbot/introduction.md
+    - Batteries: battery-lab.md
     - Set LED Color: mbot/01-set-led-color.md
     - Blink LED: mbot/02-blink.md
     - Alternate Blink: mbot/03-alternate-blink.md
@@ -22,7 +23,9 @@ nav:
     - Collision Avoidance Reverse: mbot/10-collision-avoidance-reverse.md
     - Collision Avoidance LED Status: mbot/11-collision-avoidance-led-status.md
     - Line Follower: mbot/10-line-follower.md
-
+  - Lesson Plans:
+    - Batteries: lessions/batteries.md
+    - Collision Avoidance Robot: lessons/collision-avoidance-robot.md
   - Basic Arduino:
     - Introduction: arduino/00-intro.md
     - Components: arduino/00-components.md
